@@ -4,11 +4,11 @@ Links is a clean, efficient platform that allows you to gather all your importan
 
 ## ✨ Features
 
-**Clean, Minimalist Design**: Focus on what matters with a distraction-free interface  
-**Fully Customizable**: Personalize colors, fonts, and layout to match your brand  
-**Mobile-First Approach**: Beautiful and functional on any device  
-**Lightning Fast**: Optimized for speed and performance  
-**SEO Friendly**: Boost discoverability with optimized metadata
+- **Clean, Minimalist Design**: Focus on what matters with a distraction-free interface  
+- **Fully Customizable**: Personalize colors, fonts, and layout to match your brand  
+- **Mobile-First Approach**: Beautiful and functional on any device  
+- **Lightning Fast**: Optimized for speed and performance  
+- **SEO Friendly**: Boost discoverability with optimized metadata
 
 ## 🚀 Getting Started
 
