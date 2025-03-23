@@ -12,6 +12,13 @@ export const metadata: Metadata = {
   title: "Links",
   description:
     "Links is the fastest way to organize and share all your important links in one beautiful, customizable page. Lightning-fast and built for creators. Claim your link today!",
+    openGraph: {
+      type: 'website',
+      url: 'https://www.links.egeuysal.com',
+      title: 'Links',
+      description: 'Your personal links page for organizing and sharing multiple links.',
+      siteName: 'Links'
+    }
 };
 
 export default function RootLayout({
