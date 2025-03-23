@@ -11,6 +11,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import ContactForm from "./components/ContactForm"
 
 export default function Home() {
   return (
@@ -40,8 +41,8 @@ export default function Home() {
               key={uuidv4()}
             />
           ))}
-          <section className="mt-6 flex-col">
-          <h2 className="text-4xl mb-4 font-bold text-center text-[#593116] tracking-tighter">Frequently Asked Questions</h2>
+          <section className="mt-6 flex-col flex">
+          <h2 className="text-4xl mb-4 font-bold text-center text-[#593116] tracking-tighter">Frequently asked questions</h2>
           <Accordion type="single" collapsible className="text-[#593116]">
             <AccordionItem value="item-1">
               <AccordionTrigger className="font-bold text-xl">
@@ -78,6 +79,10 @@ export default function Home() {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
+          </section>
+          <section className="mt-8 flex-flex-col">
+          <h2 className="text-4xl mb-6 font-bold text-center text-[#593116] tracking-tighter">Get in touch</h2>
+            <ContactForm />
           </section>
         </div>
       </section>
