@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${lato.variable}`}>
       <body className={lato.className}>
-        <div className="min-h-screen flex flex-col items-center justify-between">
+        <div className="min-h-screen flex flex-col items-center justify-between mb-12">
           <main className="w-[85vw] max-w-7xl flex-1 flex flex-col py-4">
             <Header />
             <div className="flex-1 my-4">

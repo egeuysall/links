@@ -32,13 +32,15 @@ export default function Home() {
   return (
     <div className="fixed top-6 left-0 right-0 z-10 flex justify-center">
       <header className="w-[85vw] max-w-7xl bg-[#7F5539]/75 border-2 border-[#9C6644] h-18 rounded-lg flex justify-between bg-opacity-55 shadow-sm backdrop-blur-md">
-        <Image
-          width={18}
-          height={18}
-          className="ml-6 transition duration-200 hover:opacity-75"
-          alt="Link logo for header"
-          src="/logos/header-logo.svg"
-        />
+        <Link href="/" className="flex items-center">
+          <Image
+            width={18}
+            height={18}
+            className="ml-6 transition duration-200 hover:opacity-75"
+            alt="Link logo for header"
+            src="/logos/header-logo.svg"
+          />
+        </Link>
 
         <nav className="flex items-center justify-center">
           <ul className="font-bold text-[#EDE0D4] flex gap-4">
@@ -75,10 +77,12 @@ export default function Home() {
               </Link>
             </li>
             <li className="flex items-center justify-center mr-2">
-              <button 
-                onClick={toggleMobileMenu} 
+              <button
+                onClick={toggleMobileMenu}
                 aria-label="Toggle mobile menu"
-                className={`transform ${buttonAnimation ? 'scale-90' : ''} transition-transform duration-300`}
+                className={`transform ${
+                  buttonAnimation ? "scale-90" : ""
+                } transition-transform duration-300`}
               >
                 <Image
                   width={28}
@@ -95,15 +99,15 @@ export default function Home() {
 
       {/* Full Screen Mobile Menu with Animation */}
       {menuAnimation && (
-        <div 
+        <div
           className={`fixed inset-0 bg-[#EDE0D4] bg-[url("/images/texture.svg")] bg-cover bg-center z-50 md:hidden flex flex-col transition-all duration-300 ease-in-out ${
-            mobileMenuOpen 
-              ? "opacity-100 scale-100" 
+            mobileMenuOpen
+              ? "opacity-100 scale-100"
               : "opacity-0 scale-95 pointer-events-none"
           }`}
         >
           <div className="flex justify-end p-6">
-            <button 
+            <button
               onClick={toggleMobileMenu}
               className="text-[#7F5539] text-4xl transform transition-transform duration-300 hover:rotate-90"
               aria-label="Close menu"
@@ -111,15 +115,15 @@ export default function Home() {
               ×
             </button>
           </div>
-          
+
           <nav className="flex-1 flex items-center justify-center">
             <ul className="space-y-8 text-center text-[#7F5539] text-2xl font-bold">
-              <li 
+              <li
                 className="transform transition-all duration-300 hover:scale-110"
                 style={{ animationDelay: "100ms" }}
               >
                 <h1>
-                  <Link 
+                  <Link
                     href="#explore"
                     className="block p-2 transition duration-200 hover:text-[#9C6644]"
                     onClick={toggleMobileMenu}
@@ -128,12 +132,12 @@ export default function Home() {
                   </Link>
                 </h1>
               </li>
-              <li 
+              <li
                 className="transform transition-all duration-300 hover:scale-110"
                 style={{ animationDelay: "200ms" }}
               >
                 <h1>
-                  <Link 
+                  <Link
                     href="#features"
                     className="block p-2 transition duration-200 hover:text-[#9C6644]"
                     onClick={toggleMobileMenu}
@@ -142,12 +146,12 @@ export default function Home() {
                   </Link>
                 </h1>
               </li>
-              <li 
+              <li
                 className="transform transition-all duration-300 hover:scale-110"
                 style={{ animationDelay: "300ms" }}
               >
                 <h1>
-                  <Link 
+                  <Link
                     href="#create"
                     className="block p-2 transition duration-200 hover:text-[#9C6644]"
                     onClick={toggleMobileMenu}
@@ -156,12 +160,12 @@ export default function Home() {
                   </Link>
                 </h1>
               </li>
-              <li 
+              <li
                 className="transform transition-all duration-300 hover:scale-110"
                 style={{ animationDelay: "400ms" }}
               >
                 <h1>
-                  <Link 
+                  <Link
                     href="#faq"
                     className="block p-2 transition duration-200 hover:text-[#9C6644]"
                     onClick={toggleMobileMenu}
@@ -172,7 +176,7 @@ export default function Home() {
               </li>
             </ul>
           </nav>
-          
+
           <div className="pb-10 text-center text-[#7F5539] opacity-70">
             <p className="font-bold">&copy; {year} Links</p>
           </div>

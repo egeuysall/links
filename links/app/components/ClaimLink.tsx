@@ -2,22 +2,23 @@
 
 import React from "react";
 import Image from "next/image";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 const ClaimLink = () => {
-    const router = useRouter();
+  const router = useRouter();
 
   const handleForm = (event: React.FormEvent) => {
     event.preventDefault();
-    router.push('/create');
+    router.push("/create");
   };
 
   return (
-    <form className="w-full max-w-md space-y-6" onSubmit={handleForm}>
-      <label htmlFor="username" className="sr-only">
-        Username
-      </label>
-      <div className="w-full rounded-lg border-[#9C6644] border-2 bg-[#E6CCB2] p-6 flex items-center space-x-3 h-18">
+    <form
+      className="w-full flex flex-col lg:grid lg:grid-cols-3 gap-6"
+      onSubmit={handleForm}
+      id="create"
+    >
+      <div className="w-full rounded-lg border-[#9C6644] border-2 bg-[#E6CCB2] col-span-2 p-6 flex items-center space-x-3 h-18">
         <Image
           width={18}
           height={18}
@@ -45,6 +46,6 @@ const ClaimLink = () => {
       </button>
     </form>
   );
-}
+};
 
 export default ClaimLink;

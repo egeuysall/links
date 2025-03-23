@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <>
       <section className="flex items-center justify-center flex-col gap-4">
-        <h1 className="text-5xl font-bold text-center text-[#593116] mt-36 tracking-tighter">
+        <h1 className="text-5xl font-bold text-center text-[#593116] mt-36 tracking-tighter" id="explore">
           The only link you will ever need.
         </h1>
         <p className="text-center text-[#593116] tracking-tight text-xl">
@@ -29,10 +29,14 @@ export default function Home() {
         <ClaimLink />
       </section>
       <section className="flex items-center justify-center mt-8 flex-col">
-        <h2 className="text-4xl font-bold text-center text-[#593116] tracking-tighter">
+        <h2 className="text-4xl font-bold text-center text-[#593116] tracking-tighter mb-4" id="features">
           Set up and personalize your links in no time.
         </h2>
+        <p className="text-center text-[#593116] tracking-tight text-xl">
+        Quickly set up and customize your links with ease. Personalize, organize, and share them effortlessly for a seamless and professional experience.
+        </p>
         <div className="flex flex-col gap-6 mt-8 mb-32">
+          <div className="md:grid md:grid-cols-2 gap-6 flex flex-col ">
           {features.map((feature) => (
             <Feature
               icon={feature.icon}
@@ -41,8 +45,12 @@ export default function Home() {
               key={uuidv4()}
             />
           ))}
+          </div>
           <section className="mt-6 flex-col flex">
-          <h2 className="text-4xl mb-4 font-bold text-center text-[#593116] tracking-tighter">Frequently asked questions</h2>
+          <h2 className="text-4xl mb-4 font-bold text-center text-[#593116] tracking-tighter" id="faq">Frequently asked questions</h2>
+          <p className="text-center text-[#593116] tracking-tight text-xl mb-8">
+          Get quick answers to common questions with helpful insights, troubleshooting tips, and essential information to enhance your experience.
+        </p>
           <Accordion type="single" collapsible className="text-[#593116]">
             <AccordionItem value="item-1">
               <AccordionTrigger className="font-bold text-xl">
@@ -80,8 +88,11 @@ export default function Home() {
             </AccordionItem>
           </Accordion>
           </section>
-          <section className="mt-8 flex-flex-col">
+          <section className="mt-2 flex-flex-col">
           <h2 className="text-4xl mb-6 font-bold text-center text-[#593116] tracking-tighter">Get in touch</h2>
+          <p className="text-center text-[#593116] tracking-tight text-xl mb-8">
+          Reach out for support, questions, or feedback. We're here to assist you and ensure a smooth experience. Contact us now!
+        </p>
             <ContactForm />
           </section>
         </div>
