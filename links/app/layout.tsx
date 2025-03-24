@@ -57,7 +57,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: "Links – Connect everything, effortlessly",
       description:
         "Links is the ultimate bio link tool. Showcase all your content in one customizable link. Claim your link today!",
-      images: ["/og-portfolio.jpg"],
+      images: ["/og-links.jpg"],
       creator: "@links",
     },
     icons: {
