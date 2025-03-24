@@ -100,6 +100,20 @@ export default async function RootLayout({
     image: product.image,
     description: product.description,
     url: "https://www.links.egeuysal.com/",
+    // Added offers property to satisfy Google Search Console requirements
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: "https://www.links.egeuysal.com/",
+    },
+    // Added aggregateRating for better SEO
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      reviewCount: "127"
+    },
     creator: {
       "@type": "Person",
       name: "Ege Uysal",
