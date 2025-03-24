@@ -25,7 +25,7 @@ const ClaimLink = () => {
           src="/logos/input-logo.svg"
           alt="Dark Link logo"
         />
-        <div className="text-xl text-[#593116] font-bold">
+        <div className="text-xl flex text-[#593116] font-bold">
           links.com/
           <input
             type="text"
