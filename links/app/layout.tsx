@@ -93,8 +93,8 @@ export default async function RootLayout({
 }) {
   const product = await getProduct();
   
-  // Using the date provided in the prompt, set priceValidUntil to one year later
-  const priceValidUntilDate = "2026-03-24"; // One year from 2025-03-24
+  // Calculate one year from current date (2025-03-24)
+  const priceValidUntilDate = "2026-03-24";
   
   const jsonLd = {
     "@context": "https://schema.org",
@@ -109,44 +109,42 @@ export default async function RootLayout({
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
       url: "https://www.links.egeuysal.com/",
-      // Add the priceValidUntil field
       priceValidUntil: priceValidUntilDate,
-    },
-    // Add shipping details (for digital product)
-    shippingDetails: {
-      "@type": "OfferShippingDetails",
-      shippingRate: {
-        "@type": "MonetaryAmount",
-        value: "0",
-        currency: "USD"
-      },
-      deliveryTime: {
-        "@type": "ShippingDeliveryTime",
-        handlingTime: {
-          "@type": "QuantitativeValue",
-          minValue: "0",
-          maxValue: "0",
-          unitCode: "HUR"
+      // Moving shippingDetails inside offers where it belongs
+      shippingDetails: {
+        "@type": "OfferShippingDetails",
+        shippingRate: {
+          "@type": "MonetaryAmount",
+          value: "0",
+          currency: "USD"
+        },
+        deliveryTime: {
+          "@type": "ShippingDeliveryTime",
+          handlingTime: {
+            "@type": "QuantitativeValue",
+            minValue: "0",
+            maxValue: "0",
+            unitCode: "HUR"
+          }
+        },
+        shippingDestination: {
+          "@type": "DefinedRegion",
+          addressCountry: "US"
         }
-      },
-      shippingDestination: {
-        "@type": "DefinedRegion",
-        addressCountry: "US"
       }
     },
-    // Add merchant return policy
-    hasMerchantReturnPolicy: {
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      reviewCount: "127"
+    },
+    // Properly formatted merchantReturnPolicy (not hasMerchantReturnPolicy)
+    merchantReturnPolicy: {
       "@type": "MerchantReturnPolicy",
       returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
       merchantReturnDays: 30,
       returnMethod: "https://schema.org/ReturnByMail",
       returnFees: "https://schema.org/FreeReturn"
-    },
-    // Keep existing properties
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.8",
-      reviewCount: "127"
     },
     creator: {
       "@type": "Person",
