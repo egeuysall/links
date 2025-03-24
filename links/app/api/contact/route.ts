@@ -144,7 +144,7 @@ export async function POST(request: Request) {
         .email-container {
             width: 100%;
             max-width: 100%;
-            background-color: #EDEDD4;
+            background-color: #EDE0D4;
             overflow: hidden;
             background-image: url('https://res.cloudinary.com/ddjnqljd8/image/upload/v1742759857/texture.svg');
             border-radius: 12px;

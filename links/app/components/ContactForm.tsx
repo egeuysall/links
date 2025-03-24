@@ -127,7 +127,11 @@ export default function ContactForm() {
                 <FormItem>
                   <FormLabel className="text-xl font-bold text-[#593116] tracking-tight">First Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="John" className="text-lg font-bold text-[#593116] tracking-tight w-full bg-[#E6CCB2] border-2 border-[#7F5539] flex flex-col py-6 px-4 rounded-lg placeholder:text-[#B08968]" {...field} />
+                    <Input 
+                      placeholder="John" 
+                      className="focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none text-lg font-bold text-[#593116] tracking-tight w-full bg-[#E6CCB2] border-2 border-[#7F5539] flex flex-col py-6 px-4 rounded-lg placeholder:text-[#B08968] caret-[#593116]" 
+                      {...field} 
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -141,7 +145,11 @@ export default function ContactForm() {
                 <FormItem>
                   <FormLabel className="text-xl font-bold text-[#593116] tracking-tight">Last Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="Doe" className="text-lg font-bold text-[#593116] tracking-tight w-full bg-[#E6CCB2] border-2 border-[#7F5539] flex flex-col py-6 px-4 rounded-lg placeholder:text-[#B08968]" {...field} />
+                    <Input 
+                      placeholder="Doe" 
+                      className="focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none text-lg font-bold text-[#593116] tracking-tight w-full bg-[#E6CCB2] border-2 border-[#7F5539] flex flex-col py-6 px-4 rounded-lg placeholder:text-[#B08968] caret-[#593116]" 
+                      {...field} 
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -159,8 +167,8 @@ export default function ContactForm() {
                   <Input
                     type="email"
                     placeholder="your.email@example.com"
+                    className="focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none text-lg font-bold text-[#593116] tracking-tight w-full bg-[#E6CCB2] border-2 border-[#7F5539] flex flex-col py-6 px-4 rounded-lg placeholder:text-[#B08968] caret-[#593116]"
                     {...field}
-                    className="text-lg font-bold text-[#593116] tracking-tight w-full bg-[#E6CCB2] border-2 border-[#7F5539] flex flex-col py-6 px-4 rounded-lg placeholder:text-[#B08968]"
                   />
                 </FormControl>
                 <FormMessage />
@@ -177,7 +185,7 @@ export default function ContactForm() {
                 <FormControl>
                   <Textarea
                     placeholder="Write your message here..."
-                    className="min-h-[120px] text-lg font-bold text-[#593116] tracking-tight w-full bg-[#E6CCB2] border-2 border-[#7F5539] flex flex-col p-4 rounded-lg placeholder:text-[#B08968]"
+                    className="focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none min-h-[120px] text-lg font-bold text-[#593116] tracking-tight w-full bg-[#E6CCB2] border-2 border-[#7F5539] flex flex-col p-4 rounded-lg placeholder:text-[#B08968] caret-[#593116]"
                     {...field}
                   />
                 </FormControl>
@@ -186,7 +194,11 @@ export default function ContactForm() {
             )}
           />
 
-          <Button type="submit" className="w-full bg-[#B08968] text-[#EDE0D4] p-7 space-x-3 border-2 border-[#E6CCB2] rounded-lg text-xl font-bold transition-colors duration-300" disabled={isSubmitting}>
+          <Button 
+            type="submit" 
+            className="focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none w-full bg-[#B08968] text-[#EDE0D4] p-7 space-x-3 border-2 border-[#E6CCB2] rounded-lg text-xl font-bold transition-colors duration-300" 
+            disabled={isSubmitting}
+          >
             {isSubmitting ? "Sending..." : "Send Message"}
           </Button>
         </form>

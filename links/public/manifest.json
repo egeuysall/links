@@ -1,0 +1,43 @@
+{
+    "name": "Links",
+    "short_name": "Links",
+    "description": "A minimalist and customizable personal webpage for organizing and sharing multiple links in one place",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#EDE0D4",
+    "theme_color": "#9C6644",
+    "orientation": "portrait",
+    "scope": "/",
+    "icons": [
+      {
+        "src": "/icon-96x96.png",
+        "sizes": "96x96",
+        "type": "image/png",
+        "purpose": "any maskable"
+      },
+      {
+        "src": "/web-app-manifest-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "any maskable"
+      },
+      {
+        "src": "/web-app-manifest-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "any maskable"
+      }
+    ],
+    "lang": "en-US",
+    "dir": "ltr",
+    "prefer_related_applications": false,
+    "categories": ["productivity", "utilities", "personalization"],
+    "screenshots": [
+      {
+        "src": "/desktop.png",
+        "sizes": "1280x800",
+        "type": "image/png",
+        "form_factor": "wide"
+      }
+    ]
+  }

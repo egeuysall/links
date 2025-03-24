@@ -1,0 +1,49 @@
+# robots.txt file for example.com
+# Last updated: 2025-03-24
+
+# Allow all robots complete access by default
+User-agent: *
+Allow: /
+
+# Disallow access to admin areas
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /dashboard/
+Disallow: /cpanel/
+
+# Disallow access to sensitive directories
+Disallow: /private/
+Disallow: /includes/
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /logs/
+
+# Disallow access to specific file types
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /*.sql$
+Disallow: /*.yml$
+Disallow: /*.config$
+Disallow: /*.env$
+Disallow: /*.md$
+Disallow: /*.log$
+
+# Block specific bot examples (if needed)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: AdsBot-Google
+Allow: /
+
+# Crawl-delay suggestion (not supported by all bots)
+# Google ignores this directive and uses Search Console settings instead
+User-agent: Slurp
+Crawl-delay: 5
+
+# Sitemap declarations
+Sitemap: https://example.com/sitemap.xml
+Sitemap: https://example.com/post-sitemap.xml
+Sitemap: https://example.com/page-sitemap.xml
+
+# Host directive (unofficial but used by Yandex)
+Host: example.com

@@ -32,7 +32,8 @@ const ClaimLink = () => {
             id="username"
             name="username"
             placeholder="name"
-            className="bg-transparent text-[#593116] focus:outline-none placeholder-[#B08968] font-bold"
+            required
+            className="bg-transparent text-[#593116] focus:outline-none placeholder-[#B08968] font-bold caret-[#593116]"
             aria-label="Username for your link"
           />
         </div>
