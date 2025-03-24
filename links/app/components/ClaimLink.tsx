@@ -25,7 +25,7 @@ const ClaimLink = () => {
           src="/logos/input-logo.svg"
           alt="Dark Link logo"
         />
-        <div className="text-xl text-[#593116] font-bold">
+        <div className="text-lg text-[#593116] font-bold">
           links.com/
           <input
             type="text"
@@ -33,7 +33,7 @@ const ClaimLink = () => {
             name="username"
             placeholder="name"
             required
-            className="bg-transparent text-[#593116] focus:outline-none placeholder-[#B08968] font-bold caret-[#593116]"
+            className="bg-transparent text-lg text-[#593116] focus:outline-none placeholder-[#B08968] font-bold caret-[#593116]"
             aria-label="Username for your link"
           />
         </div>
