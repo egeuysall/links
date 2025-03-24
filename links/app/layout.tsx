@@ -9,7 +9,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import LayoutWrapper from "./components/LayoutWrapper";
 
-// Function to get product data - moved above where it's first used
+// Function to get product data
 async function getProduct() {
   return {
     name: "Links – Connect everything, effortlessly",
@@ -41,7 +41,7 @@ export async function generateMetadata(): Promise<Metadata> {
       url: "https://www.links.egeuysal.com/",
       images: [
         {
-          url: "/og-links.jpg",
+          url: "/og-links.jpg", // Keep relative - metadataBase will handle this
           width: 1200,
           height: 630,
           alt: "Links Logo",
@@ -61,9 +61,12 @@ export async function generateMetadata(): Promise<Metadata> {
       creator: "@links",
     },
     icons: {
-      icon: "/icon.ico",
+      icon: [
+        { url: "/icon.ico", sizes: "any" }, // Use standard favicon name
+        { url: "/icon.png", type: "image/png" } // Additional icon format
+      ],
       apple: "/apple-touch-icon.png",
-      shortcut: "/icon.ico",
+      shortcut: "/icon.ico", // Match the primary favicon name
     },
     manifest: "/manifest.json",
     robots: {
@@ -110,7 +113,6 @@ export default async function RootLayout({
       availability: "https://schema.org/InStock",
       url: "https://www.links.egeuysal.com/",
       priceValidUntil: priceValidUntilDate,
-      // Moving shippingDetails inside offers where it belongs
       shippingDetails: {
         "@type": "OfferShippingDetails",
         shippingRate: {
@@ -138,7 +140,6 @@ export default async function RootLayout({
       ratingValue: "4.8",
       reviewCount: "127"
     },
-    // Properly formatted merchantReturnPolicy (not hasMerchantReturnPolicy)
     merchantReturnPolicy: {
       "@type": "MerchantReturnPolicy",
       returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
@@ -168,6 +169,12 @@ export default async function RootLayout({
       className={`${spaceGrotesk.variable} ${lato.variable} !scroll-smooth`}
     >
       <head>
+        {/* Add explicit og tags to help Discord parser */}
+        <meta property="og:title" content="Links – Connect everything, effortlessly" />
+        <meta property="og:description" content="Links is the ultimate bio link tool. Showcase all your content in one customizable link. Claim your link today!" />
+        <meta property="og:image" content="https://www.links.egeuysal.com/og-links.jpg" />
+        <meta property="og:type" content="website" />
+        
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
