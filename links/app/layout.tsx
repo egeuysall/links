@@ -8,6 +8,8 @@ import { spaceGrotesk, lato } from "./fonts";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import LayoutWrapper from "./components/LayoutWrapper";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // Function to get product data
 async function getProduct() {
@@ -63,7 +65,7 @@ export async function generateMetadata(): Promise<Metadata> {
     icons: {
       icon: [
         { url: "/icon.ico", sizes: "any" }, // Use standard favicon name
-        { url: "/icon.png", type: "image/png" } // Additional icon format
+        { url: "/icon.png", type: "image/png" }, // Additional icon format
       ],
       apple: "/apple-touch-icon.png",
       shortcut: "/icon.ico", // Match the primary favicon name
@@ -95,10 +97,10 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const product = await getProduct();
-  
+
   // Calculate one year from current date (2025-03-24)
   const priceValidUntilDate = "2026-03-24";
-  
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -118,7 +120,7 @@ export default async function RootLayout({
         shippingRate: {
           "@type": "MonetaryAmount",
           value: "0",
-          currency: "USD"
+          currency: "USD",
         },
         deliveryTime: {
           "@type": "ShippingDeliveryTime",
@@ -126,26 +128,27 @@ export default async function RootLayout({
             "@type": "QuantitativeValue",
             minValue: "0",
             maxValue: "0",
-            unitCode: "HUR"
-          }
+            unitCode: "HUR",
+          },
         },
         shippingDestination: {
           "@type": "DefinedRegion",
-          addressCountry: "US"
-        }
-      }
+          addressCountry: "US",
+        },
+      },
     },
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "4.8",
-      reviewCount: "127"
+      reviewCount: "127",
     },
     merchantReturnPolicy: {
       "@type": "MerchantReturnPolicy",
-      returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+      returnPolicyCategory:
+        "https://schema.org/MerchantReturnFiniteReturnWindow",
       merchantReturnDays: 30,
       returnMethod: "https://schema.org/ReturnByMail",
-      returnFees: "https://schema.org/FreeReturn"
+      returnFees: "https://schema.org/FreeReturn",
     },
     creator: {
       "@type": "Person",
@@ -170,11 +173,20 @@ export default async function RootLayout({
     >
       <head>
         {/* Add explicit og tags to help Discord parser */}
-        <meta property="og:title" content="Links – Connect everything, effortlessly" />
-        <meta property="og:description" content="Links is the ultimate bio link tool. Showcase all your content in one customizable link. Claim your link today!" />
-        <meta property="og:image" content="https://www.links.egeuysal.com/og-links.jpg" />
+        <meta
+          property="og:title"
+          content="Links – Connect everything, effortlessly"
+        />
+        <meta
+          property="og:description"
+          content="Links is the ultimate bio link tool. Showcase all your content in one customizable link. Claim your link today!"
+        />
+        <meta
+          property="og:image"
+          content="https://www.links.egeuysal.com/og-links.jpg"
+        />
         <meta property="og:type" content="website" />
-        
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -188,6 +200,8 @@ export default async function RootLayout({
             <main className="w-[85vw] max-w-7xl flex-1 flex flex-col py-4">
               <Header />
               <div className="flex-1 my-4">{children}</div>
+              <Analytics />
+              <SpeedInsights />
               <Footer />
             </main>
           </div>
