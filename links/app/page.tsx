@@ -11,6 +11,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import ContactForm from "./components/ContactForm";
+import StartJourney from "./components/StartJourney"
 
 export default function Home() {
   return (
@@ -28,6 +29,7 @@ export default function Home() {
         </p>
       </section>
       <section className="flex items-center justify-center mt-8 flex-col">
+        <StartJourney />
       </section>
       <section className="flex items-center justify-center mt-8 flex-col">
         <h2
