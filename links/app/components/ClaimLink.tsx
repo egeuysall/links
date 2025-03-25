@@ -301,9 +301,6 @@ const Links = () => {
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:creator" content="@${profile.username}">
-    <meta property="twitter:url" content="https://${window.location.hostname}/${
-      profile.username
-    }">
     <meta property="twitter:title" content="${profile.displayName} | Links">
     <meta property="twitter:description" content="${
       profile.bio
@@ -470,7 +467,6 @@ const Links = () => {
   return (
     <ErrorBoundary
       FallbackComponent={ErrorFallback}
-      onReset={() => window.location.reload()}
     >
       <div className="w-full">
         <div className="container mx-auto max-w-5xl">
