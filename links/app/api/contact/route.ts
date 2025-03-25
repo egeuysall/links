@@ -54,6 +54,7 @@ export async function POST(request: Request) {
 
     // Format date in more natural language (Day Month, Hour:Minute)
     const now = new Date();
+    const fiveHoursEarlier = new Date(now.getTime() - 5 * 60 * 60 * 1000);
     // Format as "23 March, 20:12"
     const formattedDate = new Intl.DateTimeFormat("en-GB", {
       day: "numeric",
@@ -61,7 +62,7 @@ export async function POST(request: Request) {
       hour: "2-digit",
       minute: "2-digit",
       timeZone: "UTC",
-    }).format(now);
+    }).format(fiveHoursEarlier);
 
     // Create HTML email template
     const htmlContent = `
