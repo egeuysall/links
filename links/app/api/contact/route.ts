@@ -81,7 +81,7 @@ export async function POST(request: Request) {
         @font-face {
             font-family: 'Space Grotesk';
             font-style: normal;
-            font-weight: 400;
+            font-weight: 700;
             src: url(https://fonts.gstatic.com/s/spacegrotesk/v15/V8mQoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj7aUXskPMBBSSJLm2E.woff2) format('woff2');
         }
         
@@ -183,7 +183,7 @@ export async function POST(request: Request) {
         .email-header h1 {
             color: #E6CCB2;
             margin: 0;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 26px;
         }
         
@@ -225,7 +225,7 @@ export async function POST(request: Request) {
         }
         
         .info-label {
-            font-weight: 600;
+            font-weight: 700;
             color: #7F5539;
             margin-bottom: 10px;
             display: block;

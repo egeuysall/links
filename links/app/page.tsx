@@ -4,20 +4,22 @@ import Feature from "./components/Feature";
 import { v4 as uuidv4 } from "uuid";
 import features from "./features";
 import React from "react";
-import ClaimLink from "./components/ClaimLink";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import ContactForm from "./components/ContactForm"
+import ContactForm from "./components/ContactForm";
 
 export default function Home() {
   return (
     <>
       <section className="flex items-center justify-center flex-col gap-4">
-        <h1 className="text-5xl font-bold text-center text-[#593116] mt-36 tracking-tighter" id="explore">
+        <h1
+          className="text-5xl font-bold text-center text-[#593116] mt-36 tracking-tighter"
+          id="explore"
+        >
           The only link you will ever need.
         </h1>
         <p className="text-center text-[#593116] tracking-tight text-xl">
@@ -26,73 +28,88 @@ export default function Home() {
         </p>
       </section>
       <section className="flex items-center justify-center mt-8 flex-col">
-        <ClaimLink />
       </section>
       <section className="flex items-center justify-center mt-8 flex-col">
-        <h2 className="text-4xl font-bold text-center text-[#593116] tracking-tighter mb-4" id="features">
+        <h2
+          className="text-4xl font-bold text-center text-[#593116] tracking-tighter mb-4"
+          id="features"
+        >
           Set up and personalize your links in no time.
         </h2>
         <p className="text-center text-[#593116] tracking-tight text-xl">
-        Quickly set up and customize your links with ease. Personalize, organize, and share them effortlessly for a seamless and professional experience.
+          Quickly set up and customize your links with ease. Personalize,
+          organize, and share them effortlessly for a seamless and professional
+          experience.
         </p>
         <div className="flex flex-col gap-6 mt-8 mb-32">
           <div className="md:grid md:grid-cols-2 gap-6 flex flex-col ">
-          {features.map((feature) => (
-            <Feature
-              icon={feature.icon}
-              title={feature.title}
-              details={feature.details}
-              key={uuidv4()}
-            />
-          ))}
+            {features.map((feature) => (
+              <Feature
+                icon={feature.icon}
+                title={feature.title}
+                details={feature.details}
+                key={uuidv4()}
+              />
+            ))}
           </div>
           <section className="mt-6 flex-col flex">
-          <h2 className="text-4xl mb-4 font-bold text-center text-[#593116] tracking-tighter" id="faq">Frequently asked questions</h2>
-          <p className="text-center text-[#593116] tracking-tight text-xl mb-8">
-          Get quick answers to common questions with helpful insights, troubleshooting tips, and essential information to enhance your experience.
-        </p>
-          <Accordion type="single" collapsible className="text-[#593116]">
-            <AccordionItem value="item-1">
-              <AccordionTrigger className="font-bold text-xl">
-                What makes Links unique?
-              </AccordionTrigger>
-              <AccordionContent className="text-lg">
-                It's fast, clean, and fully in your control—no clutter, just
-                what you need.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-2">
-              <AccordionTrigger className="font-bold text-xl">
-                Can I use it beyond social media?
-              </AccordionTrigger>
-              <AccordionContent className="text-lg">
-                Yes! Use it as a mini-site, portfolio, or digital business card.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-3">
-              <AccordionTrigger className="font-bold text-xl">
-                Do I fully own my page?
-              </AccordionTrigger>
-              <AccordionContent className="text-lg">
-                Yes! Links is open-source, meaning you can host it yourself and
-                modify everything.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-4">
-              <AccordionTrigger className="font-bold text-xl">
-                Is Links free to use?
-              </AccordionTrigger>
-              <AccordionContent className="text-lg">
-                Yes! It's completely free, with no hidden fees or paywalls.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+            <h2
+              className="text-4xl mb-4 font-bold text-center text-[#593116] tracking-tighter"
+              id="faq"
+            >
+              Frequently asked questions
+            </h2>
+            <p className="text-center text-[#593116] tracking-tight text-xl mb-8">
+              Get quick answers to common questions with helpful insights,
+              troubleshooting tips, and essential information to enhance your
+              experience.
+            </p>
+            <Accordion type="single" collapsible className="text-[#593116]">
+              <AccordionItem value="item-1">
+                <AccordionTrigger className="font-bold text-xl">
+                  What makes Links unique?
+                </AccordionTrigger>
+                <AccordionContent className="text-lg">
+                  It's fast, clean, and fully in your control—no clutter, just
+                  what you need.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-2">
+                <AccordionTrigger className="font-bold text-xl">
+                  Can I use it beyond social media?
+                </AccordionTrigger>
+                <AccordionContent className="text-lg">
+                  Yes! Use it as a mini-site, portfolio, or digital business
+                  card.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-3">
+                <AccordionTrigger className="font-bold text-xl">
+                  Do I fully own my page?
+                </AccordionTrigger>
+                <AccordionContent className="text-lg">
+                  Yes! Links is open-source, meaning you can host it yourself
+                  and modify everything.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-4">
+                <AccordionTrigger className="font-bold text-xl">
+                  Is Links free to use?
+                </AccordionTrigger>
+                <AccordionContent className="text-lg">
+                  Yes! It's completely free, with no hidden fees or paywalls.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </section>
           <section className="mt-2 flex-flex-col">
-          <h2 className="text-4xl mb-6 font-bold text-center text-[#593116] tracking-tighter">Get in touch</h2>
-          <p className="text-center text-[#593116] tracking-tight text-xl mb-8">
-          Reach out for support, questions, or feedback. We're here to assist you and ensure a smooth experience. Contact us now!
-        </p>
+            <h2 className="text-4xl mb-6 font-bold text-center text-[#593116] tracking-tighter">
+              Get in touch
+            </h2>
+            <p className="text-center text-[#593116] tracking-tight text-xl mb-8">
+              Reach out for support, questions, or feedback. We're here to
+              assist you and ensure a smooth experience. Contact us now!
+            </p>
             <ContactForm />
           </section>
         </div>
