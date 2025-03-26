@@ -493,7 +493,7 @@ const Links = () => {
                     </button>
                   </div>
 
-                  <div className="bg-gray-100 p-4 rounded-lg overflow-auto max-h-[500px]">
+                  <div className="bg-gray-100 p-4 rounded-lg overflow-auto max-h-[1475px]">
                     <pre className="text-sm whitespace-pre-wrap">
                       {generateHTML}
                     </pre>
