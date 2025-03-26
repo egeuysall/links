@@ -1,5 +1,5 @@
 import React from "react";
-import ClaimLink from "../components/ClaimLink"
+import ClaimLink from "../components/ClaimLink";
 
 export default function Home() {
   return (
@@ -9,9 +9,12 @@ export default function Home() {
           Start creating your links.
         </h1>
         <p className="text-center text-[#593116] tracking-tight text-xl">
-        Enter your links and build your unique collection effortlessly. Customize your setup in seconds!
+          Enter your links and build your unique collection effortlessly.
+          Customize your setup in seconds!
         </p>
-        <ClaimLink />
+        <div className="mt-8 mb-24 w-full">
+          <ClaimLink />
+        </div>
       </section>
     </>
   );

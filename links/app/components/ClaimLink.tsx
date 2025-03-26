@@ -2,9 +2,8 @@
 
 import React, { useState, useEffect, useMemo, memo } from "react";
 import { useRouter } from "next/navigation";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ErrorBoundary } from "react-error-boundary";
-import Image from "next/image";
+import ContactForm from "./ContactForm"
 
 // Types and Interfaces
 interface LinkItem {
@@ -104,8 +103,7 @@ const Preview = memo(({ html }: { html: string }) => (
     title="Preview"
     className="w-full"
     style={{
-      height: "600px",
-      border: "1px solid #e5e7eb",
+      height: "700px",
       borderRadius: "8px",
     }}
   />
@@ -313,7 +311,7 @@ const Links = () => {
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Lato:wght@400;700&family=Inter:wght@400;700&family=Montserrat:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <!-- TailwindCSS -->
-    <script src="https://cdn.tailwindcss.com" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     
     <style>
       /* Define fonts first to ensure proper loading */
@@ -469,21 +467,10 @@ const Links = () => {
       FallbackComponent={ErrorFallback}
     >
       <div className="w-full">
-        <div className="container mx-auto max-w-5xl">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Preview Panel */}
-            <div
-              className="lg:col-span-1 rounded-lg shadow-lg p-6 overflow-hidden"
-              style={{ backgroundColor: "white" }}
-            >
-              <h2 className="text-xl font-bold mb-6 text-center">Preview</h2>
-              <Preview html={generateHTML} />
-            </div>
-
-            {/* Editor Panel */}
-            <div className="lg:col-span-2 bg-white rounded-lg shadow-lg p-6">
+        <div className="container w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-5 lg:grid-rows-2 gap-8">
+            <div className="lg:col-span-3 lg:row-span-2 bg-[#B08968] rounded-lg p-6">
               <div className="flex justify-between items-center mb-6">
-                <h2 className="text-xl font-bold">Customize Your Links</h2>
                 <button
                   onClick={toggleExport}
                   className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -515,25 +502,26 @@ const Links = () => {
               ) : (
                 <div className="editor-panel space-y-6">
                   {/* Profile Section */}
-                  <div>
-                    <h3 className="text-lg font-semibold mb-3">
+                  <div className="text-[#EDE0D4]">
+                    <h4 className="text-2xl font-bold mb-3">
                       Profile Details
-                    </h3>
+                    </h4>
+                    <hr className="my-4 border border-[#EDE0D4]"/>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-medium mb-1">
-                          Display Name
+                        <label className="block text-xl font-bold mb-1 mt-2">
+                          Display name
                         </label>
                         <input
                           type="text"
                           name="displayName"
                           value={profile.displayName}
                           onChange={handleProfileChange}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-1">
+                        <label className="block text-xl font-bold mb-1 mt-2">
                           Username
                         </label>
                         <input
@@ -541,23 +529,23 @@ const Links = () => {
                           name="username"
                           value={profile.username}
                           onChange={handleProfileChange}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
                         />
                       </div>
                       <div className="md:col-span-2">
-                        <label className="block text-sm font-medium mb-1">
+                        <label className="block text-xl font-bold mb-1 mt-2">
                           Bio
                         </label>
                         <textarea
                           name="bio"
                           value={profile.bio}
                           onChange={handleProfileChange}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
                           rows={2}
                         />
                       </div>
                       <div className="md:col-span-2">
-                        <label className="block text-sm font-medium mb-1">
+                        <label className="block text-xl font-bold mb-1 mt-2">
                           Avatar URL
                         </label>
                         <input
@@ -566,19 +554,20 @@ const Links = () => {
                           value={profile.avatar || ""}
                           onChange={handleProfileChange}
                           placeholder="https://example.com/avatar.jpg"
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
                         />
                       </div>
                     </div>
                   </div>
 
                   {/* Theme Section */}
-                  <div>
-                    <h3 className="text-lg font-semibold mb-3">Theme</h3>
+                  <div className="text-[#EDE0D4]">
+                    <h4 className="text-2xl mt-10 font-bold mb-3">Theme</h4>
+                    <hr className="my-4 border border-[#EDE0D4]"/>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-medium mb-1">
-                          Background Color
+                        <label className="block text-xl font-bold mb-1 mt-2">
+                          Background color
                         </label>
                         <div className="flex gap-2">
                           <input
@@ -586,20 +575,20 @@ const Links = () => {
                             name="theme.backgroundColor"
                             value={profile.theme.backgroundColor}
                             onChange={handleProfileChange}
-                            className="h-10 w-10"
+                            className="h-10 w-10 rounded-sm"
                           />
                           <input
                             type="text"
                             name="theme.backgroundColor"
                             value={profile.theme.backgroundColor}
                             onChange={handleProfileChange}
-                            className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
                           />
                         </div>
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-1">
-                          Text Color
+                        <label className="block text-xl font-bold mb-1 mt-2">
+                          Text color
                         </label>
                         <div className="flex gap-2">
                           <input
@@ -607,20 +596,20 @@ const Links = () => {
                             name="theme.textColor"
                             value={profile.theme.textColor}
                             onChange={handleProfileChange}
-                            className="h-10 w-10"
+                            className="h-10 w-10 rounded-sm"
                           />
                           <input
                             type="text"
                             name="theme.textColor"
                             value={profile.theme.textColor}
                             onChange={handleProfileChange}
-                            className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
                           />
                         </div>
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-1">
-                          Button Color
+                        <label className="block text-xl font-bold mb-1 mt-2">
+                          Button color
                         </label>
                         <div className="flex gap-2">
                           <input
@@ -628,20 +617,20 @@ const Links = () => {
                             name="theme.buttonColor"
                             value={profile.theme.buttonColor}
                             onChange={handleProfileChange}
-                            className="h-10 w-10"
+                            className="h-10 w-10 rounded-sm"
                           />
                           <input
                             type="text"
                             name="theme.buttonColor"
                             value={profile.theme.buttonColor}
                             onChange={handleProfileChange}
-                            className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
                           />
                         </div>
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-1">
-                          Button Text Color
+                        <label className="block text-xl font-bold mb-1 mt-2">
+                          Button text color
                         </label>
                         <div className="flex gap-2">
                           <input
@@ -649,26 +638,26 @@ const Links = () => {
                             name="theme.buttonTextColor"
                             value={profile.theme.buttonTextColor}
                             onChange={handleProfileChange}
-                            className="h-10 w-10"
+                            className="h-10 w-10 rounded-sm"
                           />
                           <input
                             type="text"
                             name="theme.buttonTextColor"
                             value={profile.theme.buttonTextColor}
                             onChange={handleProfileChange}
-                            className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
                           />
                         </div>
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-1">
-                          Heading Font
+                        <label className="block text-xl font-bold mb-1 mt-2">
+                          Heading font
                         </label>
                         <select
                           name="theme.headingFont"
                           value={profile.theme.headingFont}
                           onChange={handleProfileChange}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
                         >
                           {FONT_OPTIONS.heading.map((font) => (
                             <option key={font.value} value={font.value}>
@@ -678,14 +667,14 @@ const Links = () => {
                         </select>
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-1">
-                          Text Font
+                        <label className="block text-xl font-bold mb-1 mt-2">
+                          Text font
                         </label>
                         <select
                           name="theme.textFont"
                           value={profile.theme.textFont}
                           onChange={handleProfileChange}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
                         >
                           {FONT_OPTIONS.text.map((font) => (
                             <option key={font.value} value={font.value}>
@@ -698,32 +687,28 @@ const Links = () => {
                   </div>
 
                   {/* Links Section */}
-                  <div>
-                    <h3 className="text-lg font-semibold mb-3">Links</h3>
+                  <div className="text-[#EDE0D4]">
+                    <h4 className="text-2xl mt-10 font-bold mb-3">Links</h4>
+                    <hr className="my-4 border border-[#EDE0D4]"/>
                     <div className="space-y-4 mb-4">
                       {profile.links.map((link) => (
                         <div
                           key={link.id}
-                          className="flex items-center p-3 bg-gray-50 rounded-lg"
+                          className="flex items-center"
                         >
-                          <div className="flex-1">
-                            <div className="font-medium">{link.title}</div>
-                            <div className="text-sm text-gray-500 truncate">
-                              {link.url}
+                          <div className="flex-1 bg-[#E6CCB2] p-4 rounded-md">
+                            <p className="font-bold text-lg text-[#7F5539]">{link.title}</p>
+                            <div className="text-md text-[#B08968]">
+                            {link.url && link.url.length > 32 ? `${link.url.slice(0, 32)}…` : link.url}
                             </div>
-                            {link.iconUrl && (
-                              <div className="text-sm text-gray-500 truncate">
-                                Icon: {link.iconUrl}
-                              </div>
-                            )}
                           </div>
                           <button
                             onClick={() => handleRemoveLink(link.id)}
-                            className="ml-2 text-red-500 p-1 hover:bg-red-50 rounded-full transition-colors"
+                            className="ml-2 text-[#EDE0D4] p-1 rounded-full transition-colors"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5"
+                              className="h-6 w-6"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
@@ -740,12 +725,13 @@ const Links = () => {
                       ))}
                     </div>
 
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                      <h4 className="font-medium mb-3">Add New Link</h4>
+                    <div className="rounded-lg">
+                    <h4 className="text-2xl mt-10 font-bold mb-3">Add new link</h4>
+                    <hr className="my-4 border border-[#EDE0D4]"/>
                       <div className="grid grid-cols-1 gap-3 mb-3">
                         <div>
-                          <label className="block text-sm font-medium mb-1">
-                            Link Title
+                          <label className="block text-xl font-bold mb-1 mt-2">
+                            Link title
                           </label>
                           <input
                             type="text"
@@ -753,11 +739,11 @@ const Links = () => {
                             value={newLink.title}
                             onChange={handleNewLinkChange}
                             placeholder="My Website"
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-medium mb-1">
+                          <label className="block text-xl font-bold mb-1 mt-2">
                             URL
                           </label>
                           <input
@@ -766,12 +752,12 @@ const Links = () => {
                             value={newLink.url}
                             onChange={handleNewLinkChange}
                             placeholder="https://example.com"
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-medium mb-1">
-                            Icon URL (optional)
+                          <label className="block text-xl font-bold mb-1 mt-2">
+                            Icon URL
                           </label>
                           <input
                             type="url"
@@ -779,7 +765,7 @@ const Links = () => {
                             value={newLink.iconUrl}
                             onChange={handleNewLinkChange}
                             placeholder="https://example.com/icon.png"
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
                           />
                         </div>
                       </div>
@@ -798,6 +784,24 @@ const Links = () => {
                   </div>
                 </div>
               )}
+            </div>
+            <div
+              className="lg:col-span-2 bg-[#B08968] rounded-lg px-12 pb-10 pt-6 overflow-hidden text-[#EDE0D4]"
+            >
+              <h4 className="text-2xl font-bold mb-4 text-center">Preview</h4>
+              <Preview html={generateHTML} />
+            </div>
+            <div
+              className="lg:col-span-2 bg-[#B08968] rounded-lg px-12 py-12 overflow-hidden text-[#EDE0D4]"
+            >
+              <h4 className="text-2xl font-bold text-center tracking-tight">Thank you for using Links!</h4>
+              <hr className="my-4 border border-[#EDE0D4]"/>
+              <p className="text-xl tracking-tight text-center">
+                Thank you for using Links. We’re glad to be part of your journey in simplifying and enhancing your online experience.
+                </p>
+                <h4 className="text-2xl font-bold text-center tracking-tight mt-8">Your feedback!</h4>
+                <hr className="my-4 border border-[#EDE0D4]"/>
+                <ContactForm />
             </div>
           </div>
         </div>
