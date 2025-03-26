@@ -24,6 +24,7 @@
 :root {
   --font-space-grotesk: var(--font-space-grotesk);
   --font-lato: var(--font-lato);
+  --font-jetbrains-mono: var(--font-jetbrains-mono)
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -32,6 +33,10 @@ h1, h2, h3, h4, h5, h6 {
 
 p, span, div {
   font-family: var(--font-lato);
+}
+
+code {
+  font-family: var(--font-jetbrains-mono);
 }
 
 /* Light theme variables */

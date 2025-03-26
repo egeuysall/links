@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 // Styles and fonts
 import "./globals.css";
-import { spaceGrotesk, lato } from "./fonts";
+import { spaceGrotesk, lato, jetBrainsMono } from "./fonts";
 
 // Components
 import Header from "./components/Header";
@@ -98,7 +98,6 @@ export default async function RootLayout({
 }) {
   const product = await getProduct();
 
-  // Calculate one year from current date (2025-03-24)
   const priceValidUntilDate = "2026-03-24";
 
   const jsonLd = {

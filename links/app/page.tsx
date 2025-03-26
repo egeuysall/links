@@ -11,7 +11,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import ContactForm from "./components/ContactForm";
-import StartJourney from "./components/StartJourney"
+import StartJourney from "./components/StartJourney";
+import StartNewsletter from "./components/StartNewsletter";
 
 export default function Home() {
   return (
@@ -104,7 +105,17 @@ export default function Home() {
               </AccordionItem>
             </Accordion>
           </section>
-          <section className="mt-2 flex-flex-col">
+          <section className="mt-2 mb-6 flex flex-col">
+            <h2 className="text-4xl mb-4 font-bold text-center text-[#593116] tracking-tighter">
+              Subscribe to our newsletter
+            </h2>
+            <p className="text-center text-[#593116] tracking-tight text-xl mb-8">
+              Stay ahead with exclusive tips, updates, and features. Subscribe
+              to our newsletter and supercharge your link-sharing game!
+            </p>
+            <StartNewsletter />
+          </section>
+          <section className="mt-2 flex flex-col">
             <h2 className="text-4xl mb-6 font-bold text-center text-[#593116] tracking-tighter">
               Get in touch
             </h2>

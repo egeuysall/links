@@ -3,7 +3,8 @@
 import React, { useState, useEffect, useMemo, memo } from "react";
 import { useRouter } from "next/navigation";
 import { ErrorBoundary } from "react-error-boundary";
-import ContactForm from "./ContactForm"
+import ContactForm from "./ContactForm";
+import { CodeBlock } from "@/components/ui/code-block";
 
 // Types and Interfaces
 interface LinkItem {
@@ -244,7 +245,7 @@ const Links = () => {
           return "system-ui, sans-serif";
       }
     };
-
+  
     const getTextFontFamily = () => {
       switch (profile.theme.textFont) {
         case "lato":
@@ -263,209 +264,300 @@ const Links = () => {
           return "system-ui, sans-serif";
       }
     };
-
+  
     return `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Primary Meta Tags -->
-    <title>${profile.displayName} | Links</title>
-    <meta name="title" content="${profile.displayName} | Links">
-    <meta name="description" content="${profile.bio} | Connect with ${
-      profile.displayName
-    } through their curated links">
-    <meta name="author" content="${profile.displayName}">
-    <meta name="creator" content="egeuysall">
-    <meta name="generator" content="Links Platform">
-    <meta name="keywords" content="links, social media, ${
-      profile.displayName
-    }, profile links, bio links">
-    <meta name="created" content="2025-03-25 22:43:53">
-    <meta name="revised" content="2025-03-25 22:43:53">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="profile">
-    <meta property="og:title" content="${profile.displayName} | Links">
-    <meta property="og:description" content="${profile.bio} | Connect with ${
-      profile.displayName
-    } through their curated links">
-    <meta property="og:image" content="${profile.avatar || ""}">
-    <meta property="profile:username" content="${profile.username}">
-    <meta property="og:site_name" content="Links Platform">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:creator" content="@${profile.username}">
-    <meta property="twitter:title" content="${profile.displayName} | Links">
-    <meta property="twitter:description" content="${
-      profile.bio
-    } | Connect with ${profile.displayName} through their curated links">
-    <meta property="twitter:image" content="${profile.avatar || ""}">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Lato:wght@400;700&family=Inter:wght@400;700&family=Montserrat:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
-    <!-- TailwindCSS -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    
-    <style>
-      /* Define fonts first to ensure proper loading */
-      @font-face {
-        font-family: 'Space Grotesk';
-        font-display: swap;
-        src: local('Space Grotesk');
-      }
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      @font-face {
-        font-family: 'Lato';
-        font-display: swap;
-        src: local('Lato');
-      }
+      <!-- Primary Meta Tags -->
+      <title>${profile.displayName} | Links</title>
+      <meta name="title" content="${profile.displayName} | Links">
+      <meta name="description" content="${profile.bio} | Connect with ${profile.displayName} through their curated links">
+      <meta name="author" content="${profile.displayName}">
+      <meta name="creator" content="egeuysall">
+      <meta name="generator" content="Links Platform">
+      <meta name="keywords" content="links, social media, ${profile.displayName}, profile links, bio links, ${profile.username}">
+      <meta name="created" content="2025-03-26 18:27:32">
+      <meta name="revised" content="2025-03-26 18:27:32">
+      <meta name="robots" content="index, follow">
+      <meta name="canonical" content="https://links.platform/${profile.username}">
       
-      @font-face {
-        font-family: 'Inter';
-        font-display: swap;
-        src: local('Inter');
-      }
+      <!-- Open Graph / Facebook -->
+      <meta property="og:type" content="profile">
+      <meta property="og:url" content="https://links.platform/${profile.username}">
+      <meta property="og:title" content="${profile.displayName} | Links">
+      <meta property="og:description" content="${profile.bio} | Connect with ${profile.displayName} through their curated links">
+      <meta property="og:image" content="${profile.avatar || ""}">
+      <meta property="profile:username" content="${profile.username}">
+      <meta property="og:site_name" content="Links Platform">
       
-      @font-face {
-        font-family: 'Montserrat';
-        font-display: swap;
-        src: local('Montserrat');
-      }
+      <!-- Twitter -->
+      <meta property="twitter:card" content="summary_large_image">
+      <meta property="twitter:url" content="https://links.platform/${profile.username}">
+      <meta property="twitter:creator" content="@${profile.username}">
+      <meta property="twitter:title" content="${profile.displayName} | Links">
+      <meta property="twitter:description" content="${profile.bio} | Connect with ${profile.displayName} through their curated links">
+      <meta property="twitter:image" content="${profile.avatar || ""}">
       
-      @font-face {
-        font-family: 'JetBrains Mono';
-        font-display: swap;
-        src: local('JetBrains Mono');
-      }
+      <!-- Fonts -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Lato:wght@400;700&family=Inter:wght@400;700&family=Montserrat:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
       
-      /* Apply styles */
-      body {
-        background-color: ${profile.theme.backgroundColor};
-        color: ${profile.theme.textColor};
-        width: 100%;
-        margin: 0;
-        padding: 16px;
-        box-sizing: border-box;
-      }
+      <!-- TailwindCSS -->
+      <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
       
-      .heading-font {
-        font-family: ${getHeadingFontFamily()};
-        font-weight: 700;
+      <style>
+        /* Define fonts first to ensure proper loading */
+        @font-face {
+          font-family: 'Space Grotesk';
+          font-display: swap;
+          src: local('Space Grotesk');
+        }
+        
+        @font-face {
+          font-family: 'Lato';
+          font-display: swap;
+          src: local('Lato');
+        }
+        
+        @font-face {
+          font-family: 'Inter';
+          font-display: swap;
+          src: local('Inter');
+        }
+        
+        @font-face {
+          font-family: 'Montserrat';
+          font-display: swap;
+          src: local('Montserrat');
+        }
+        
+        @font-face {
+          font-family: 'JetBrains Mono';
+          font-display: swap;
+          src: local('JetBrains Mono');
+        }
+        
+        /* Base styles */
+        body {
+          background-color: ${profile.theme.backgroundColor};
+          color: ${profile.theme.textColor};
+          width: 100%;
+          margin: 0;
+          padding: 16px;
+          box-sizing: border-box;
+          font-size: 16px;
+          line-height: 1.5;
+        }
+        
+        .heading-font {
+          font-family: ${getHeadingFontFamily()};
+          font-weight: 700;
+        }
+        
+        .text-font {
+          font-family: ${getTextFontFamily()};
+          font-weight: 400;
+        }
+        
+        /* Container styles */
+        .container {
+          max-width: 640px;
+          margin: 0 auto;
+          padding: 2rem 1rem;
+        }
+        
+        /* Profile section styles */
+        .profile-section {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          margin-bottom: 2rem;
+        }
+        
+        .profile-image {
+          width: 96px;
+          height: 96px;
+          border-radius: 50%;
+          margin-bottom: 1rem;
+          object-fit: cover;
+        }
+        
+        .profile-image-placeholder {
+          width: 96px;
+          height: 96px;
+          border-radius: 50%;
+          margin-bottom: 1rem;
+          background-color: #e5e7eb;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.5rem;
+        }
+        
+        .profile-name {
+          margin: 0 0 0.5rem 0;
+          font-size: 2rem;
+          line-height: 1.2;
+        }
+        
+        .profile-bio {
+          margin: 0 0 1rem 0;
+          font-size: 1.125rem;
+          max-width: 32rem;
+        }
+        
+        .profile-username {
+          font-size: 0.875rem;
+          opacity: 0.7;
+          margin: 0;
+        }
+        
+        /* Links navigation styles */
+        .links-nav {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          width: 100%;
+        }
+        
+        .link-button {
+          background-color: ${profile.theme.buttonColor};
+          color: ${profile.theme.buttonTextColor};
+          padding: 0.75rem 1.5rem;
+          border-radius: 0.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.125rem;
+          font-family: ${getTextFontFamily()};
+          text-decoration: none;
+          font-weight: 500;
+          transition: all 0.2s ease;
+        }
+        
+        .link-button:hover {
+          opacity: 0.9;
+          transform: translateY(-1px);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .link-button:focus {
+          outline: 2px solid ${profile.theme.buttonTextColor};
+          outline-offset: 2px;
+        }
+        
+        .link-icon {
+          width: 24px;
+          height: 24px;
+          margin-right: 0.5rem;
+          flex-shrink: 0;
+        }
+        
+        /* Footer styles */
+        .footer {
+          text-align: center;
+          font-size: 0.875rem;
+          opacity: 0.5;
+          padding: 1rem 0;
+          margin-top: 2rem;
+        }
+        
+        .footer p {
+          margin: 0;
+        }
+      </style>
+  </head>
+  <body>
+    <main class="container" role="main">
+      <header class="profile-section">
+        ${profile.avatar
+        ? `<img 
+                src="${profile.avatar}" 
+                alt="${profile.displayName}'s profile picture" 
+                class="profile-image" 
+                loading="eager"
+                width="96"
+                height="96"
+              />`
+        : `<div class="profile-image-placeholder heading-font" aria-label="${profile.displayName}'s profile initial">
+                ${profile.displayName.charAt(0)}
+              </div>`
       }
+        <h1 class="profile-name heading-font">${profile.displayName}</h1>
+        <p class="profile-bio text-font">${profile.bio}</p>
+        <p class="profile-username text-font">@${profile.username}</p>
+      </header>
       
-      .text-font {
-        font-family: ${getTextFontFamily()};
-        font-weight: 400;
-      }
-      
-      .link-button {
-        background-color: ${profile.theme.buttonColor};
-        color: ${profile.theme.buttonTextColor};
-        transition: all 0.2s ease;
-        font-family: ${getTextFontFamily()};
-      }
-      
-      .link-button:hover {
-        opacity: 0.9;
-        transform: translateY(-1px);
-      }
-      
-      .link-button:focus {
-        outline: 2px solid ${profile.theme.buttonTextColor};
-        outline-offset: 2px;
-      }
-    </style>
-</head>
-<body class="min-h-screen">
-  <main class="container mx-auto px-4 py-8 max-w-md" role="main">
-    <article class="flex flex-col items-center justify-center text-center mb-8">
-      ${
-        profile.avatar
-          ? `<img 
-            src="${profile.avatar}" 
-            alt="${profile.displayName}'s profile picture" 
-            class="w-24 h-24 rounded-full mb-4 object-cover" 
-            loading="eager"
-            width="96"
-            height="96"
-          />`
-          : `<div 
-            class="w-24 h-24 rounded-full mb-4 bg-gray-200 flex items-center justify-center text-2xl font-bold heading-font"
-          >
-            ${profile.displayName.charAt(0)}
-          </div>`
-      }
-      <h2 class="text-2xl font-bold mb-2 heading-font">${
-        profile.displayName
-      }</h2>
-      <p class="text-lg mb-4 text-font">${profile.bio}</p>
-      <p class="text-sm opacity-70 text-font">@${profile.username}</p>
-    </article>
-    
-    <nav class="flex flex-col gap-4">
-      ${profile.links
+      <nav class="links-nav" aria-label="Social links and resources">
+        ${profile.links
         .map(
           (link, index) => `
-        <a 
-          href="${link.url}" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          class="link-button py-3 px-6 rounded-lg flex items-center justify-center text-lg font-medium text-font"
-        >
-          ${
-            link.iconUrl
-              ? `<span class="w-6 h-6 mr-2">
-                <img 
-                  src="${link.iconUrl}" 
-                  alt="" 
-                  class="w-full h-full object-contain rounded"
-                  width="24"
-                  height="24"
-                  loading="lazy"
-                />
-               </span>`
+          <a 
+            href="${link.url}" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="link-button"
+            aria-label="${link.title}"
+          >
+            ${link.iconUrl
+              ? `<span class="link-icon">
+                    <img 
+                      src="${link.iconUrl}" 
+                      alt="" 
+                      width="24"
+                      height="24"
+                      loading="lazy"
+                      aria-hidden="true"
+                    />
+                  </span>`
               : ""
-          }
-          <span>${link.title}</span>
-        </a>
-      `
+            }
+            <span>${link.title}</span>
+          </a>
+        `
         )
         .join("")}
-    </nav>
-  </main>
-
-  <footer class="text-center text-sm opacity-50 py-4 mt-8 text-font">
-    <p>Created with ❤️ by Links</p>
-  </footer>
-</body>
-</html>`;
+      </nav>
+    </main>
+  
+    <footer class="footer text-font">
+      <p>Created with <span aria-label="love">❤️</span> by Links</p>
+    </footer>
+  
+    <!-- Structured data for SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "mainEntity": {
+          "@type": "Person",
+          "name": "${profile.displayName}",
+          "alternateName": "${profile.username}",
+          "description": "${profile.bio}",
+          "image": "${profile.avatar || ""}",
+          "url": "https://links.platform/${profile.username}",
+          "sameAs": [
+            ${profile.links.map(link => `"${link.url}"`).join(',')}
+          ]
+        }
+      }
+    </script>
+  </body>
+  </html>`;
   }, [profile]);
-
-  const copyToClipboard = async () => {
-    try {
-      await navigator.clipboard.writeText(generateHTML);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch (error) {
-      console.error("Error copying to clipboard:", error);
-    }
-  };
 
   const toggleExport = () => {
     setShowExport(!showExport);
   };
   // Render
   return (
-    <ErrorBoundary
-      FallbackComponent={ErrorFallback}
-    >
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
       <div className="w-full">
         <div className="container w-full">
           <div className="grid grid-cols-1 lg:grid-cols-5 lg:grid-rows-2 gap-8">
@@ -481,32 +573,21 @@ const Links = () => {
 
               {showExport ? (
                 <div className="export-panel">
-                  <div className="mb-4 flex items-center">
-                    <button
-                      onClick={copyToClipboard}
-                      className="px-4 py-2 bg-green-600 text-white rounded-lg flex items-center hover:bg-green-700 transition-colors"
-                    >
-                      <span>Copy HTML</span>
-                      {copied && (
-                        <span className="ml-2 text-sm">✓ Copied!</span>
-                      )}
-                    </button>
-                  </div>
-
-                  <div className="bg-gray-100 p-4 rounded-lg overflow-auto max-h-[1475px]">
-                    <pre className="text-sm whitespace-pre-wrap">
-                      {generateHTML}
-                    </pre>
+                  <div className="rounded-lg overflow-auto max-h-[1475px]">
+                    <CodeBlock
+                      language="html"
+                      filename={`${profile.displayName}'s Website`}
+                      highlightLines={[2, 40, 42, 112, 144]}
+                      code={generateHTML}
+                    />
                   </div>
                 </div>
               ) : (
                 <div className="editor-panel space-y-6">
                   {/* Profile Section */}
                   <div className="text-[#EDE0D4]">
-                    <h4 className="text-2xl font-bold mb-3">
-                      Profile Details
-                    </h4>
-                    <hr className="my-4 border border-[#EDE0D4]"/>
+                    <h4 className="text-2xl font-bold mb-3">Profile Details</h4>
+                    <hr className="my-4 border border-[#EDE0D4]" />
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-xl font-bold mb-1 mt-2">
@@ -563,7 +644,7 @@ const Links = () => {
                   {/* Theme Section */}
                   <div className="text-[#EDE0D4]">
                     <h4 className="text-2xl mt-10 font-bold mb-3">Theme</h4>
-                    <hr className="my-4 border border-[#EDE0D4]"/>
+                    <hr className="my-4 border border-[#EDE0D4]" />
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-xl font-bold mb-1 mt-2">
@@ -689,17 +770,18 @@ const Links = () => {
                   {/* Links Section */}
                   <div className="text-[#EDE0D4]">
                     <h4 className="text-2xl mt-10 font-bold mb-3">Links</h4>
-                    <hr className="my-4 border border-[#EDE0D4]"/>
+                    <hr className="my-4 border border-[#EDE0D4]" />
                     <div className="space-y-4 mb-4">
                       {profile.links.map((link) => (
-                        <div
-                          key={link.id}
-                          className="flex items-center"
-                        >
+                        <div key={link.id} className="flex items-center">
                           <div className="flex-1 bg-[#E6CCB2] p-4 rounded-md">
-                            <p className="font-bold text-lg text-[#7F5539]">{link.title}</p>
+                            <p className="font-bold text-lg text-[#7F5539]">
+                              {link.title}
+                            </p>
                             <div className="text-md text-[#B08968]">
-                            {link.url && link.url.length > 32 ? `${link.url.slice(0, 32)}…` : link.url}
+                              {link.url && link.url.length > 32
+                                ? `${link.url.slice(0, 32)}…`
+                                : link.url}
                             </div>
                           </div>
                           <button
@@ -726,8 +808,10 @@ const Links = () => {
                     </div>
 
                     <div className="rounded-lg">
-                    <h4 className="text-2xl mt-10 font-bold mb-3">Add new link</h4>
-                    <hr className="my-4 border border-[#EDE0D4]"/>
+                      <h4 className="text-2xl mt-10 font-bold mb-3">
+                        Add new link
+                      </h4>
+                      <hr className="my-4 border border-[#EDE0D4]" />
                       <div className="grid grid-cols-1 gap-3 mb-3">
                         <div>
                           <label className="block text-xl font-bold mb-1 mt-2">
@@ -785,23 +869,24 @@ const Links = () => {
                 </div>
               )}
             </div>
-            <div
-              className="lg:col-span-2 bg-[#B08968] rounded-lg px-12 pb-10 pt-6 overflow-hidden text-[#EDE0D4]"
-            >
+            <div className="lg:col-span-2 bg-[#B08968] rounded-lg px-12 pb-10 pt-6 overflow-hidden text-[#EDE0D4]">
               <h4 className="text-2xl font-bold mb-4 text-center">Preview</h4>
               <Preview html={generateHTML} />
             </div>
-            <div
-              className="lg:col-span-2 bg-[#B08968] rounded-lg px-12 py-12 overflow-hidden text-[#EDE0D4]"
-            >
-              <h4 className="text-2xl font-bold text-center tracking-tight">Thank you for using Links!</h4>
-              <hr className="my-4 border border-[#EDE0D4]"/>
+            <div className="lg:col-span-2 bg-[#B08968] rounded-lg px-12 py-12 overflow-hidden text-[#EDE0D4]">
+              <h4 className="text-2xl font-bold text-center tracking-tight">
+                Thank you for using Links!
+              </h4>
+              <hr className="my-4 border border-[#EDE0D4]" />
               <p className="text-xl tracking-tight text-center">
-                Thank you for using Links. We’re glad to be part of your journey in simplifying and enhancing your online experience.
-                </p>
-                <h4 className="text-2xl font-bold text-center tracking-tight mt-8">Your feedback!</h4>
-                <hr className="my-4 border border-[#EDE0D4]"/>
-                <ContactForm />
+                Thank you for using Links. We’re glad to be part of your journey
+                in simplifying and enhancing your online experience.
+              </p>
+              <h4 className="text-2xl font-bold text-center tracking-tight mt-8">
+                Your feedback!
+              </h4>
+              <hr className="my-4 border border-[#EDE0D4]" />
+              <ContactForm />
             </div>
           </div>
         </div>
