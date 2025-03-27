@@ -18,23 +18,23 @@ function Footer() {
                     <h2 className="text-[#EDE0D4] font-bold text-2xl">Resources</h2>
                     <ul className="flex flex-col space-y-2">
                         <li>
-                            <Link href="/terms" className="text-base text-[#EDE0D4] hover:text-[#DDB892] transition-colors">
-                                Terms of Service
+                            <Link href="/docs/terms-of-service.pdf" className="text-base text-[#EDE0D4] hover:text-[#DDB892] transition-colors">
+                                Terms of service
                             </Link>
                         </li>
                         <li>
-                            <Link href="/privacy" className="text-base text-[#EDE0D4] hover:text-[#DDB892] transition-colors">
-                                Privacy Policy
+                            <Link href="/docs/privacy-policy.pdf" className="text-base text-[#EDE0D4] hover:text-[#DDB892] transition-colors">
+                                Privacy policy
                             </Link>
                         </li>
                         <li>
-                            <Link href="/about" className="text-base text-[#EDE0D4] hover:text-[#DDB892] transition-colors">
-                                About Us
+                            <Link href="/docs/about-us.pdf" className="text-base text-[#EDE0D4] hover:text-[#DDB892] transition-colors">
+                                About us
                             </Link>
                         </li>
                         <li>
-                            <Link href="/contact" className="text-base text-[#EDE0D4] hover:text-[#DDB892] transition-colors">
-                                Contact Us
+                            <Link href="mailto:hello@egeuysal.com?subject=Inquiry%20about%20Links" className="text-base text-[#EDE0D4] hover:text-[#DDB892] transition-colors">
+                                Contact us
                             </Link>
                         </li>
                     </ul>

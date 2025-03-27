@@ -30,8 +30,8 @@ const formSchema = z.object({
   email: z.string().email({
     message: "Please enter a valid email address.",
   }),
-  message: z.string().min(10, {
-    message: "Message must be at least 10 characters.",
+  message: z.string().min(50, {
+    message: "Message must be at least 50 characters.",
   }),
 });
 
@@ -118,7 +118,7 @@ export default function ContactForm() {
     <>
       <Toaster />
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" id="contact">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <FormField
               control={form.control}

@@ -4,9 +4,9 @@ import React, { useState, useEffect, useMemo, memo } from "react";
 import { useRouter } from "next/navigation";
 import { ErrorBoundary } from "react-error-boundary";
 import ContactForm from "./ContactForm";
-import CodeBlock from "./CodeBlock"
-import { JetBrains_Mono } from 'next/font/google';
-import "../globals.css"
+import CodeBlock from "./CodeBlock";
+import { JetBrains_Mono } from "next/font/google";
+import "../globals.css";
 
 // Types and Interfaces
 interface LinkItem {
@@ -17,11 +17,28 @@ interface LinkItem {
 }
 
 const jetBrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  display: 'swap',
-  weight: ['400', '500'],
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500"],
   preload: true,
 });
+
+const getFormattedDate = () => {
+  const now = new Date();
+  return (
+    now.getUTCFullYear() +
+    "-" +
+    String(now.getUTCMonth() + 1).padStart(2, "0") +
+    "-" +
+    String(now.getUTCDate()).padStart(2, "0") +
+    " " +
+    String(now.getUTCHours()).padStart(2, "0") +
+    ":" +
+    String(now.getUTCMinutes()).padStart(2, "0") +
+    ":" +
+    String(now.getUTCSeconds()).padStart(2, "0")
+  );
+};
 
 interface UserProfile {
   username: string;
@@ -38,10 +55,6 @@ interface UserProfile {
     textFont: string;
   };
 }
-
-// Constants
-const CURRENT_DATETIME = "2025-03-25 22:42:30";
-const CURRENT_USER = "egeuysall";
 
 const FONT_OPTIONS = {
   heading: [
@@ -254,7 +267,7 @@ const Links = () => {
           return "system-ui, sans-serif";
       }
     };
-  
+
     const getTextFontFamily = () => {
       switch (profile.theme.textFont) {
         case "lato":
@@ -273,291 +286,228 @@ const Links = () => {
           return "system-ui, sans-serif";
       }
     };
-  
+
     return `<!DOCTYPE html>
-  <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      
-      <!-- Primary Meta Tags -->
-      <title>${profile.displayName} | Links</title>
-      <meta name="title" content="${profile.displayName} | Links">
-      <meta name="description" content="${profile.bio} | Connect with ${profile.displayName} through their curated links">
-      <meta name="author" content="${profile.displayName}">
-      <meta name="creator" content="egeuysall">
-      <meta name="generator" content="Links Platform">
-      <meta name="keywords" content="links, social media, ${profile.displayName}, profile links, bio links, ${profile.username}">
-      <meta name="created" content="2025-03-26 18:27:32">
-      <meta name="revised" content="2025-03-26 18:27:32">
-      <meta name="robots" content="index, follow">
-      <meta name="canonical" content="https://links.platform/${profile.username}">
-      
-      <!-- Open Graph / Facebook -->
-      <meta property="og:type" content="profile">
-      <meta property="og:url" content="https://links.platform/${profile.username}">
-      <meta property="og:title" content="${profile.displayName} | Links">
-      <meta property="og:description" content="${profile.bio} | Connect with ${profile.displayName} through their curated links">
-      <meta property="og:image" content="${profile.avatar || ""}">
-      <meta property="profile:username" content="${profile.username}">
-      <meta property="og:site_name" content="Links Platform">
-      
-      <!-- Twitter -->
-      <meta property="twitter:card" content="summary_large_image">
-      <meta property="twitter:url" content="https://links.platform/${profile.username}">
-      <meta property="twitter:creator" content="@${profile.username}">
-      <meta property="twitter:title" content="${profile.displayName} | Links">
-      <meta property="twitter:description" content="${profile.bio} | Connect with ${profile.displayName} through their curated links">
-      <meta property="twitter:image" content="${profile.avatar || ""}">
-      
-      <!-- Fonts -->
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Lato:wght@400;700&family=Inter:wght@400;700&family=Montserrat:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-      
-      <!-- TailwindCSS -->
-      <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-      
-      <style>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>${profile.displayName} | Connect with me | Links Platform</title>
+    <meta name="title" content="${
+      profile.displayName
+    } | Connect with me | Links Platform" />
+    <meta name="description"
+        content="${profile.bio} | Connect with ${
+      profile.displayName
+    } on social media, websites, and other platforms through this curated link collection." />
+    <meta name="author" content="${profile.displayName}" />
+    <meta name="creator" content="egeuysall" />
+    <meta name="generator" content="Links Platform" />
+    <meta name="keywords"
+        content="links, social media, ${
+          profile.displayName
+        }, profile links, bio links, ${
+      profile.username
+    }, contact, connect, portfolio, ${profile.links
+      .map((link) => link.title)
+      .join(", ")}" />
+    <meta name="created" content="2025-03-27T15:31:31Z" />
+    <meta name="revised" content="2025-03-27T15:31:31Z"/>
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="canonical" content="https://links.platform/${
+      profile.username
+    }" />
+    <meta name="theme-color" content="${profile.theme.backgroundColor}" />
+
+    <link rel="icon" type="image/png" href="${profile.avatar}" />
+    <link rel="apple-touch-icon" href="${profile.avatar}" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content="https://links.platform/${
+      profile.username
+    }" />
+    <meta property="og:title" content="${
+      profile.displayName
+    } | Connect with me | Links Platform" />
+    <meta property="og:description"
+        content="${profile.bio} | Connect with ${
+      profile.displayName
+    } on social media, websites, and other platforms through this curated link collection." />
+    <meta property="og:image" content="${profile.avatar}" />
+    <meta property="og:image:alt" content="${
+      profile.displayName
+    }'s profile photo" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="profile:username" content="${profile.username}" />
+    <meta property="og:site_name" content="Links Platform" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://links.platform/${
+      profile.username
+    }" />
+    <meta property="twitter:creator" content="@${profile.username}" />
+    <meta property="twitter:site" content="@linksplatform" />
+    <meta property="twitter:title" content="${
+      profile.displayName
+    } | Connect with me | Links Platform" />
+    <meta property="twitter:description"
+        content="${profile.bio} | Connect with ${
+      profile.displayName
+    } on social media, websites, and other platforms through this curated link collection." />
+    <meta property="twitter:image" content="${profile.avatar}" />
+    <meta property="twitter:image:alt" content="${
+      profile.displayName
+    }'s profile photo" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Lato:wght@400;700&family=Inter:wght@400;700&family=Montserrat:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet" />
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style>
         /* Define fonts first to ensure proper loading */
         @font-face {
-          font-family: 'Space Grotesk';
-          font-display: swap;
-          src: local('Space Grotesk');
+            font-family: 'Space Grotesk';
+            font-display: swap;
+            src: local('Space Grotesk');
         }
-        
+
         @font-face {
-          font-family: 'Lato';
-          font-display: swap;
-          src: local('Lato');
+            font-family: 'Lato';
+            font-display: swap;
+            src: local('Lato');
         }
-        
+
         @font-face {
-          font-family: 'Inter';
-          font-display: swap;
-          src: local('Inter');
+            font-family: 'Inter';
+            font-display: swap;
+            src: local('Inter');
         }
-        
+
         @font-face {
-          font-family: 'Montserrat';
-          font-display: swap;
-          src: local('Montserrat');
+            font-family: 'Montserrat';
+            font-display: swap;
+            src: local('Montserrat');
         }
-        
+
         @font-face {
-          font-family: 'JetBrains Mono';
-          font-display: swap;
-          src: local('JetBrains Mono');
+            font-family: 'JetBrains Mono';
+            font-display: swap;
+            src: local('JetBrains Mono');
         }
-        
+
         /* Base styles */
-        body {
-          background-color: ${profile.theme.backgroundColor};
-          color: ${profile.theme.textColor};
-          width: 100%;
-          margin: 0;
-          padding: 16px;
-          box-sizing: border-box;
-          font-size: 16px;
-          line-height: 1.5;
-        }
-        
         .heading-font {
-          font-family: ${getHeadingFontFamily()};
-          font-weight: 700;
+            font-family: ${getHeadingFontFamily()};
+            font-weight: 700;
         }
-        
+
         .text-font {
-          font-family: ${getTextFontFamily()};
-          font-weight: 400;
+            font-family: ${getTextFontFamily()};
+            font-weight: 400;
         }
-        
-        /* Container styles */
-        .container {
-          max-width: 640px;
-          margin: 0 auto;
-          padding: 2rem 1rem;
-        }
-        
-        /* Profile section styles */
-        .profile-section {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-          margin-bottom: 2rem;
-        }
-        
-        .profile-image {
-          width: 96px;
-          height: 96px;
-          border-radius: 50%;
-          margin-bottom: 1rem;
-          object-fit: cover;
-        }
-        
-        .profile-image-placeholder {
-          width: 96px;
-          height: 96px;
-          border-radius: 50%;
-          margin-bottom: 1rem;
-          background-color: #e5e7eb;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 1.5rem;
-        }
-        
-        .profile-name {
-          margin: 0 0 0.5rem 0;
-          font-size: 2rem;
-          line-height: 1.2;
-        }
-        
-        .profile-bio {
-          margin: 0 0 1rem 0;
-          font-size: 1.125rem;
-          max-width: 32rem;
-        }
-        
-        .profile-username {
-          font-size: 0.875rem;
-          opacity: 0.7;
-          margin: 0;
-        }
-        
-        /* Links navigation styles */
-        .links-nav {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-          width: 100%;
-        }
-        
-        .link-button {
-          background-color: ${profile.theme.buttonColor};
-          color: ${profile.theme.buttonTextColor};
-          padding: 0.75rem 1.5rem;
-          border-radius: 0.5rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 1.125rem;
-          font-family: ${getTextFontFamily()};
-          text-decoration: none;
-          font-weight: 500;
-          transition: all 0.2s ease;
-        }
-        
-        .link-button:hover {
-          opacity: 0.9;
-          transform: translateY(-1px);
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        
-        .link-button:focus {
-          outline: 2px solid ${profile.theme.buttonTextColor};
-          outline-offset: 2px;
-        }
-        
-        .link-icon {
-          width: 24px;
-          height: 24px;
-          margin-right: 0.5rem;
-          flex-shrink: 0;
-        }
-        
-        /* Footer styles */
-        .footer {
-          text-align: center;
-          font-size: 0.875rem;
-          opacity: 0.5;
-          padding: 1rem 0;
-          margin-top: 2rem;
-        }
-        
-        .footer p {
-          margin: 0;
-        }
-      </style>
-  </head>
-  <body>
-    <main class="container" role="main">
-      <header class="profile-section">
-        ${profile.avatar
-        ? `<img 
-                src="${profile.avatar}" 
-                alt="${profile.displayName}'s profile picture" 
-                class="profile-image" 
-                loading="eager"
-                width="96"
-                height="96"
-              />`
-        : `<div class="profile-image-placeholder heading-font" aria-label="${profile.displayName}'s profile initial">
+    </style>
+</head>
+
+<body
+    class="flex h-screen w-screen items-center justify-center bg-[${
+      profile.theme.backgroundColor
+    }] text-[${profile.theme.textColor}]">
+    <main class="flex h-screen w-screen flex-col items-center justify-center">
+        <section class="flex w-[70vw] flex-col items-center justify-center">
+            ${
+              profile.avatar
+                ? `<img src="${profile.avatar}" alt="${profile.displayName}'s profile picture"
+                class="mb-4 h-32 w-32 rounded-full transition-all duration-200 hover:grayscale" loading="eager"
+                width="128" height="128" fetchpriority="high" />`
+                : `<div
+                class="mb-4 h-32 w-32 rounded-full flex items-center justify-center text-4xl heading-font font-bold transition-all duration-200 hover:grayscale"
+                aria-label="${profile.displayName}'s profile initial">
                 ${profile.displayName.charAt(0)}
-              </div>`
-      }
-        <h1 class="profile-name heading-font">${profile.displayName}</h1>
-        <p class="profile-bio text-font">${profile.bio}</p>
-        <p class="profile-username text-font">@${profile.username}</p>
-      </header>
-      
-      <nav class="links-nav" aria-label="Social links and resources">
-        ${profile.links
-        .map(
-          (link, index) => `
-          <a 
-            href="${link.url}" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            class="link-button"
-            aria-label="${link.title}"
-          >
-            ${link.iconUrl
-              ? `<span class="link-icon">
-                    <img 
-                      src="${link.iconUrl}" 
-                      alt="" 
-                      width="24"
-                      height="24"
-                      loading="lazy"
-                      aria-hidden="true"
-                    />
-                  </span>`
-              : ""
+            </div>`
             }
-            <span>${link.title}</span>
-          </a>
-        `
-        )
-        .join("")}
-      </nav>
-    </main>
-  
-    <footer class="footer text-font">
-      <p>Created with <span aria-label="love">❤️</span> by Links</p>
-    </footer>
-  
-    <!-- Structured data for SEO -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "ProfilePage",
-        "mainEntity": {
-          "@type": "Person",
-          "name": "${profile.displayName}",
-          "alternateName": "${profile.username}",
-          "description": "${profile.bio}",
-          "image": "${profile.avatar || ""}",
-          "url": "https://links.platform/${profile.username}",
-          "sameAs": [
-            ${profile.links.map(link => `"${link.url}"`).join(',')}
-          ]
+            <article class="flex flex-col items-center">
+                <h1 class="mb-1 text-3xl font-bold tracking-tight heading-font">
+                    ${profile.displayName}</h1>
+                <h2 class="mb-4 text-base tracking-tight opacity-50">
+                    @${profile.username}</h2>
+                <p aria-label="bio" class="text-center text-lg tracking-tight text-font">
+                    ${profile.bio}
+                </p>
+            </article>
+            <section class="flex items-center justify-cent">
+            <nav aria-label="Social Links" class="mt-6 flex w-full flex-col gap-4 items-center justify-center md:grid md:grid-cols-2 lg:grid-cols-3 md:justify-items-center">
+                ${profile.links
+                  .map(
+                    (link) => `
+                <a href="${link.url}" target="_blank" rel="noopener noreferrer"
+                    class="flex w-full items-center justify-center rounded-lg py-3.5 px-3.5 text-lg font-medium transition-opacity duration-200 hover:opacity-75 bg-[${
+                      profile.theme.buttonColor
+                    }] text-[${profile.theme.buttonTextColor}]"
+                    aria-label="Visit ${link.title}">
+                    ${
+                      link.iconUrl
+                        ? `<span class="mr-2 h-6 w-6 flex-shrink-0">
+                        <img src="${link.iconUrl}" alt="" width="24" height="24" loading="lazy" aria-hidden="true" />
+                    </span>`
+                        : ""
+                    }
+                    <span>${link.title}</span>
+                </a>
+                `
+                  )
+                  .join("")}
+            </nav>
+            </section
+        </section>
+        <section class="flex w-[75vw] flex-col items-center justify-center">
+            <p aria-label="Made by" class="mt-8 text-center text-base opacity-50">
+                Created with ❤️ by Links
+            </p>
+        </section>
+
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "ProfilePage",
+          "mainEntity": {
+            "@type": "Person",
+            "name": "${profile.displayName}",
+            "alternateName": "${profile.username}",
+            "description": "${profile.bio}",
+            "image": "${profile.avatar}",
+            "url": "https://links.platform/${profile.username}",
+            "sameAs": [${profile.links
+              .map((link) => `"${link.url}"`)
+              .join(", ")}]
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Links Platform",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "${profile.avatar}"
+            }
+          },
+          "datePublished": "2025-03-27T15:31:31Z",
+          "dateModified": "2025-03-27T15:31:31Z",
+          "creator": {
+            "@type": "Person",
+            "name": "egeuysall"
+          }
         }
-      }
-    </script>
-  </body>
-  </html>`;
+      </script>
+    </main>
+</body>
+
+</html>`;
   }, [profile]);
 
   const toggleExport = () => {
@@ -581,7 +531,9 @@ const Links = () => {
 
               {showExport ? (
                 <div className="export-panel px-2">
-                  <div className={`rounded-lg overflow-auto max-h-[1525px] ${jetBrainsMono.className}`}>
+                  <div
+                    className={`rounded-lg overflow-auto max-h-[1525px] ${jetBrainsMono.className}`}
+                  >
                     <CodeBlock
                       language="html"
                       fileName={`${profile.displayName}'s Website`}
@@ -780,20 +732,23 @@ const Links = () => {
                     <hr className="my-4 border border-[#EDE0D4]" />
                     <div className="space-y-4 mb-4">
                       {profile.links.map((link) => (
-                        <div key={link.id} className="flex items-center">
-                          <div className="flex-1 bg-[#E6CCB2] p-4 rounded-md">
+                        <div
+                          key={link.id}
+                          className="items-center grid grid-cols-6"
+                        >
+                          <div className="col-span-5 bg-[#E6CCB2] p-4 rounded-md">
                             <p className="font-bold text-lg text-[#7F5539]">
                               {link.title}
                             </p>
                             <div className="text-md text-[#B08968]">
-                              {link.url && link.url.length > 32
-                                ? `${link.url.slice(0, 32)}…`
+                              {link.url && link.url.length > 24
+                                ? `${link.url.slice(0, 26)}…`
                                 : link.url}
                             </div>
                           </div>
                           <button
                             onClick={() => handleRemoveLink(link.id)}
-                            className="ml-2 text-[#EDE0D4] p-1 rounded-full transition-colors"
+                            className="ml-2 text-[#EDE0D4] p-1 rounded-full transition-colors col-span-1 flex flex-col items-center justify-center"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"

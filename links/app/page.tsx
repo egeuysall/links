@@ -55,10 +55,19 @@ export default function Home() {
               />
             ))}
           </div>
-          <section className="mt-6 flex-col flex">
+          <section className="mt-2 mb-6 flex flex-col">
+            <h2 className="text-4xl mb-4 font-bold text-center text-[#593116] tracking-tighter">
+              Subscribe to our newsletter
+            </h2>
+            <p className="text-center text-[#593116] tracking-tight text-xl mb-8">
+              Stay ahead with exclusive tips, updates, and features. Subscribe
+              to our newsletter and supercharge your link-sharing game!
+            </p>
+            <StartNewsletter />
+          </section>
+          <section className="mt-6 flex-col flex" id="faq">
             <h2
               className="text-4xl mb-4 font-bold text-center text-[#593116] tracking-tighter"
-              id="faq"
             >
               Frequently asked questions
             </h2>
@@ -104,16 +113,6 @@ export default function Home() {
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
-          </section>
-          <section className="mt-2 mb-6 flex flex-col">
-            <h2 className="text-4xl mb-4 font-bold text-center text-[#593116] tracking-tighter">
-              Subscribe to our newsletter
-            </h2>
-            <p className="text-center text-[#593116] tracking-tight text-xl mb-8">
-              Stay ahead with exclusive tips, updates, and features. Subscribe
-              to our newsletter and supercharge your link-sharing game!
-            </p>
-            <StartNewsletter />
           </section>
           <section className="mt-2 flex flex-col">
             <h2 className="text-4xl mb-6 font-bold text-center text-[#593116] tracking-tighter">

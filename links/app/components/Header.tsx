@@ -46,18 +46,10 @@ export default function Home() {
           <ul className="font-bold text-[#EDE0D4] flex gap-4">
             <li className="hidden md:flex">
               <Link
-                href="#explore"
+                href="/#explore"
                 className="transition duration-200 hover:opacity-75"
               >
                 Explore
-              </Link>
-            </li>
-            <li className="hidden md:flex">
-              <Link
-                href="#features"
-                className="transition duration-200 hover:opacity-75"
-              >
-                Features
               </Link>
             </li>
             <li className="hidden md:flex">
@@ -70,10 +62,18 @@ export default function Home() {
             </li>
             <li className="hidden md:flex">
               <Link
-                href="#faq"
+                href="/#faq"
                 className="transition duration-200 hover:opacity-75"
               >
                 FAQ
+              </Link>
+            </li>
+            <li className="hidden md:flex">
+              <Link
+                href="/#contact"
+                className="transition duration-200 hover:opacity-75"
+              >
+                Contact
               </Link>
             </li>
             <li className="flex items-center justify-center mr-2">
@@ -124,25 +124,11 @@ export default function Home() {
               >
                 <h1>
                   <Link
-                    href="#explore"
+                    href="/#explore"
                     className="block p-2 transition duration-200 hover:text-[#9C6644]"
                     onClick={toggleMobileMenu}
                   >
                     Explore
-                  </Link>
-                </h1>
-              </li>
-              <li
-                className="transform transition-all duration-300 hover:scale-110"
-                style={{ animationDelay: "200ms" }}
-              >
-                <h1>
-                  <Link
-                    href="#features"
-                    className="block p-2 transition duration-200 hover:text-[#9C6644]"
-                    onClick={toggleMobileMenu}
-                  >
-                    Features
                   </Link>
                 </h1>
               </li>
@@ -166,11 +152,25 @@ export default function Home() {
               >
                 <h1>
                   <Link
-                    href="#faq"
+                    href="/#faq"
                     className="block p-2 transition duration-200 hover:text-[#9C6644]"
                     onClick={toggleMobileMenu}
                   >
                     FAQ
+                  </Link>
+                </h1>
+              </li>
+              <li
+                className="transform transition-all duration-300 hover:scale-110"
+                style={{ animationDelay: "400ms" }}
+              >
+                <h1>
+                  <Link
+                    href="/#contact"
+                    className="block p-2 transition duration-200 hover:text-[#9C6644]"
+                    onClick={toggleMobileMenu}
+                  >
+                    Contact
                   </Link>
                 </h1>
               </li>

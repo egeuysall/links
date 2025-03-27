@@ -10,7 +10,7 @@ const AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID;
 export async function POST(request: Request) {
   try {
     // Parse request body
-    const { email } = await request.json();
+    const { email, firstName, lastName } = await request.json();
 
     // Validation
     if (!email) {
@@ -27,9 +27,11 @@ export async function POST(request: Request) {
       );
     }
 
-    // Add contact to Resend audience
+    // Add contact to Resend audience with firstName and lastName
     const data = await resend.contacts.create({
       email,
+      firstName,
+      lastName,
       unsubscribed: false,
       audienceId: AUDIENCE_ID,
     });
