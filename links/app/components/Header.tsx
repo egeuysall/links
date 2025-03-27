@@ -62,7 +62,7 @@ export default function Home() {
             </li>
             <li className="hidden md:flex">
               <Link
-                href="#create"
+                href="/create"
                 className="transition duration-200 hover:opacity-75"
               >
                 Create
@@ -152,7 +152,7 @@ export default function Home() {
               >
                 <h1>
                   <Link
-                    href="#create"
+                    href="/create"
                     className="block p-2 transition duration-200 hover:text-[#9C6644]"
                     onClick={toggleMobileMenu}
                   >
