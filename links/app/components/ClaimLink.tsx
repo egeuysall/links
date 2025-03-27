@@ -4,7 +4,9 @@ import React, { useState, useEffect, useMemo, memo } from "react";
 import { useRouter } from "next/navigation";
 import { ErrorBoundary } from "react-error-boundary";
 import ContactForm from "./ContactForm";
-import { CodeBlock } from "@/components/ui/code-block";
+import CodeBlock from "./CodeBlock"
+import { JetBrains_Mono } from 'next/font/google';
+import "../globals.css"
 
 // Types and Interfaces
 interface LinkItem {
@@ -13,6 +15,13 @@ interface LinkItem {
   url: string;
   iconUrl?: string;
 }
+
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400', '500'],
+  preload: true,
+});
 
 interface UserProfile {
   username: string;
@@ -265,8 +274,7 @@ const Links = () => {
       }
     };
   
-    return `
-  <!DOCTYPE html>
+    return `<!DOCTYPE html>
   <html lang="en">
   <head>
       <meta charset="UTF-8">
@@ -572,12 +580,11 @@ const Links = () => {
               </div>
 
               {showExport ? (
-                <div className="export-panel">
-                  <div className="rounded-lg overflow-auto max-h-[1475px]">
+                <div className="export-panel px-2">
+                  <div className={`rounded-lg overflow-auto max-h-[1525px] ${jetBrainsMono.className}`}>
                     <CodeBlock
                       language="html"
-                      filename={`${profile.displayName}'s Website`}
-                      highlightLines={[2, 40, 42, 112, 144]}
+                      fileName={`${profile.displayName}'s Website`}
                       code={generateHTML}
                     />
                   </div>
@@ -869,11 +876,11 @@ const Links = () => {
                 </div>
               )}
             </div>
-            <div className="lg:col-span-2 bg-[#B08968] rounded-lg px-12 pb-10 pt-6 overflow-hidden text-[#EDE0D4]">
+            <div className="lg:col-span-2 bg-[#B08968] rounded-lg px-8 py-4 overflow-hidden text-[#EDE0D4]">
               <h4 className="text-2xl font-bold mb-4 text-center">Preview</h4>
               <Preview html={generateHTML} />
             </div>
-            <div className="lg:col-span-2 bg-[#B08968] rounded-lg px-12 py-12 overflow-hidden text-[#EDE0D4]">
+            <div className="lg:col-span-2 bg-[#B08968] rounded-lg p-8 overflow-hidden text-[#EDE0D4]">
               <h4 className="text-2xl font-bold text-center tracking-tight">
                 Thank you for using Links!
               </h4>

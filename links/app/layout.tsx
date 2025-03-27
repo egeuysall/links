@@ -43,7 +43,7 @@ export async function generateMetadata(): Promise<Metadata> {
       url: "https://www.links.egeuysal.com/",
       images: [
         {
-          url: "/og-links.jpg", // Keep relative - metadataBase will handle this
+          url: "/og-links.jpg",
           width: 1200,
           height: 630,
           alt: "Links Logo",
@@ -64,11 +64,11 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     icons: {
       icon: [
-        { url: "/icon.ico", sizes: "any" }, // Use standard favicon name
-        { url: "/icon.png", type: "image/png" }, // Additional icon format
+        { url: "/icon.ico", sizes: "any" },
+        { url: "/icon.png", type: "image/png" },
       ],
       apple: "/apple-touch-icon.png",
-      shortcut: "/icon.ico", // Match the primary favicon name
+      shortcut: "/icon.ico",
     },
     manifest: "/manifest.json",
     robots: {
@@ -98,6 +98,7 @@ export default async function RootLayout({
 }) {
   const product = await getProduct();
 
+  const currentDate = "2025-03-26 22:44:05"; // Using the provided current date
   const priceValidUntilDate = "2026-03-24";
 
   const jsonLd = {
@@ -163,12 +164,13 @@ export default async function RootLayout({
       "https://www.linkedin.com/in/egeuysal",
       "https://www.instagram.com/egeuysalo",
     ],
+    dateModified: currentDate,
   };
 
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${lato.variable} !scroll-smooth`}
+      className={`${spaceGrotesk.variable} ${jetBrainsMono.variable} !scroll-smooth`}
     >
       <head>
         {/* Add explicit og tags to help Discord parser */}
@@ -185,6 +187,7 @@ export default async function RootLayout({
           content="https://www.links.egeuysal.com/og-links.jpg"
         />
         <meta property="og:type" content="website" />
+        <meta property="og:updated_time" content={currentDate} />
 
         <script
           type="application/ld+json"

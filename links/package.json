@@ -46,6 +46,8 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/react-syntax-highlighter": "^15.5.13",
+    "shiki": "^3.2.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
