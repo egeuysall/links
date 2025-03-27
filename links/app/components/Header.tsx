@@ -46,7 +46,7 @@ export default function Home() {
           <ul className="font-bold text-[#EDE0D4] flex gap-4">
             <li className="hidden md:flex">
               <Link
-                href="/#explore"
+                href="/explore"
                 className="transition duration-200 hover:opacity-75"
               >
                 Explore
@@ -124,7 +124,7 @@ export default function Home() {
               >
                 <h1>
                   <Link
-                    href="/#explore"
+                    href="/explore"
                     className="block p-2 transition duration-200 hover:text-[#9C6644]"
                     onClick={toggleMobileMenu}
                   >

@@ -201,7 +201,7 @@ export default async function RootLayout({
           <div className="min-h-screen flex flex-col items-center justify-between mb-12">
             <main className="w-[85vw] max-w-7xl flex-1 flex flex-col py-4">
               <Header />
-              <div className="flex-1 my-4">{children}</div>
+              <div className="flex-1 mt-36 mb-8">{children}</div>
               <Analytics />
               <SpeedInsights />
               <Footer />

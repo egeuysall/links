@@ -19,7 +19,7 @@ export default function Home() {
     <>
       <section className="flex items-center justify-center flex-col gap-4">
         <h1
-          className="text-5xl font-bold text-center text-[#593116] mt-36 tracking-tighter"
+          className="text-5xl font-bold text-center text-[#593116] tracking-tighter"
           id="explore"
         >
           The only link you will ever need.

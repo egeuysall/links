@@ -428,15 +428,17 @@ const Links = () => {
                 class="mb-4 h-32 w-32 rounded-full transition-all duration-200 hover:grayscale" loading="eager"
                 width="128" height="128" fetchpriority="high" />`
                 : `<div
-                class="mb-4 h-32 w-32 rounded-full flex items-center justify-center text-4xl heading-font font-bold transition-all duration-200 hover:grayscale"
+                class="heading-font mb-4 h-32 w-32 rounded-full flex items-center justify-center text-4xl heading-font font-bold transition-all duration-200 hover:grayscale bg-[${
+                  profile.theme.backgroundColor
+                }] invert-6"
                 aria-label="${profile.displayName}'s profile initial">
-                ${profile.displayName.charAt(0)}
+                ${profile.displayName.charAt(0).toLocaleUpperCase()}
             </div>`
             }
             <article class="flex flex-col items-center">
                 <h1 class="mb-1 text-3xl font-bold tracking-tight heading-font">
                     ${profile.displayName}</h1>
-                <h2 class="mb-4 text-base tracking-tight opacity-50">
+                <h2 class="mb-4 text-base tracking-tight opacity-50 text-font">
                     @${profile.username}</h2>
                 <p aria-label="bio" class="text-center text-lg tracking-tight text-font">
                     ${profile.bio}
@@ -459,7 +461,7 @@ const Links = () => {
                     </span>`
                         : ""
                     }
-                    <span>${link.title}</span>
+                    <span class="text-font">${link.title}</span>
                 </a>
                 `
                   )
@@ -468,7 +470,7 @@ const Links = () => {
             </section
         </section>
         <section class="flex w-[75vw] flex-col items-center justify-center">
-            <p aria-label="Made by" class="mt-8 text-center text-base opacity-50">
+            <p aria-label="Made by" class="text-font mt-8 text-center text-base opacity-50">
                 Created with ❤️ by Links
             </p>
         </section>
