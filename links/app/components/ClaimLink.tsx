@@ -430,10 +430,10 @@ const Links = () => {
             ${
               profile.avatar
                 ? `<img src="${profile.avatar}" alt="${profile.displayName}'s profile picture"
-                class="mb-4 h-28 w-32 rounded-full transition-all duration-200 hover:grayscale" loading="eager"
+                class="mb-4 h-31 w-31 rounded-full transition-all duration-200 hover:grayscale" loading="eager"
                 width="128" height="128" fetchpriority="high" />`
                 : `<div
-                class="heading-font mb-4 h-32 w-32 rounded-full flex items-center justify-center text-4xl heading-font font-bold transition-all duration-200 hover:grayscale bg-[${
+                class="heading-font mb-4 h-31 w-31 rounded-full flex items-center justify-center text-4xl heading-font font-bold transition-all duration-200 hover:grayscale bg-[${
                   profile.theme.backgroundColor
                 }] invert-5"
                 aria-label="${profile.displayName}'s profile initial">
