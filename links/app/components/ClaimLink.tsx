@@ -432,37 +432,49 @@ const Links = () => {
                   profile.theme.backgroundColor
                 }] invert-6"
                 aria-label="${profile.displayName}'s profile initial">
-                ${profile.displayName.charAt(0).toLocaleUpperCase()}
+                ${profile.displayName.charAt(0).toUpperCase()}
             </div>`
             }
             <article class="flex flex-col items-center">
                 <h1 class="mb-1 text-3xl font-bold tracking-tight heading-font">
                     ${profile.displayName}</h1>
                 <h2 class="mb-4 text-base tracking-tight opacity-50 text-font">
-                    @${profile.username}</h2>
+                    @${profile.username.toLowerCase()}</h2>
                 <p aria-label="bio" class="text-center text-lg tracking-tight text-font">
                     ${profile.bio}
                 </p>
             </article>
-            <section class="flex items-center justify-cent">
+            <section class="flex items-center justify-center w-full">
             <nav aria-label="Social Links" class="mt-6 flex w-full flex-col gap-4 items-center justify-center md:grid md:grid-cols-2 lg:grid-cols-3 md:justify-items-center">
                 ${profile.links
                   .map(
                     (link) => `
-                <a href="${link.url}" target="_blank" rel="noopener noreferrer"
-                    class="flex w-full items-center justify-center rounded-lg py-3.5 px-3.5 text-lg font-medium transition-opacity duration-200 hover:opacity-75 bg-[${
-                      profile.theme.buttonColor
-                    }] text-[${profile.theme.buttonTextColor}]"
-                    aria-label="Visit ${link.title}">
-                    ${
-                      link.iconUrl
-                        ? `<span class="mr-2 h-6 w-6 flex-shrink-0">
-                        <img src="${link.iconUrl}" alt="" width="24" height="24" loading="lazy" aria-hidden="true" />
+                <a 
+                  href="${link.url}" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="flex w-full items-center justify-center gap-2 rounded-lg py-3.5 px-3.5 text-lg font-medium transition-opacity duration-200 hover:opacity-75 bg-[${
+                    profile.theme.buttonColor
+                  }] text-[${profile.theme.buttonTextColor}]"
+                  aria-label="Visit ${link.title}"
+                >
+                  ${
+                    link.iconUrl
+                      ? `
+                    <span class="flex items-center justify-center h-6 w-6">
+                      <img 
+                        src="${link.iconUrl}" 
+                        alt="" 
+                        class="max-h-full max-w-full" 
+                        loading="lazy" 
+                        aria-hidden="true" 
+                      />
                     </span>`
-                        : ""
-                    }
-                    <span class="text-font">${link.title}</span>
+                      : ""
+                  }
+                  <span class="text-font font-medium">${link.title}</span>
                 </a>
+
                 `
                   )
                   .join("")}
