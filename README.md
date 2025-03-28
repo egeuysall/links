@@ -85,9 +85,3 @@ For more detailed information about using and contributing to the project, pleas
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Vercel](https://vercel.com/)
-
----
-
-<p align="center">
-  Made with love by <a href="https://github.com/egeuysall">@egeuysall</a>
-</p>
