@@ -416,7 +416,7 @@ const Links = () => {
 
         .button-font {
           font-family: ${getTextFontFamily()};
-          font-weight: 500;
+          font-weight: 700;
         }
     </style>
 </head>
