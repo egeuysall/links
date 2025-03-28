@@ -416,7 +416,7 @@ const Links = () => {
 
         .button-font {
           font-family: ${getTextFontFamily()};
-          font-weight: 700;
+          font-weight: 500;
         }
     </style>
 </head>
@@ -435,7 +435,7 @@ const Links = () => {
                 : `<div
                 class="heading-font mb-4 h-31 w-31 rounded-full flex items-center justify-center text-4xl heading-font font-bold transition-all duration-200 hover:grayscale bg-[${
                   profile.theme.backgroundColor
-                }] invert-5"
+                }] invert-4"
                 aria-label="${profile.displayName}'s profile initial">
                 ${profile.displayName.charAt(0).toUpperCase()}
             </div>`
@@ -477,7 +477,7 @@ const Links = () => {
                     </span>`
                       : ""
                   }
-                  <span class="text-font button-font">${link.title}</span>
+                  <span class="button-font">${link.title}</span>
                 </a>
 
                 `

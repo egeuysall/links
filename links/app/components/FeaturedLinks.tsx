@@ -24,14 +24,28 @@ const FeaturedLinks = () => {
           width={256}
           height={512}
           src="/featured-links/ethan-davis.png"
-          alt="Mia Parker links"
+          alt="Ethan Davis links"
           className="w-full h-auto"
         />
         <Image
           width={256}
           height={512}
           src="/featured-links/lucas-mercer.png"
-          alt="Mia Parker links"
+          alt="Lucas Mercer links"
+          className="w-full h-auto"
+        />
+        <Image
+          width={256}
+          height={512}
+          src="/featured-links/ethan-caldwell.png"
+          alt="Ethan Caldwell links"
+          className="w-full h-auto"
+        />
+        <Image
+          width={256}
+          height={512}
+          src="/featured-links/elias-varen.png"
+          alt="Elias Varen links"
           className="w-full h-auto"
         />
     </div>
