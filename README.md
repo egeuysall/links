@@ -10,7 +10,10 @@
 </p>
 
 <p align="center">
-  [Documentation](https://www.links.egeuysal.com/documentation/)
+  <strong>
+    <a href="https://www.links.egeuysal.com/documentation/">Documentation</a> ∙ 
+    <a href="https://www.links.egeuysal.com/changelog/">Changelog</a>
+  </strong>
 </p>
 
 ---
@@ -88,5 +91,5 @@ For more detailed information about using and contributing to the project, pleas
 ---
 
 <p align="center">
-  Made with love by [@egeuysall](https://github.com/egeuysall)
+  Made with love by <a href="https://github.com/egeuysall">@egeuysall</a>
 </p>
