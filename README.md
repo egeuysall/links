@@ -16,28 +16,26 @@
   </strong>
 </p>
 
----
-
-## Overview
+### Links
 
 **Links** is an open-source alternative to Linktree, designed to allow users to create a personalized, SEO-optimized, and responsive landing page for all their important links. With full access to the source code, users can fully customize the platform to match their brand while ensuring excellent performance across all devices.
 
-## Features
+### Features
 
 - **Fully Customizable**: Personalize layout, colors, fonts, and more.
 - **SEO Optimized**: Built with SEO best practices for better discoverability.
 - **Mobile-Responsive**: A seamless experience on all devices, ensuring accessibility anytime, anywhere.
 - **Open-Source**: Access and modify the source code to fit your needs.
 
-## Getting Started
+### Getting Started
 
-### Prerequisites
+#### Prerequisites
 
 Before starting, ensure you have the following installed:
 - [Node.js](https://nodejs.org/) (v14 or higher)
 - [npm](https://npmjs.com) (Node Package Manager)
 
-### Installation
+#### Installation
 
 1. Clone the repository:
 
@@ -58,11 +56,11 @@ Before starting, ensure you have the following installed:
    npm run dev
    ```
 
-### Access the Application
+#### Access the Application
 
 Once the server is running, navigate to `http://localhost:3000` to view your app in action.
 
-## Technologies Used
+### Technologies Used
 
 - **Node.js**: A JavaScript runtime used for backend operations.
 - **npm**: A package manager for managing project dependencies.
@@ -72,15 +70,15 @@ Once the server is running, navigate to `http://localhost:3000` to view your app
 - **React**: A JavaScript library used for building user interfaces.
 - **Vercel**: A platform for deploying Next.js applications with seamless integration.
 
-## License
+### License
 
 This project is licensed under the [Apache 2.0 License](LICENSE).
 
-## Documentation
+### Documentation
 
 For more detailed information about using and contributing to the project, please visit the [documentation](https://www.links.egeuysal.com/documentation/).
 
-## Acknowledgments
+### Acknowledgments
 
 - [React](https://reactjs.org/)
 - [Next.js](https://nextjs.org/)
