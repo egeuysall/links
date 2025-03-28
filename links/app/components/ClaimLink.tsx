@@ -413,6 +413,11 @@ const Links = () => {
             font-family: ${getTextFontFamily()};
             font-weight: 400;
         }
+
+        .button-font {
+          font-family: ${getTextFontFamily()};
+          font-weight: 700;
+        }
     </style>
 </head>
 
@@ -425,12 +430,12 @@ const Links = () => {
             ${
               profile.avatar
                 ? `<img src="${profile.avatar}" alt="${profile.displayName}'s profile picture"
-                class="mb-4 h-32 w-32 rounded-full transition-all duration-200 hover:grayscale" loading="eager"
+                class="mb-4 h-28 w-32 rounded-full transition-all duration-200 hover:grayscale" loading="eager"
                 width="128" height="128" fetchpriority="high" />`
                 : `<div
                 class="heading-font mb-4 h-32 w-32 rounded-full flex items-center justify-center text-4xl heading-font font-bold transition-all duration-200 hover:grayscale bg-[${
                   profile.theme.backgroundColor
-                }] invert-6"
+                }] invert-5"
                 aria-label="${profile.displayName}'s profile initial">
                 ${profile.displayName.charAt(0).toUpperCase()}
             </div>`
@@ -453,7 +458,7 @@ const Links = () => {
                   href="${link.url}" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  class="flex w-full items-center justify-center gap-2 rounded-lg py-3.5 px-3.5 text-lg font-medium transition-opacity duration-200 hover:opacity-75 bg-[${
+                  class="flex button-font w-full items-center justify-center gap-2 rounded-lg py-3.5 px-3.5 text-lg transition-opacity duration-200 hover:opacity-75 bg-[${
                     profile.theme.buttonColor
                   }] text-[${profile.theme.buttonTextColor}]"
                   aria-label="Visit ${link.title}"
@@ -472,7 +477,7 @@ const Links = () => {
                     </span>`
                       : ""
                   }
-                  <span class="text-font font-medium">${link.title}</span>
+                  <span class="text-font button-font">${link.title}</span>
                 </a>
 
                 `
