@@ -1,11 +1,12 @@
 <p align="center">
-  <img src="https://res.cloudinary.com/dpgeyzgaw/image/upload/v1743140532/links.png" alt="Logo" width="256" height="256" style="border-radius: 50%; border: 4px solid #7f5539;" />
+  <a href="https://vercel.com">
+    <img src="https://res.cloudinary.com/ddjnqljd8/image/upload/v1743177379/links.png" height="96">
+    <h3 align="center">Links</h3>
+  </a>
 </p>
 
-<h1 align="center">Links</h1>
-
 <p align="center">
-  The Only Link You Will Ever Need
+  The Only Link You Will Ever Need.
 </p>
 
 <p align="center">
