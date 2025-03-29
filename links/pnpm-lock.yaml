@@ -109,7 +109,11 @@ importers:
         specifier: ^20
         version: 20.17.28
       '@types/react':
+<<<<<<< HEAD
         specifier: ^19
+=======
+        specifier: ^19.0.12
+>>>>>>> origin/development
         version: 19.0.12
       '@types/react-dom':
         specifier: ^19
