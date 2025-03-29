@@ -3,6 +3,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+} from "@/components/ui/navigation-menu";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -41,60 +51,16 @@ export default function Home() {
             src="/logos/header-logo.svg"
           />
         </Link>
-
-        <nav className="flex items-center justify-center">
-          <ul className="font-bold text-[#EDE0D4] flex gap-4">
-            <li className="hidden md:flex">
-              <Link
-                href="/explore"
-                className="transition duration-200 hover:opacity-75"
-              >
-                Explore
-              </Link>
-            </li>
-            <li className="hidden md:flex">
-              <Link
-                href="/create"
-                className="transition duration-200 hover:opacity-75"
-              >
-                Create
-              </Link>
-            </li>
-            <li className="hidden md:flex">
-              <Link
-                href="/#faq"
-                className="transition duration-200 hover:opacity-75"
-              >
-                FAQ
-              </Link>
-            </li>
-            <li className="hidden md:flex">
-              <Link
-                href="/#contact"
-                className="transition duration-200 hover:opacity-75"
-              >
-                Contact
-              </Link>
-            </li>
-            <li className="flex items-center justify-center mr-2">
-              <button
-                onClick={toggleMobileMenu}
-                aria-label="Toggle mobile menu"
-                className={`transform ${
-                  buttonAnimation ? "scale-90" : ""
-                } transition-transform duration-300`}
-              >
-                <Image
-                  width={28}
-                  height={28}
-                  className="mr-6 flex md:hidden transition duration-200 hover:opacity-75"
-                  alt="Hamburger menu for header"
-                  src="/icons/hamburger-menu.svg"
-                />
-              </button>
-            </li>
-          </ul>
-        </nav>
+            <NavigationMenu className="flex items-center justify-center mr-6">
+              <NavigationMenuList className="font-bold text-[#EDE0D4] flex gap-4">
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <NavigationMenuLink>Link</NavigationMenuLink>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
       </header>
 
       {/* Full Screen Mobile Menu with Animation */}
