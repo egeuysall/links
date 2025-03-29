@@ -3,7 +3,7 @@ import Link from "next/link";
 
 function Footer() {
     return (
-        <footer className="w-full bg-[#7F5539]/75 border-2 border-[#9C6644] p-8 mt-auto rounded-xl shadow-sm backdrop-blur-md">
+        <footer className="w-full bg-[#7F5539]/75 border-2 border-[#9C6644] p-8 mt-auto rounded-lg shadow-sm backdrop-blur-md">
             <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {/* Copyright and Description */}
                 <div className="flex flex-col space-y-3">
