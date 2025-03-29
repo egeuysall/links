@@ -78,8 +78,6 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: {
       canonical: "https://www.links.egeuysal.com/",
     },
-    viewport: "width=device-width, initial-scale=1.0, maximum-scale=1.0",
-    themeColor: "#9C6644",
     applicationName: "Links – Connect everything, effortlessly",
     appleWebApp: {
       capable: true,
