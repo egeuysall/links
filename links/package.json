@@ -44,7 +44,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
-    "@types/react": "^19",
+    "@types/react": "^19.0.12",
     "@types/react-dom": "^19",
     "@types/react-syntax-highlighter": "^15.5.13",
     "shiki": "^3.2.1",
