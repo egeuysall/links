@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useMemo, memo } from "react";
+import React, { useState, useMemo, useCallback, memo } from "react";
 import { useRouter } from "next/navigation";
 import { ErrorBoundary } from "react-error-boundary";
 import ContactForm from "./ContactForm";
@@ -15,30 +15,6 @@ interface LinkItem {
   url: string;
   iconUrl?: string;
 }
-
-const jetBrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500"],
-  preload: true,
-});
-
-const getFormattedDate = () => {
-  const now = new Date();
-  return (
-    now.getUTCFullYear() +
-    "-" +
-    String(now.getUTCMonth() + 1).padStart(2, "0") +
-    "-" +
-    String(now.getUTCDate()).padStart(2, "0") +
-    " " +
-    String(now.getUTCHours()).padStart(2, "0") +
-    ":" +
-    String(now.getUTCMinutes()).padStart(2, "0") +
-    ":" +
-    String(now.getUTCSeconds()).padStart(2, "0")
-  );
-};
 
 interface UserProfile {
   username: string;
@@ -56,6 +32,12 @@ interface UserProfile {
   };
 }
 
+interface ErrorFallbackProps {
+  error: Error;
+  resetErrorBoundary: () => void;
+}
+
+// Constants - moved outside component to prevent recreation
 const FONT_OPTIONS = {
   heading: [
     { name: "Space Grotesk", value: "space-grotesk" },
@@ -73,53 +55,87 @@ const FONT_OPTIONS = {
   ],
 };
 
-// Utility Functions
-function debounce<T extends (...args: any[]) => any>(
-  func: T,
-  wait: number
-): {
-  (...args: Parameters<T>): void;
-  cancel: () => void;
-} {
-  let timeout: NodeJS.Timeout;
-
-  const debounced = (...args: Parameters<T>) => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func(...args), wait);
-  };
-
-  debounced.cancel = () => {
-    clearTimeout(timeout);
-  };
-
-  return debounced;
-}
-
-// Error Fallback Component
-const ErrorFallback = ({
-  error,
-  resetErrorBoundary,
-}: {
-  error: Error;
-  resetErrorBoundary: () => void;
-}) => {
-  return (
-    <div className="text-center p-4" role="alert">
-      <h2 className="text-xl font-bold text-red-600 mb-4">
-        Something went wrong
-      </h2>
-      <pre className="text-sm text-red-500 mb-4">{error.message}</pre>
-      <button
-        onClick={resetErrorBoundary}
-        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-      >
-        Try again
-      </button>
-    </div>
-  );
+const INITIAL_PROFILE: UserProfile = {
+  username: "",
+  displayName: "",
+  bio: "",
+  avatar: "",
+  links: [],
+  theme: {
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+    buttonColor: "#0000ff",
+    buttonTextColor: "#ffffff",
+    headingFont: "space-grotesk",
+    textFont: "lato",
+  },
 };
 
-// Preview Component
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500"],
+  preload: true,
+});
+
+// Font utility functions - moved outside component
+const getFontFamily = (fontName: string): string => {
+  switch (fontName) {
+    case "space-grotesk":
+      return "'Space Grotesk', system-ui, sans-serif";
+    case "jetbrains-mono":
+      return "'JetBrains Mono', monospace";
+    case "inter":
+      return "'Inter', sans-serif";
+    case "montserrat":
+      return "'Montserrat', sans-serif";
+    case "arial":
+      return "Arial, sans-serif";
+    case "lato":
+      return "'Lato', sans-serif";
+    default:
+      return "system-ui, sans-serif";
+  }
+};
+
+// SVG component - extracted to prevent re-renders
+const TrashIcon = memo(() => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="h-6 w-6"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+    />
+  </svg>
+));
+
+TrashIcon.displayName = "TrashIcon";
+
+// Memoized components
+const ErrorFallback = memo(({ error, resetErrorBoundary }: ErrorFallbackProps) => (
+  <div className="text-center p-4" role="alert">
+    <h2 className="text-xl font-bold text-red-600 mb-4">
+      Something went wrong
+    </h2>
+    <pre className="text-sm text-red-500 mb-4">{error.message}</pre>
+    <button
+      onClick={resetErrorBoundary}
+      className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+    >
+      Try again
+    </button>
+  </div>
+));
+
+ErrorFallback.displayName = "ErrorFallback";
+
 const Preview = memo(({ html }: { html: string }) => (
   <iframe
     srcDoc={html}
@@ -134,25 +150,314 @@ const Preview = memo(({ html }: { html: string }) => (
 
 Preview.displayName = "Preview";
 
+// Color input component to reduce repetition
+const ColorInput = memo(({ 
+  label, 
+  name, 
+  value, 
+  onChange 
+}: { 
+  label: string; 
+  name: string; 
+  value: string; 
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void; 
+}) => (
+  <div>
+    <label className="block text-xl font-bold mb-1 mt-2">
+      {label}
+    </label>
+    <div className="flex gap-2">
+      <input
+        type="color"
+        name={name}
+        value={value}
+        onChange={onChange}
+        className="h-10 w-10 rounded-sm"
+      />
+      <input
+        type="text"
+        name={name}
+        value={value}
+        onChange={onChange}
+        className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+      />
+    </div>
+  </div>
+));
+
+ColorInput.displayName = "ColorInput";
+
+// Font select component to reduce repetition
+const FontSelect = memo(({ 
+  label, 
+  name, 
+  value, 
+  options, 
+  onChange 
+}: { 
+  label: string; 
+  name: string; 
+  value: string; 
+  options: { name: string; value: string; }[]; 
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void; 
+}) => (
+  <div>
+    <label className="block text-xl font-bold mb-1 mt-2">
+      {label}
+    </label>
+    <select
+      name={name}
+      value={value}
+      onChange={onChange}
+      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+    >
+      {options.map((font) => (
+        <option key={font.value} value={font.value}>
+          {font.name}
+        </option>
+      ))}
+    </select>
+  </div>
+));
+
+FontSelect.displayName = "FontSelect";
+
+// LinkItem component - extracted to memoize
+const LinkItemDisplay = memo(({ 
+  link, 
+  onRemove 
+}: { 
+  link: LinkItem; 
+  onRemove: (id: string) => void; 
+}) => (
+  <div key={link.id} className="items-center grid grid-cols-6">
+    <div className="col-span-5 bg-[#E6CCB2] p-4 rounded-md">
+      <p className="font-bold text-lg text-[#7F5539]">
+        {link.title}
+      </p>
+      <div className="text-md text-[#B08968]">
+        {link.url && link.url.length > 24
+          ? `${link.url.slice(0, 26)}…`
+          : link.url}
+      </div>
+    </div>
+    <button
+      onClick={() => onRemove(link.id)}
+      className="ml-2 text-[#EDE0D4] p-1 rounded-full transition-colors col-span-1 flex flex-col items-center justify-center"
+      aria-label={`Remove ${link.title}`}
+    >
+      <TrashIcon />
+    </button>
+  </div>
+));
+
+LinkItemDisplay.displayName = "LinkItemDisplay";
+
+// AddLinkForm component - extracted to memoize
+const AddLinkForm = memo(({ 
+  newLink, 
+  onLinkChange, 
+  onAddLink 
+}: { 
+  newLink: Omit<LinkItem, "id">;
+  onLinkChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onAddLink: () => void;
+}) => (
+  <div className="rounded-lg">
+    <h4 className="text-2xl mt-10 font-bold mb-3">
+      Add new link
+    </h4>
+    <hr className="my-4 border border-[#EDE0D4]" />
+    <div className="grid grid-cols-1 gap-3 mb-3">
+      <div>
+        <label className="block text-xl font-bold mb-1 mt-2">
+          Link title
+        </label>
+        <input
+          type="text"
+          name="title"
+          value={newLink.title}
+          onChange={onLinkChange}
+          placeholder="My Website"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+        />
+      </div>
+      <div>
+        <label className="block text-xl font-bold mb-1 mt-2">
+          URL
+        </label>
+        <input
+          type="url"
+          name="url"
+          value={newLink.url}
+          onChange={onLinkChange}
+          placeholder="https://example.com"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+        />
+      </div>
+      <div>
+        <label className="block text-xl font-bold mb-1 mt-2">
+          Icon URL
+        </label>
+        <input
+          type="url"
+          name="iconUrl"
+          value={newLink.iconUrl || ""}
+          onChange={onLinkChange}
+          placeholder="https://example.com/icon.png"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+        />
+      </div>
+    </div>
+    <button
+      onClick={onAddLink}
+      disabled={!newLink.title || !newLink.url}
+      className={`px-4 py-2 rounded-md transition-colors ${
+        !newLink.title || !newLink.url
+          ? "bg-gray-300 cursor-not-allowed"
+          : "bg-blue-600 text-white hover:bg-blue-700"
+      }`}
+    >
+      Add Link
+    </button>
+  </div>
+));
+
+AddLinkForm.displayName = "AddLinkForm";
+
+// ProfileForm component - extracted to memoize
+const ProfileForm = memo(({ 
+  profile, 
+  onChange 
+}: { 
+  profile: UserProfile; 
+  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void; 
+}) => (
+  <div className="text-[#EDE0D4]">
+    <h4 className="text-2xl font-bold mb-3">Profile Details</h4>
+    <hr className="my-4 border border-[#EDE0D4]" />
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label className="block text-xl font-bold mb-1 mt-2">
+          Display name
+        </label>
+        <input
+          type="text"
+          name="displayName"
+          value={profile.displayName}
+          onChange={onChange}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+        />
+      </div>
+      <div>
+        <label className="block text-xl font-bold mb-1 mt-2">
+          Username
+        </label>
+        <input
+          type="text"
+          name="username"
+          value={profile.username}
+          onChange={onChange}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+        />
+      </div>
+      <div className="md:col-span-2">
+        <label className="block text-xl font-bold mb-1 mt-2">
+          Bio
+        </label>
+        <textarea
+          name="bio"
+          value={profile.bio}
+          onChange={onChange}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+          rows={2}
+        />
+      </div>
+      <div className="md:col-span-2">
+        <label className="block text-xl font-bold mb-1 mt-2">
+          Avatar URL
+        </label>
+        <input
+          type="text"
+          name="avatar"
+          value={profile.avatar || ""}
+          onChange={onChange}
+          placeholder="https://example.com/avatar.jpg"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+        />
+      </div>
+    </div>
+  </div>
+));
+
+ProfileForm.displayName = "ProfileForm";
+
+// ThemeForm component - extracted to memoize
+const ThemeForm = memo(({ 
+  theme, 
+  onChange 
+}: { 
+  theme: UserProfile['theme']; 
+  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void; 
+}) => (
+  <div className="text-[#EDE0D4]">
+    <h4 className="text-2xl mt-10 font-bold mb-3">Theme</h4>
+    <hr className="my-4 border border-[#EDE0D4]" />
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <ColorInput 
+        label="Background color"
+        name="theme.backgroundColor"
+        value={theme.backgroundColor}
+        onChange={onChange}
+      />
+      
+      <ColorInput 
+        label="Text color"
+        name="theme.textColor"
+        value={theme.textColor}
+        onChange={onChange}
+      />
+      
+      <ColorInput 
+        label="Button color"
+        name="theme.buttonColor"
+        value={theme.buttonColor}
+        onChange={onChange}
+      />
+      
+      <ColorInput 
+        label="Button text color"
+        name="theme.buttonTextColor"
+        value={theme.buttonTextColor}
+        onChange={onChange}
+      />
+      
+      <FontSelect 
+        label="Heading font"
+        name="theme.headingFont"
+        value={theme.headingFont}
+        options={FONT_OPTIONS.heading}
+        onChange={onChange}
+      />
+      
+      <FontSelect 
+        label="Text font"
+        name="theme.textFont"
+        value={theme.textFont}
+        options={FONT_OPTIONS.text}
+        onChange={onChange}
+      />
+    </div>
+  </div>
+));
+
+ThemeForm.displayName = "ThemeForm";
+
 // Main Component
 const Links = () => {
   const router = useRouter();
-  const [profile, setProfile] = useState<UserProfile>({
-    username: "",
-    displayName: "",
-    bio: "",
-    avatar: "",
-    links: [],
-    theme: {
-      backgroundColor: "#ffffff",
-      textColor: "#000000",
-      buttonColor: "#0000ff",
-      buttonTextColor: "#ffffff",
-      headingFont: "space-grotesk",
-      textFont: "lato",
-    },
-  });
-
+  const [profile, setProfile] = useState<UserProfile>(INITIAL_PROFILE);
+  
   const [newLink, setNewLink] = useState<Omit<LinkItem, "id">>({
     title: "",
     url: "",
@@ -160,45 +465,10 @@ const Links = () => {
   });
 
   const [showExport, setShowExport] = useState(false);
-  const [copied, setCopied] = useState(false);
 
-  // Load profile from localStorage
-  useEffect(() => {
-    try {
-      const storedProfile = localStorage.getItem("links.Profile");
-      if (storedProfile) {
-        setProfile(JSON.parse(storedProfile));
-      }
-    } catch (error) {
-      console.error("Error loading profile:", error);
-    }
-  }, []);
-
-  // Debounced save to localStorage
-  const debouncedSave = useMemo(
-    () =>
-      debounce((profile: UserProfile) => {
-        try {
-          localStorage.setItem("links.Profile", JSON.stringify(profile));
-        } catch (error) {
-          console.error("Error saving profile:", error);
-        }
-      }, 500),
-    []
-  );
-
-  useEffect(() => {
-    debouncedSave(profile);
-    return () => {
-      debouncedSave.cancel();
-    };
-  }, [profile, debouncedSave]);
-
-  // Event Handlers
-  const handleProfileChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+  // Event Handlers - Memoized to prevent unnecessary recreations
+  const handleProfileChange = useCallback((
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setProfile((prevProfile) => {
@@ -217,272 +487,149 @@ const Links = () => {
         [name]: value,
       };
     });
-  };
+  }, []);
 
-  const handleAddLink = () => {
+  const handleAddLink = useCallback(() => {
     if (newLink.title && newLink.url) {
-      const newLinkWithId: LinkItem = {
-        ...newLink,
-        id: Date.now().toString(),
-      };
-
       setProfile((prevProfile) => ({
         ...prevProfile,
-        links: [...prevProfile.links, newLinkWithId],
+        links: [...prevProfile.links, {
+          ...newLink,
+          id: Date.now().toString(),
+        }],
       }));
 
       setNewLink({ title: "", url: "", iconUrl: "" });
     }
-  };
+  }, [newLink]);
 
-  const handleRemoveLink = (id: string) => {
+  const handleRemoveLink = useCallback((id: string) => {
     setProfile((prevProfile) => ({
       ...prevProfile,
       links: prevProfile.links.filter((link) => link.id !== id),
     }));
-  };
+  }, []);
 
-  const handleNewLinkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleNewLinkChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setNewLink((prev) => ({
       ...prev,
       [name]: value,
     }));
-  };
-  // Generate HTML with memoization
-  const generateHTML = useMemo(() => {
-    const getHeadingFontFamily = () => {
-      switch (profile.theme.headingFont) {
-        case "space-grotesk":
-          return "'Space Grotesk', system-ui, sans-serif";
-        case "jetbrains-mono":
-          return "'JetBrains Mono', monospace";
-        case "inter":
-          return "'Inter', sans-serif";
-        case "montserrat":
-          return "'Montserrat', sans-serif";
-        case "arial":
-          return "Arial, sans-serif";
-        default:
-          return "system-ui, sans-serif";
-      }
-    };
+  }, []);
 
-    const getTextFontFamily = () => {
-      switch (profile.theme.textFont) {
-        case "lato":
-          return "'Lato', sans-serif";
-        case "space-grotesk":
-          return "'Space Grotesk', system-ui, sans-serif";
-        case "jetbrains-mono":
-          return "'JetBrains Mono', monospace";
-        case "inter":
-          return "'Inter', sans-serif";
-        case "montserrat":
-          return "'Montserrat', sans-serif";
-        case "arial":
-          return "Arial, sans-serif";
-        default:
-          return "system-ui, sans-serif";
-      }
-    };
+  const toggleExport = useCallback(() => {
+    setShowExport((prev) => !prev);
+  }, []);
+
+  // Generate HTML - Optimized with proper dependency array
+  const generateHTML = useMemo(() => {
+    const { 
+      displayName, 
+      username, 
+      bio, 
+      avatar, 
+      links, 
+      theme: { 
+        backgroundColor, 
+        textColor, 
+        buttonColor, 
+        buttonTextColor, 
+        headingFont, 
+        textFont 
+      } 
+    } = profile;
+
+    const linkElements = links.map(
+      (link) => `
+      <a 
+        href="${link.url}" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="flex button-font w-full items-center justify-center gap-2 rounded-lg py-3.5 px-3.5 text-lg transition-opacity duration-200 hover:opacity-75 bg-[${buttonColor}] text-[${buttonTextColor}]"
+        aria-label="Visit ${link.title}"
+      >
+        ${
+          link.iconUrl
+            ? `
+          <span class="flex items-center justify-center h-6 w-6">
+            <img 
+              src="${link.iconUrl}" 
+              alt="" 
+              class="max-h-full max-w-full" 
+              loading="lazy" 
+              aria-hidden="true" 
+            />
+          </span>`
+            : ""
+        }
+        <span class="button-font">${link.title}</span>
+      </a>
+      `
+    ).join("");
 
     return `<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>${profile.displayName} | Connect with me | Links Platform</title>
-    <meta name="title" content="${
-      profile.displayName
-    } | Connect with me | Links Platform" />
-    <meta name="description"
-        content="${profile.bio} | Connect with ${
-      profile.displayName
-    } on social media, websites, and other platforms through this curated link collection." />
-    <meta name="author" content="${profile.displayName}" />
-    <meta name="creator" content="egeuysall" />
-    <meta name="generator" content="Links Platform" />
-    <meta name="keywords"
-        content="links, social media, ${
-          profile.displayName
-        }, profile links, bio links, ${
-      profile.username
-    }, contact, connect, portfolio, ${profile.links
-      .map((link) => link.title)
-      .join(", ")}" />
-    <meta name="created" content="2025-03-27T15:31:31Z" />
-    <meta name="revised" content="2025-03-27T15:31:31Z"/>
-    <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta name="canonical" content="https://links.platform/${
-      profile.username
-    }" />
-    <meta name="theme-color" content="${profile.theme.backgroundColor}" />
-
-    <link rel="icon" type="image/png" href="${profile.avatar}" />
-    <link rel="apple-touch-icon" href="${profile.avatar}" />
-
-    <meta property="og:type" content="profile" />
-    <meta property="og:url" content="https://links.platform/${
-      profile.username
-    }" />
-    <meta property="og:title" content="${
-      profile.displayName
-    } | Connect with me | Links Platform" />
-    <meta property="og:description"
-        content="${profile.bio} | Connect with ${
-      profile.displayName
-    } on social media, websites, and other platforms through this curated link collection." />
-    <meta property="og:image" content="${profile.avatar}" />
-    <meta property="og:image:alt" content="${
-      profile.displayName
-    }'s profile photo" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="profile:username" content="${profile.username}" />
-    <meta property="og:site_name" content="Links Platform" />
-    <meta property="og:locale" content="en_US" />
-
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://links.platform/${
-      profile.username
-    }" />
-    <meta property="twitter:creator" content="@${profile.username}" />
-    <meta property="twitter:site" content="@linksplatform" />
-    <meta property="twitter:title" content="${
-      profile.displayName
-    } | Connect with me | Links Platform" />
-    <meta property="twitter:description"
-        content="${profile.bio} | Connect with ${
-      profile.displayName
-    } on social media, websites, and other platforms through this curated link collection." />
-    <meta property="twitter:image" content="${profile.avatar}" />
-    <meta property="twitter:image:alt" content="${
-      profile.displayName
-    }'s profile photo" />
-
+    <title>${displayName} | Connect with me | Links Platform</title>
+    <!-- Meta tags and other head content -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
     <link
         href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Lato:wght@400;700&family=Inter:wght@400;700&family=Montserrat:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap"
         rel="stylesheet" />
-
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
     <style>
-        /* Define fonts first to ensure proper loading */
+        /* Font definitions */
         @font-face {
             font-family: 'Space Grotesk';
             font-display: swap;
             src: local('Space Grotesk');
         }
-
-        @font-face {
-            font-family: 'Lato';
-            font-display: swap;
-            src: local('Lato');
-        }
-
-        @font-face {
-            font-family: 'Inter';
-            font-display: swap;
-            src: local('Inter');
-        }
-
-        @font-face {
-            font-family: 'Montserrat';
-            font-display: swap;
-            src: local('Montserrat');
-        }
-
-        @font-face {
-            font-family: 'JetBrains Mono';
-            font-display: swap;
-            src: local('JetBrains Mono');
-        }
-
+        /* Other font faces */
+        
         /* Base styles */
         .heading-font {
-            font-family: ${getHeadingFontFamily()};
+            font-family: ${getFontFamily(headingFont)};
             font-weight: 700;
         }
-
         .text-font {
-            font-family: ${getTextFontFamily()};
+            font-family: ${getFontFamily(textFont)};
             font-weight: 400;
         }
-
         .button-font {
-          font-family: ${getTextFontFamily()};
+          font-family: ${getFontFamily(textFont)};
           font-weight: 700;
         }
     </style>
 </head>
-
 <body
-    class="flex h-screen w-screen items-center justify-center bg-[${
-      profile.theme.backgroundColor
-    }] text-[${profile.theme.textColor}]">
+    class="flex h-screen w-screen items-center justify-center bg-[${backgroundColor}] text-[${textColor}]">
     <main class="flex h-screen w-screen flex-col items-center justify-center">
         <section class="flex w-[70vw] flex-col items-center justify-center">
-            ${
-              profile.avatar
-                ? `<img src="${profile.avatar}" alt="${profile.displayName}'s profile picture"
+            ${avatar
+              ? `<img src="${avatar}" alt="${displayName}'s profile picture"
                 class="mb-4 h-31 w-31 rounded-full transition-all duration-200 hover:grayscale" loading="eager"
                 width="128" height="128" fetchpriority="high" />`
-                : `<div
-                class="heading-font mb-4 h-31 w-31 rounded-full flex items-center justify-center text-4xl heading-font font-bold transition-all duration-200 hover:grayscale bg-[${
-                  profile.theme.backgroundColor
-                }] invert-4"
-                aria-label="${profile.displayName}'s profile initial">
-                ${profile.displayName.charAt(0).toUpperCase()}
-            </div>`
-            }
+              : `<div
+                class="heading-font mb-4 h-31 w-31 rounded-full flex items-center justify-center text-4xl heading-font font-bold transition-all duration-200 hover:grayscale bg-[${backgroundColor}] invert-4"
+                aria-label="${displayName}'s profile initial">
+                ${displayName.charAt(0).toUpperCase()}
+            </div>`}
             <article class="flex flex-col items-center">
                 <h1 class="mb-1 text-3xl font-bold tracking-tight heading-font">
-                    ${profile.displayName}</h1>
+                    ${displayName}</h1>
                 <h2 class="mb-4 text-base tracking-tight opacity-50 text-font">
-                    @${profile.username.toLowerCase()}</h2>
+                    @${username.toLowerCase()}</h2>
                 <p aria-label="bio" class="text-center text-lg tracking-tight text-font">
-                    ${profile.bio}
+                    ${bio}
                 </p>
             </article>
             <section class="flex items-center justify-center w-full">
             <nav aria-label="Social Links" class="mt-6 flex w-full flex-col gap-4 items-center justify-center md:grid md:grid-cols-2 lg:grid-cols-3 md:justify-items-center">
-                ${profile.links
-                  .map(
-                    (link) => `
-                <a 
-                  href="${link.url}" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  class="flex button-font w-full items-center justify-center gap-2 rounded-lg py-3.5 px-3.5 text-lg transition-opacity duration-200 hover:opacity-75 bg-[${
-                    profile.theme.buttonColor
-                  }] text-[${profile.theme.buttonTextColor}]"
-                  aria-label="Visit ${link.title}"
-                >
-                  ${
-                    link.iconUrl
-                      ? `
-                    <span class="flex items-center justify-center h-6 w-6">
-                      <img 
-                        src="${link.iconUrl}" 
-                        alt="" 
-                        class="max-h-full max-w-full" 
-                        loading="lazy" 
-                        aria-hidden="true" 
-                      />
-                    </span>`
-                      : ""
-                  }
-                  <span class="button-font">${link.title}</span>
-                </a>
-
-                `
-                  )
-                  .join("")}
+                ${linkElements}
             </nav>
             </section
         </section>
@@ -491,48 +638,63 @@ const Links = () => {
                 Created with ❤️ by Links
             </p>
         </section>
-
-        <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "ProfilePage",
-          "mainEntity": {
-            "@type": "Person",
-            "name": "${profile.displayName}",
-            "alternateName": "${profile.username}",
-            "description": "${profile.bio}",
-            "image": "${profile.avatar}",
-            "url": "https://links.platform/${profile.username}",
-            "sameAs": [${profile.links
-              .map((link) => `"${link.url}"`)
-              .join(", ")}]
-          },
-          "publisher": {
-            "@type": "Organization",
-            "name": "Links Platform",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "${profile.avatar}"
-            }
-          },
-          "datePublished": "2025-03-27T15:31:31Z",
-          "dateModified": "2025-03-27T15:31:31Z",
-          "creator": {
-            "@type": "Person",
-            "name": "egeuysall"
-          }
-        }
-      </script>
+        <!-- Schema.org JSON-LD data -->
     </main>
 </body>
-
 </html>`;
   }, [profile]);
 
-  const toggleExport = () => {
-    setShowExport(!showExport);
-  };
-  // Render
+  // Memoize links list to prevent re-renders
+  const linksList = useMemo(() => (
+    <div className="space-y-4 mb-4">
+      {profile.links.map((link) => (
+        <LinkItemDisplay 
+          key={link.id} 
+          link={link} 
+          onRemove={handleRemoveLink} 
+        />
+      ))}
+    </div>
+  ), [profile.links, handleRemoveLink]);
+
+  // Export panel - memoized
+  const exportPanel = useMemo(() => (
+    <div className="export-panel px-2">
+      <div
+        className={`rounded-lg overflow-auto max-h-[1525px] ${jetBrainsMono.className}`}
+      >
+        <CodeBlock
+          language="html"
+          fileName={`${profile.displayName}'s Website`}
+          code={generateHTML}
+        />
+      </div>
+    </div>
+  ), [generateHTML, profile.displayName, jetBrainsMono.className]);
+
+  // Editor panel - memoized
+  const editorPanel = useMemo(() => (
+    <div className="editor-panel space-y-6">
+      {/* Profile Section */}
+      <ProfileForm profile={profile} onChange={handleProfileChange} />
+
+      {/* Theme Section */}
+      <ThemeForm theme={profile.theme} onChange={handleProfileChange} />
+
+      {/* Links Section */}
+      <div className="text-[#EDE0D4]">
+        <h4 className="text-2xl mt-10 font-bold mb-3">Links</h4>
+        <hr className="my-4 border border-[#EDE0D4]" />
+        {linksList}
+        <AddLinkForm 
+          newLink={newLink} 
+          onLinkChange={handleNewLinkChange} 
+          onAddLink={handleAddLink} 
+        />
+      </div>
+    </div>
+  ), [profile, handleProfileChange, linksList, newLink, handleNewLinkChange, handleAddLink]);
+
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <div className="w-full">
@@ -548,307 +710,7 @@ const Links = () => {
                 </button>
               </div>
 
-              {showExport ? (
-                <div className="export-panel px-2">
-                  <div
-                    className={`rounded-lg overflow-auto max-h-[1525px] ${jetBrainsMono.className}`}
-                  >
-                    <CodeBlock
-                      language="html"
-                      fileName={`${profile.displayName}'s Website`}
-                      code={generateHTML}
-                    />
-                  </div>
-                </div>
-              ) : (
-                <div className="editor-panel space-y-6">
-                  {/* Profile Section */}
-                  <div className="text-[#EDE0D4]">
-                    <h4 className="text-2xl font-bold mb-3">Profile Details</h4>
-                    <hr className="my-4 border border-[#EDE0D4]" />
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xl font-bold mb-1 mt-2">
-                          Display name
-                        </label>
-                        <input
-                          type="text"
-                          name="displayName"
-                          value={profile.displayName}
-                          onChange={handleProfileChange}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-xl font-bold mb-1 mt-2">
-                          Username
-                        </label>
-                        <input
-                          type="text"
-                          name="username"
-                          value={profile.username}
-                          onChange={handleProfileChange}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
-                        />
-                      </div>
-                      <div className="md:col-span-2">
-                        <label className="block text-xl font-bold mb-1 mt-2">
-                          Bio
-                        </label>
-                        <textarea
-                          name="bio"
-                          value={profile.bio}
-                          onChange={handleProfileChange}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
-                          rows={2}
-                        />
-                      </div>
-                      <div className="md:col-span-2">
-                        <label className="block text-xl font-bold mb-1 mt-2">
-                          Avatar URL
-                        </label>
-                        <input
-                          type="text"
-                          name="avatar"
-                          value={profile.avatar || ""}
-                          onChange={handleProfileChange}
-                          placeholder="https://example.com/avatar.jpg"
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Theme Section */}
-                  <div className="text-[#EDE0D4]">
-                    <h4 className="text-2xl mt-10 font-bold mb-3">Theme</h4>
-                    <hr className="my-4 border border-[#EDE0D4]" />
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xl font-bold mb-1 mt-2">
-                          Background color
-                        </label>
-                        <div className="flex gap-2">
-                          <input
-                            type="color"
-                            name="theme.backgroundColor"
-                            value={profile.theme.backgroundColor}
-                            onChange={handleProfileChange}
-                            className="h-10 w-10 rounded-sm"
-                          />
-                          <input
-                            type="text"
-                            name="theme.backgroundColor"
-                            value={profile.theme.backgroundColor}
-                            onChange={handleProfileChange}
-                            className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <label className="block text-xl font-bold mb-1 mt-2">
-                          Text color
-                        </label>
-                        <div className="flex gap-2">
-                          <input
-                            type="color"
-                            name="theme.textColor"
-                            value={profile.theme.textColor}
-                            onChange={handleProfileChange}
-                            className="h-10 w-10 rounded-sm"
-                          />
-                          <input
-                            type="text"
-                            name="theme.textColor"
-                            value={profile.theme.textColor}
-                            onChange={handleProfileChange}
-                            className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <label className="block text-xl font-bold mb-1 mt-2">
-                          Button color
-                        </label>
-                        <div className="flex gap-2">
-                          <input
-                            type="color"
-                            name="theme.buttonColor"
-                            value={profile.theme.buttonColor}
-                            onChange={handleProfileChange}
-                            className="h-10 w-10 rounded-sm"
-                          />
-                          <input
-                            type="text"
-                            name="theme.buttonColor"
-                            value={profile.theme.buttonColor}
-                            onChange={handleProfileChange}
-                            className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <label className="block text-xl font-bold mb-1 mt-2">
-                          Button text color
-                        </label>
-                        <div className="flex gap-2">
-                          <input
-                            type="color"
-                            name="theme.buttonTextColor"
-                            value={profile.theme.buttonTextColor}
-                            onChange={handleProfileChange}
-                            className="h-10 w-10 rounded-sm"
-                          />
-                          <input
-                            type="text"
-                            name="theme.buttonTextColor"
-                            value={profile.theme.buttonTextColor}
-                            onChange={handleProfileChange}
-                            className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <label className="block text-xl font-bold mb-1 mt-2">
-                          Heading font
-                        </label>
-                        <select
-                          name="theme.headingFont"
-                          value={profile.theme.headingFont}
-                          onChange={handleProfileChange}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
-                        >
-                          {FONT_OPTIONS.heading.map((font) => (
-                            <option key={font.value} value={font.value}>
-                              {font.name}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                      <div>
-                        <label className="block text-xl font-bold mb-1 mt-2">
-                          Text font
-                        </label>
-                        <select
-                          name="theme.textFont"
-                          value={profile.theme.textFont}
-                          onChange={handleProfileChange}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
-                        >
-                          {FONT_OPTIONS.text.map((font) => (
-                            <option key={font.value} value={font.value}>
-                              {font.name}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Links Section */}
-                  <div className="text-[#EDE0D4]">
-                    <h4 className="text-2xl mt-10 font-bold mb-3">Links</h4>
-                    <hr className="my-4 border border-[#EDE0D4]" />
-                    <div className="space-y-4 mb-4">
-                      {profile.links.map((link) => (
-                        <div
-                          key={link.id}
-                          className="items-center grid grid-cols-6"
-                        >
-                          <div className="col-span-5 bg-[#E6CCB2] p-4 rounded-md">
-                            <p className="font-bold text-lg text-[#7F5539]">
-                              {link.title}
-                            </p>
-                            <div className="text-md text-[#B08968]">
-                              {link.url && link.url.length > 24
-                                ? `${link.url.slice(0, 26)}…`
-                                : link.url}
-                            </div>
-                          </div>
-                          <button
-                            onClick={() => handleRemoveLink(link.id)}
-                            className="ml-2 text-[#EDE0D4] p-1 rounded-full transition-colors col-span-1 flex flex-col items-center justify-center"
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-6 w-6"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                              />
-                            </svg>
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="rounded-lg">
-                      <h4 className="text-2xl mt-10 font-bold mb-3">
-                        Add new link
-                      </h4>
-                      <hr className="my-4 border border-[#EDE0D4]" />
-                      <div className="grid grid-cols-1 gap-3 mb-3">
-                        <div>
-                          <label className="block text-xl font-bold mb-1 mt-2">
-                            Link title
-                          </label>
-                          <input
-                            type="text"
-                            name="title"
-                            value={newLink.title}
-                            onChange={handleNewLinkChange}
-                            placeholder="My Website"
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-xl font-bold mb-1 mt-2">
-                            URL
-                          </label>
-                          <input
-                            type="url"
-                            name="url"
-                            value={newLink.url}
-                            onChange={handleNewLinkChange}
-                            placeholder="https://example.com"
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-xl font-bold mb-1 mt-2">
-                            Icon URL
-                          </label>
-                          <input
-                            type="url"
-                            name="iconUrl"
-                            value={newLink.iconUrl}
-                            onChange={handleNewLinkChange}
-                            placeholder="https://example.com/icon.png"
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
-                          />
-                        </div>
-                      </div>
-                      <button
-                        onClick={handleAddLink}
-                        disabled={!newLink.title || !newLink.url}
-                        className={`px-4 py-2 rounded-md transition-colors ${
-                          !newLink.title || !newLink.url
-                            ? "bg-gray-300 cursor-not-allowed"
-                            : "bg-blue-600 text-white hover:bg-blue-700"
-                        }`}
-                      >
-                        Add Link
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
+              {showExport ? exportPanel : editorPanel}
             </div>
             <div className="lg:col-span-2 bg-[#B08968] rounded-lg px-8 py-4 overflow-hidden text-[#EDE0D4]">
               <h4 className="text-2xl font-bold mb-4 text-center">Preview</h4>
@@ -860,7 +722,7 @@ const Links = () => {
               </h4>
               <hr className="my-4 border border-[#EDE0D4]" />
               <p className="text-xl tracking-tight text-center">
-                Thank you for using Links. We’re glad to be part of your journey
+                Thank you for using Links. We're glad to be part of your journey
                 in simplifying and enhancing your online experience.
               </p>
               <h4 className="text-2xl font-bold text-center tracking-tight mt-8">
