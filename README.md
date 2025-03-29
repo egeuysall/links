@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://vercel.com">
+  <a href="https://www.links.egeuysal.com/">
     <img src="https://res.cloudinary.com/ddjnqljd8/image/upload/v1743177379/links.png" height="96">
     <h3 align="center">Links</h3>
   </a>
