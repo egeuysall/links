@@ -33,7 +33,7 @@
 
 Before starting, ensure you have the following installed:
 - [Node.js](https://nodejs.org/) (v14 or higher)
-- [npm](https://npmjs.com) (Node Package Manager)
+- [pnpm](https://pnpm.io/) (Performant Node Package Manager)
 
 #### Installation
 
@@ -47,13 +47,13 @@ Before starting, ensure you have the following installed:
 2. Install dependencies:
 
    ```bash
-   npm install
+   pnpm install
    ```
 
 3. Run the development server:
 
    ```bash
-   npm run dev
+   pnpm dev
    ```
 
 #### Access the Application
@@ -63,7 +63,7 @@ Once the server is running, navigate to `http://localhost:3000` to view your app
 ### Technologies Used
 
 - **Node.js**: A JavaScript runtime used for backend operations.
-- **npm**: A package manager for managing project dependencies.
+- **pnpm**: A performant package manager for managing project dependencies.
 - **Tailwind CSS**: A utility-first CSS framework for efficient styling and design.
 - **TypeScript**: A superset of JavaScript that provides static typing for improved code quality.
 - **Next.js**: A React framework optimized for performance, with features like server-side rendering and static site generation.
