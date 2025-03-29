@@ -1,5 +1,5 @@
 import React from "react";
-import Links from "../components/Links"
+import Links from "../../components/Links"
 
 export default function Home() {
   return (
