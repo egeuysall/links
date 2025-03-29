@@ -1,5 +1,4 @@
 import React from "react";
-import ClaimLink from "../components/ClaimLink";
 import Links from "../components/Links"
 
 export default function Home() {
@@ -14,7 +13,6 @@ export default function Home() {
           Customize your setup in seconds!
         </p>
         <div className="mt-8 mb-24 w-full">
-          {/* <ClaimLink /> */}
           <Links />
         </div>
       </section>
