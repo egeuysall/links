@@ -1,5 +1,5 @@
 import React from "react";
-import FeaturedLinks from "../components/FeaturedLinks"
+import FeaturedLinks from "../../components/FeaturedLinks"
 
 export default function Home() {
   return (

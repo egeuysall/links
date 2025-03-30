@@ -40,8 +40,8 @@ export default function Header() {
   };
 
   return (
-    <div className="fixed top-6 left-0 right-0 z-10 flex justify-center">
-      <header className="w-[80vw] max-w-7xl bg-[#7F5539]/75 border-2 border-[#9C6644] h-18 rounded-lg flex justify-between shadow-sm backdrop-blur-md">
+    <div className="fixed top-6 left-0 right-0 z-10 flex justify-center w-full">
+      <header className="w-[82.5vw] md:w-[87.5vw] lg:w-[92.5vw] bg-[#7F5539]/75 border-2 border-[#9C6644] h-18 rounded-lg flex justify-between shadow-sm backdrop-blur-md">
         <Link href="/" className="flex items-center">
           <Image
             width={18}
@@ -71,7 +71,7 @@ export default function Header() {
                 <NavigationMenuLink href="/links/our-links">
                   Our links
                 </NavigationMenuLink>
-                <NavigationMenuLink href="/links/newsletter">
+                <NavigationMenuLink href="/#newsletter">
                   Newsletter
                 </NavigationMenuLink>
               </NavigationMenuContent>
@@ -80,7 +80,7 @@ export default function Header() {
             <NavigationMenuItem className="hidden md:flex">
               <NavigationMenuTrigger>Discover</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <NavigationMenuLink href="/discover/other-links">
+                <NavigationMenuLink href="/discover/featured-links">
                   Featured links
                 </NavigationMenuLink>
                 <NavigationMenuLink href="/discover/tips">

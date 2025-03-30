@@ -15,7 +15,7 @@ const Circle = React.forwardRef<HTMLDivElement, CircleProps>(
   ({ children, className = "" }, ref) => (
     <div
       ref={ref}
-      className={`z-5 flex size-24 items-center justify-center rounded-full border-2 border-[#9C6644] bg-[#E6CCB2] p-2 ${className}`}
+      className={`z-5 flex size-18 md:size-24 items-center justify-center rounded-full border-2 border-[#9C6644] bg-[#E6CCB2] p-2 ${className}`}
     >
       {children}
     </div>
@@ -42,6 +42,7 @@ export default function Connections(): React.ReactElement {
                 height={32}
                 src="/icons/user.svg"
                 alt="User icon"
+                className="w-7 h-7 md:w-9 md:h-9"
             />
           </Circle>
           <Circle ref={div2Ref}>
@@ -50,6 +51,7 @@ export default function Connections(): React.ReactElement {
                 height={20}
                 src="/logos/input-logo.svg"
                 alt="Links logo"
+                className="w-8 h-8 md:w-12 md:h-12"
             />
           </Circle>
         </div>

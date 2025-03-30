@@ -20,7 +20,7 @@ import { TextAnimate } from "@/components/magicui/text-animate";
 const Home: React.FC = () => {
   return (
     <>
-      <section className="flex flex-col gap-4">
+      <section className="flex flex-col gap-4 w-full">
         {/* Fixed height container for the heading to prevent layout shift */}
         <div className="flex flex-col gap-6">
           <h1>
@@ -53,11 +53,11 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
-      
+
       <section className="flex items-center justify-center mt-8 flex-col">
         <StartJourney />
       </section>
-      
+
       <section className="flex items-center justify-center mt-8 flex-col">
         <h2
           className="text-4xl font-bold text-center text-[#593116] tracking-tighter mb-4"
@@ -81,8 +81,8 @@ const Home: React.FC = () => {
               />
             ))}
           </div>
-          
-          <section className="mt-4 mb-4 flex flex-col">
+
+          <section className="mt-4 mb-4 flex flex-col" id="newsletter">
             <h2 className="text-4xl mb-6 font-bold text-center text-[#593116] tracking-tighter">
               Subscribe to our newsletter
             </h2>
@@ -92,7 +92,7 @@ const Home: React.FC = () => {
             </p>
             <StartNewsletter />
           </section>
-          
+
           <section className="mt-4 items-center flex-col flex" id="enter">
             <h2 className="text-4xl mb-4 font-bold text-center text-[#593116] tracking-tighter">
               Transform your input to a tailored website.
@@ -103,7 +103,7 @@ const Home: React.FC = () => {
             </p>
             <Connections />
           </section>
-          
+
           <section className="mt-6 flex-col flex" id="faq">
             <h2 className="text-4xl mb-4 font-bold text-center text-[#593116] tracking-tighter">
               Frequently asked questions
@@ -151,7 +151,7 @@ const Home: React.FC = () => {
               </AccordionItem>
             </Accordion>
           </section>
-          
+
           <section className="mt-2 flex flex-col mb-16">
             <h2 className="text-4xl mb-6 font-bold text-center text-[#593116] tracking-tighter">
               Get in touch
