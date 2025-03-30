@@ -2,13 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import changes from "../changes";
 
-// Don't define any custom types here - use the project's existing types
+// Import just the base interfaces we need without redefining them
+import type { AppProps } from 'next/app';
 
-export default async function ChangelogEntryPage(props: any) {
-  // Extract id from params, handling both Promise and non-Promise cases
-  const id = props.params && props.params.then 
-    ? (await props.params).id 
-    : props.params.id;
+export default async function ChangelogEntryPage(props: unknown) {
+  // Use type assertion to work with the props
+  const { params } = props as { params: Promise<{ id: string }> };
+  
+  // Await the params
+  const { id } = await params;
 
   // Find the entry
   const entry = changes.find((change) => change.id === id);
