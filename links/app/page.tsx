@@ -17,20 +17,25 @@ import { Globe } from "@/components/magicui/globe";
 import Connections from "./components/Connections";
 import { TextAnimate } from "@/components/magicui/text-animate";
 
-export default function Home() {
+const Home: React.FC = () => {
   return (
     <>
       <section className="flex items-center justify-center flex-col gap-4">
-        <h1>
-          <TextAnimate
-            className="text-5xl font-bold text-center text-[#593116] tracking-tighter break-normal whitespace-normal"
-            animation="blurInUp"
-            by="character"
-            once
-          >
-            The&nbsp;only&nbsp;link&nbsp;you&nbsp;will&nbsp;ever&nbsp;need.
-          </TextAnimate>
-        </h1>
+        {/* Fixed height container for the heading to prevent layout shift */}
+        <div className="h-[80px] flex items-center justify-center">
+          <h1>
+            <TextAnimate
+              className="text-5xl font-bold text-center text-[#593116] tracking-tighter break-normal whitespace-normal"
+              animation="blurInUp"
+              by="character"
+              once
+            >
+              The&nbsp;only&nbsp;link&nbsp;you&nbsp;will&nbsp;ever&nbsp;need.
+            </TextAnimate>
+          </h1>
+        </div>
+        {/* Fixed height container for the subheading to prevent layout shift */}
+        <div className="h-[60px] flex items-center justify-center">
           <TextAnimate
             className="text-center text-[#593116] tracking-tight text-xl"
             animation="blurInUp"
@@ -39,13 +44,20 @@ export default function Home() {
           >
             One&nbsp;link&nbsp;to&nbsp;showcase&nbsp;everything&nbsp;you&nbsp;create&nbsp;and&nbsp;share.&nbsp;Connect&nbsp;your&nbsp;socials,&nbsp;projects,&nbsp;and&nbsp;more&nbsp;in&nbsp;one&nbsp;place.&nbsp;Claim&nbsp;your&nbsp;link&nbsp;today!
           </TextAnimate>
-        <div className="relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-[#E6CCB2] border-2 border-[#9C6644] py-30 md:py-40 mt-6 mb-4">
-          <Globe className="top-3 grid place-items-center scale-105 md:scale-110" />
+        </div>
+        {/* Fixed height container for Globe to prevent layout shift */}
+        <div className="relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-[#E6CCB2] border-2 border-[#9C6644] py-30 md:py-40 mt-6 mb-4 min-h-[400px]">
+          {/* Adding position and dimensions to prevent layout shift */}
+          <div className="absolute inset-0 grid place-items-center">
+            <Globe className="top-3 grid place-items-center scale-105 md:scale-110" />
+          </div>
         </div>
       </section>
+      
       <section className="flex items-center justify-center mt-8 flex-col">
         <StartJourney />
       </section>
+      
       <section className="flex items-center justify-center mt-8 flex-col">
         <h2
           className="text-4xl font-bold text-center text-[#593116] tracking-tighter mb-4"
@@ -69,6 +81,7 @@ export default function Home() {
               />
             ))}
           </div>
+          
           <section className="mt-4 mb-4 flex flex-col">
             <h2 className="text-4xl mb-6 font-bold text-center text-[#593116] tracking-tighter">
               Subscribe to our newsletter
@@ -79,6 +92,7 @@ export default function Home() {
             </p>
             <StartNewsletter />
           </section>
+          
           <section className="mt-4 items-center flex-col flex" id="enter">
             <h2 className="text-4xl mb-4 font-bold text-center text-[#593116] tracking-tighter">
               Transform your input to a tailored website.
@@ -89,6 +103,7 @@ export default function Home() {
             </p>
             <Connections />
           </section>
+          
           <section className="mt-6 flex-col flex" id="faq">
             <h2 className="text-4xl mb-4 font-bold text-center text-[#593116] tracking-tighter">
               Frequently asked questions
@@ -136,6 +151,7 @@ export default function Home() {
               </AccordionItem>
             </Accordion>
           </section>
+          
           <section className="mt-2 flex flex-col">
             <h2 className="text-4xl mb-6 font-bold text-center text-[#593116] tracking-tighter">
               Get in touch
@@ -150,4 +166,6 @@ export default function Home() {
       </section>
     </>
   );
-}
+};
+
+export default Home;
