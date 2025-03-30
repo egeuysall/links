@@ -36,7 +36,7 @@ export default async function ChangelogEntryPage(props: unknown) {
               width={32}
               height={32}
               alt={`${entry.title} icon`}
-              src={entry.iconPath}
+              src="/logos/input-logo.svg"
             />
             <h1 className="text-xl font-semibold">{entry.title}</h1>
           </div>
