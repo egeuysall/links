@@ -4,17 +4,18 @@ import Link from "next/link";
 import changes from "../changes";
 import type { ChangelogEntry } from "../changes";
 
-// Correct type definition for Next.js 13+ App Router
-type Props = {
-  params: {
-    id: string;
-  };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
+// Next.js App Router expects these exact types
+export interface PageProps {
+  params: Promise<{ id: string }>;
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
 
-export default function ChangelogEntryPage({ params }: Props) {
+export default async function ChangelogEntryPage({ params }: PageProps) {
+  // We need to await the params since it's a Promise
+  const { id } = await params;
+
   // Find the specific change entry
-  const entry = changes.find((change) => change.id === params.id);
+  const entry = changes.find((change) => change.id === id);
 
   if (!entry) {
     notFound();
