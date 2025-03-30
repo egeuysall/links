@@ -14,7 +14,14 @@
   body {
     @apply bg-background text-foreground;
     @apply bg-[#EDE0D4] bg-[url("/images/texture.svg")];
-    @apply h-screen w-screen overflow-hidden;
+    /* DEBUGGED: Changed overflow-hidden to overflow-scroll to enable scrolling */
+    @apply h-screen w-screen overflow-scroll; 
+  }
+  
+  /* DEBUG: Adding a special debug class for testing scrolling behavior */
+  .debug-scroll {
+    border: 2px solid red;
+    @apply overflow-scroll;
   }
 }
 
