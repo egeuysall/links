@@ -212,10 +212,10 @@ export const AddLinkForm = ({
   // Memoize the button class calculation
   const buttonClass = useMemo(
     () =>
-      `px-4 py-2 rounded-md transition-colors ${
+      `transition duration-300 ${
         isDisabled
-          ? "bg-gray-300 cursor-not-allowed"
-          : "bg-blue-600 text-[#593116] hover:bg-blue-700"
+          ? "cursor-not-allowed opacity-75"
+          : "text-[#593116]"
       }`,
     [isDisabled]
   );
@@ -235,7 +235,7 @@ export const AddLinkForm = ({
             value={newLink.title}
             onChange={onLinkChange}
             placeholder="My Website"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+            className="flex-1 focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none  text-lg font-bold text-[#593116] tracking-tight w-full bg-[#E6CCB2] border-2 border-[#7F5539] flex flex-col p-3 rounded-lg placeholder:text-[#B08968] caret-[#593116]"
           />
         </div>
         <div>
@@ -246,7 +246,7 @@ export const AddLinkForm = ({
             value={newLink.url}
             onChange={onLinkChange}
             placeholder="https://example.com"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+            className="flex-1 focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none  text-lg font-bold text-[#593116] tracking-tight w-full bg-[#E6CCB2] border-2 border-[#7F5539] flex flex-col p-3 rounded-lg placeholder:text-[#B08968] caret-[#593116]"
           />
         </div>
         <div>
@@ -257,12 +257,13 @@ export const AddLinkForm = ({
             value={newLink.iconUrl || ""}
             onChange={onLinkChange}
             placeholder="https://example.com/icon.png"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+            className="flex-1 focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none  text-lg font-bold text-[#593116] tracking-tight w-full bg-[#E6CCB2] border-2 border-[#7F5539] flex flex-col p-3 rounded-lg placeholder:text-[#B08968] caret-[#593116]"
           />
         </div>
       </div>
-      <button onClick={onAddLink} disabled={isDisabled} className={buttonClass}>
-        Add Link
+      <button onClick={onAddLink} disabled={isDisabled}
+      className={`outline-none bg-[#B08968] text-[#EDE0D4] py-2.5 px-3.5 space-x-3 border-2 border-[#E6CCB2] rounded-lg text-lg font-bold transition-colors duration-300 ${buttonClass}`}>
+        Add link
       </button>
     </div>
   );

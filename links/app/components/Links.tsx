@@ -161,7 +161,7 @@ export default function Links() {
         onClick={toggleExport}
         className="outline-none bg-[#B08968] text-[#EDE0D4] p-3 space-x-3 border-2 border-[#E6CCB2] rounded-lg text-lg font-bold transition-colors duration-300"
       >
-        {showExport ? "Back to Editor" : "Export HTML"}
+        {showExport ? "Back to editor" : "Export code"}
       </button>
     ),
     [toggleExport, showExport]
@@ -188,10 +188,10 @@ export default function Links() {
   // Main editor interface with forms
   const editorPanel = useMemo(
     () => (
-      <div className="editor-panel space-y-6">
+      <div className="editor-panel text-[#593116] space-y-6">
         <ProfileForm profile={profile} onChange={handleProfileChange} />
         <ThemeForm theme={profile.theme} onChange={handleProfileChange} />
-        <div className="text-[#1E293B]">
+        <div className="text-[#593116]">
           <h4 className="text-2xl mt-10 font-bold">Links</h4>
           <LinksList links={profile.links} onRemoveLink={handleRemoveLink} />
           <AddLinkForm

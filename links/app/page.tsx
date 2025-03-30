@@ -13,21 +13,35 @@ import {
 import ContactForm from "./components/ContactForm";
 import StartJourney from "./components/StartJourney";
 import StartNewsletter from "./components/StartNewsletter";
+import { Globe } from "@/components/magicui/globe";
+import Connections from "./components/Connections";
+import { TextAnimate } from "@/components/magicui/text-animate";
 
 export default function Home() {
   return (
     <>
       <section className="flex items-center justify-center flex-col gap-4">
-        <h1
-          className="text-5xl font-bold text-center text-[#593116] tracking-tighter"
-          id="explore"
-        >
-          The only link you will ever need.
+        <h1>
+          <TextAnimate
+            className="text-5xl font-bold text-center text-[#593116] tracking-tighter break-normal whitespace-normal"
+            animation="blurInUp"
+            by="character"
+            once
+          >
+            The&nbsp;only&nbsp;link&nbsp;you&nbsp;will&nbsp;ever&nbsp;need.
+          </TextAnimate>
         </h1>
-        <p className="text-center text-[#593116] tracking-tight text-xl">
-          One link to showcase everything you create and share. Connect your
-          socials, projects, and more in one place. Claim your link today!
-        </p>
+          <TextAnimate
+            className="text-center text-[#593116] tracking-tight text-xl"
+            animation="blurInUp"
+            by="character"
+            once
+          >
+            One&nbsp;link&nbsp;to&nbsp;showcase&nbsp;everything&nbsp;you&nbsp;create&nbsp;and&nbsp;share.&nbsp;Connect&nbsp;your&nbsp;socials,&nbsp;projects,&nbsp;and&nbsp;more&nbsp;in&nbsp;one&nbsp;place.&nbsp;Claim&nbsp;your&nbsp;link&nbsp;today!
+          </TextAnimate>
+        <div className="relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-[#E6CCB2] border-2 border-[#9C6644] py-30 md:py-40 mt-6 mb-4">
+          <Globe className="top-3 grid place-items-center scale-105 md:scale-110" />
+        </div>
       </section>
       <section className="flex items-center justify-center mt-8 flex-col">
         <StartJourney />
@@ -55,8 +69,8 @@ export default function Home() {
               />
             ))}
           </div>
-          <section className="mt-2 mb-6 flex flex-col">
-            <h2 className="text-4xl mb-4 font-bold text-center text-[#593116] tracking-tighter">
+          <section className="mt-4 mb-4 flex flex-col">
+            <h2 className="text-4xl mb-6 font-bold text-center text-[#593116] tracking-tighter">
               Subscribe to our newsletter
             </h2>
             <p className="text-center text-[#593116] tracking-tight text-xl mb-8">
@@ -65,10 +79,18 @@ export default function Home() {
             </p>
             <StartNewsletter />
           </section>
+          <section className="mt-4 items-center flex-col flex" id="enter">
+            <h2 className="text-4xl mb-4 font-bold text-center text-[#593116] tracking-tighter">
+              Transform your input to a tailored website.
+            </h2>
+            <p className="text-center text-[#593116] tracking-tight text-xl mb-8">
+              Experience how we transform your input into a tailored website
+              with automation for a seamless process.
+            </p>
+            <Connections />
+          </section>
           <section className="mt-6 flex-col flex" id="faq">
-            <h2
-              className="text-4xl mb-4 font-bold text-center text-[#593116] tracking-tighter"
-            >
+            <h2 className="text-4xl mb-4 font-bold text-center text-[#593116] tracking-tighter">
               Frequently asked questions
             </h2>
             <p className="text-center text-[#593116] tracking-tight text-xl mb-8">

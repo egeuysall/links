@@ -4,7 +4,7 @@ import React from "react";
 
 export default function NotFound() {
   return (
-    <main className="w-full min-h-screen flex justify-center items-center flex-col">
+    <main className="w-full min-h-[calc(100vh-9rem)] flex justify-center items-center flex-col">
       <div className="text-center">
         <Link href="/">
           <Image

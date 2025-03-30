@@ -3,8 +3,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+} from "@/components/ui/navigation-menu";
 
-export default function Home() {
+export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [menuAnimation, setMenuAnimation] = useState(false);
   const [buttonAnimation, setButtonAnimation] = useState(false);
@@ -31,7 +41,7 @@ export default function Home() {
 
   return (
     <div className="fixed top-6 left-0 right-0 z-10 flex justify-center">
-      <header className="w-[85vw] max-w-7xl bg-[#7F5539]/75 border-2 border-[#9C6644] h-18 rounded-lg flex justify-between bg-opacity-55 shadow-sm backdrop-blur-md">
+      <header className="w-[85vw] max-w-7xl bg-[#7F5539]/75 border-2 border-[#9C6644] h-18 rounded-lg flex justify-between shadow-sm backdrop-blur-md">
         <Link href="/" className="flex items-center">
           <Image
             width={18}
@@ -41,60 +51,77 @@ export default function Home() {
             src="/logos/header-logo.svg"
           />
         </Link>
+        <NavigationMenu className="items-center justify-center md:mr-3.5">
+          <NavigationMenuList className="font-bold text-[#EDE0D4] flex">
+            <NavigationMenuItem className="hidden md:flex">
+              <NavigationMenuTrigger>Documentation</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <NavigationMenuLink href="/docs/getting-started">
+                  Getting started
+                </NavigationMenuLink>
+                <NavigationMenuLink href="/docs/changelog">
+                  Changelog
+                </NavigationMenuLink>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
 
-        <nav className="flex items-center justify-center">
-          <ul className="font-bold text-[#EDE0D4] flex gap-4">
-            <li className="hidden md:flex">
-              <Link
-                href="/explore"
-                className="transition duration-200 hover:opacity-75"
-              >
-                Explore
-              </Link>
-            </li>
-            <li className="hidden md:flex">
-              <Link
-                href="/create"
-                className="transition duration-200 hover:opacity-75"
-              >
-                Create
-              </Link>
-            </li>
-            <li className="hidden md:flex">
-              <Link
-                href="/#faq"
-                className="transition duration-200 hover:opacity-75"
-              >
-                FAQ
-              </Link>
-            </li>
-            <li className="hidden md:flex">
-              <Link
-                href="/#contact"
-                className="transition duration-200 hover:opacity-75"
-              >
-                Contact
-              </Link>
-            </li>
-            <li className="flex items-center justify-center mr-2">
-              <button
-                onClick={toggleMobileMenu}
-                aria-label="Toggle mobile menu"
-                className={`transform ${
-                  buttonAnimation ? "scale-90" : ""
-                } transition-transform duration-300`}
-              >
-                <Image
-                  width={28}
-                  height={28}
-                  className="mr-6 flex md:hidden transition duration-200 hover:opacity-75"
-                  alt="Hamburger menu for header"
-                  src="/icons/hamburger-menu.svg"
-                />
-              </button>
-            </li>
-          </ul>
-        </nav>
+            <NavigationMenuItem className="hidden md:flex">
+              <NavigationMenuTrigger>Links</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <NavigationMenuLink href="/links/our-links">
+                  Our links
+                </NavigationMenuLink>
+                <NavigationMenuLink href="/links/newsletter">
+                  Newsletter
+                </NavigationMenuLink>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem className="hidden md:flex">
+              <NavigationMenuTrigger>Discover</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <NavigationMenuLink href="/discover/other-links">
+                  Featured links
+                </NavigationMenuLink>
+                <NavigationMenuLink href="/discover/tips">
+                  Tips
+                </NavigationMenuLink>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem className="hidden md:flex">
+              <NavigationMenuTrigger>Create</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <NavigationMenuLink href="/create/new-links">
+                  New links
+                </NavigationMenuLink>
+                <NavigationMenuLink href="/create/customize">
+                  Customize
+                </NavigationMenuLink>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem className="hidden md:flex">
+              <NavigationMenuTrigger>Contact</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <NavigationMenuLink href="/contact/support">
+                  Support
+                </NavigationMenuLink>
+                <NavigationMenuLink href="/contact/feedback">
+                  Feedback
+                </NavigationMenuLink>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+          <button onClick={toggleMobileMenu} className="flex md:hidden mr-6 ml-2.5">
+            <Image
+              width={28}
+              height={28}
+              alt="Hamburger menu"
+              src="/icons/hamburger-menu.svg"
+            />
+          </button>
+        </NavigationMenu>
       </header>
 
       {/* Full Screen Mobile Menu with Animation */}
