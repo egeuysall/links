@@ -198,16 +198,14 @@ export default async function RootLayout({
   <body className={lato.className}>
     <LayoutWrapper>
       <div className="min-h-screen flex flex-col items-center justify-between">
-        <main className="w-full max-w-screen-xl mx-auto px-4 pb-16 flex flex-col">
+        <main className="w-[85vw] flex flex-col pb-16">
           <Header />
-          {/* Replaced large mt-36 margin with more stable padding */}
-          <div className="w-full py-16 flex-grow">
+          <div className="w-full mb-8 mt-36">
             {children}
           </div>
           <Footer />
         </main>
       </div>
-      {/* Analytics components positioned at the end */}
       <Analytics />
       <SpeedInsights />
     </LayoutWrapper>
