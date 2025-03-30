@@ -30,7 +30,6 @@ const ChangelogPage = () => {
               title={change.title}
               desc={change.desc}
               date={change.date}
-              iconPath="/logos/input-logo.svg"
             />
           ))
         ) : (
