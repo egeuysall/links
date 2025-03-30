@@ -10,13 +10,7 @@ interface ChangeTypes {
   iconPath: string;
 }
 
-const Change: React.FC<ChangeTypes> = ({
-  id,
-  title,
-  desc,
-  date,
-  iconPath,
-}) => {
+const Change: React.FC<ChangeTypes> = ({ id, title, desc, date, iconPath }) => {
   return (
     <Link href={`/docs/changelog/${id}`} className="block">
       <section className="w-full bg-[#E6CCB2] border-2 border-[#7F5539] flex flex-col p-6 rounded-lg">
