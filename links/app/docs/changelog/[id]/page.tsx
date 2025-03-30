@@ -4,15 +4,15 @@ import Link from "next/link";
 import changes from "../changes";
 import type { ChangelogEntry } from "../changes";
 
-// Update PageProps to match what Next.js is expecting
-export interface PageProps {
-  params: Promise<{ id: string }>;
-  searchParams?: { [key: string]: string | string[] | undefined };
-}
+// Remove the custom PageProps interface entirely
 
-export default async function ChangelogEntryPage({ params }: PageProps) {
-  // Await the params since it's a Promise
-  const { id } = await params;
+export default async function ChangelogEntryPage({
+  params,
+}: {
+  params: { id: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) {
+  const { id } = params;
 
   // Find the specific change entry
   const entry = changes.find((change) => change.id === id);
