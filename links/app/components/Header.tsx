@@ -41,7 +41,7 @@ export default function Header() {
 
   return (
     <div className="fixed top-6 left-0 right-0 z-10 flex justify-center">
-      <header className="w-[85vw] max-w-7xl bg-[#7F5539]/75 border-2 border-[#9C6644] h-18 rounded-lg flex justify-between shadow-sm backdrop-blur-md">
+      <header className="w-[80vw] max-w-7xl bg-[#7F5539]/75 border-2 border-[#9C6644] h-18 rounded-lg flex justify-between shadow-sm backdrop-blur-md">
         <Link href="/" className="flex items-center">
           <Image
             width={18}
