@@ -20,9 +20,9 @@ import { TextAnimate } from "@/components/magicui/text-animate";
 const Home: React.FC = () => {
   return (
     <>
-      <section className="flex items-center justify-center flex-col gap-4">
+      <section className="flex flex-col gap-4">
         {/* Fixed height container for the heading to prevent layout shift */}
-        <div className="h-[80px] flex items-center justify-center">
+        <div className="flex flex-col gap-6">
           <h1>
             <TextAnimate
               className="text-5xl font-bold text-center text-[#593116] tracking-tighter break-normal whitespace-normal"
@@ -35,7 +35,7 @@ const Home: React.FC = () => {
           </h1>
         </div>
         {/* Fixed height container for the subheading to prevent layout shift */}
-        <div className="h-[60px] flex items-center justify-center">
+        <div className="flex flex-col">
           <TextAnimate
             className="text-center text-[#593116] tracking-tight text-xl"
             animation="blurInUp"
