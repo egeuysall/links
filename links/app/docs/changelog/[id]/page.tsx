@@ -2,17 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import changes from "../changes";
 
-// Standard Next.js dynamic route params typing
-type Props = {
-  params: {
-    id: string;
-  };
-};
+// Don't define any custom types here - use the project's existing types
 
-export default function ChangelogEntryPage({ params }: Props) {
-  const entry = changes.find((change) => change.id === params.id);
+export default async function ChangelogEntryPage(props: any) {
+  // Extract id from params, handling both Promise and non-Promise cases
+  const id = props.params && props.params.then 
+    ? (await props.params).id 
+    : props.params.id;
 
-  // Simple error handling, no notFound() import needed
+  // Find the entry
+  const entry = changes.find((change) => change.id === id);
+
+  // Simple error handling
   if (!entry) {
     return <div>Entry not found</div>;
   }
