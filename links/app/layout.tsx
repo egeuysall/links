@@ -197,7 +197,7 @@ export default async function RootLayout({
   </head>
   <body className={lato.className}>
     <LayoutWrapper>
-      <div className="min-h-screen flex flex-col items-center pb-16">
+      <div className="min-h-screen w-full flex flex-col items-center pb-16">
         <main className="w-[85vw] flex flex-col">
           <Header />
           <div className="w-full mb-12 mt-36">
