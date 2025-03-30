@@ -11,8 +11,8 @@
 
 <p align="center">
   <strong>
-    <a href="https://www.links.egeuysal.com/documentation/">Documentation</a> ∙ 
-    <a href="https://www.links.egeuysal.com/changelog/">Changelog</a>
+    <a href="https://www.links.egeuysal.com/docs/getting-started">Documentation</a> ∙ 
+    <a href="https://www.links.egeuysal.com/docs/changelog">Changelog</a>
   </strong>
 </p>
 
@@ -76,7 +76,7 @@ This project is licensed under the [Apache 2.0 License](LICENSE).
 
 ### Documentation
 
-For more detailed information about using and contributing to the project, please visit the [documentation](https://www.links.egeuysal.com/documentation/).
+For more detailed information about using and contributing to the project, please visit the [documentation](https://www.links.egeuysal.com/docs/getting-started).
 
 ### Acknowledgments
 

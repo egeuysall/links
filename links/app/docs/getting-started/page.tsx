@@ -14,7 +14,7 @@ export default function Home() {
       <section className="flex flex-col gap-4" aria-labelledby="main-heading">
         <h1
           id="main-heading"
-          className="text-5xl font-bold text-[#593116] tracking-tighter break-normal whitespace-normal"
+          className="text-5xl text-center font-bold text-[#593116] tracking-tighter break-normal whitespace-normal"
         >
           Create professional links pages with ease
         </h1>

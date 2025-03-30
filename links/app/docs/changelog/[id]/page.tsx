@@ -1,23 +1,23 @@
-import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import changes from "../changes";
 
-// Next.js App Router expects these exact types
-export interface PageProps {
-  params: Promise<{ id: string }>;
-  searchParams?: { [key: string]: string | string[] | undefined };
-}
+// Import just the base interfaces we need without redefining them
+import type { AppProps } from 'next/app';
 
-export default async function ChangelogEntryPage({ params }: PageProps) {
-  // We need to await the params since it's a Promise
+export default async function ChangelogEntryPage(props: unknown) {
+  // Use type assertion to work with the props
+  const { params } = props as { params: Promise<{ id: string }> };
+  
+  // Await the params
   const { id } = await params;
 
-  // Find the specific change entry
+  // Find the entry
   const entry = changes.find((change) => change.id === id);
 
+  // Simple error handling
   if (!entry) {
-    notFound();
+    return <div>Entry not found</div>;
   }
 
   return (
