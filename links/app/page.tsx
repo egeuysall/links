@@ -46,7 +46,7 @@ const Home: React.FC = () => {
           </TextAnimate>
         </div>
         {/* Fixed height container for Globe to prevent layout shift */}
-        <div className="relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-[#E6CCB2] border-2 border-[#9C6644] py-30 md:py-40 mt-6 mb-4 min-h-[400px]">
+        <div className="relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-[#E6CCB2] border-2 border-[#9C6644] py-30 md:py-40 mt-6 mb-4">
           {/* Adding position and dimensions to prevent layout shift */}
           <div className="absolute inset-0 grid place-items-center">
             <Globe className="top-3 grid place-items-center scale-105 md:scale-110" />
@@ -70,8 +70,8 @@ const Home: React.FC = () => {
           organize, and share them effortlessly for a seamless and professional
           experience.
         </p>
-        <div className="flex flex-col gap-6 mt-8 mb-32">
-          <div className="md:grid md:grid-cols-2 gap-6 flex flex-col ">
+        <div className="flex flex-col gap-6 mt-8">
+          <div className="md:grid md:grid-cols-2 gap-6 flex flex-col">
             {features.map((feature) => (
               <Feature
                 icon={feature.icon}
@@ -152,7 +152,7 @@ const Home: React.FC = () => {
             </Accordion>
           </section>
           
-          <section className="mt-2 flex flex-col">
+          <section className="mt-2 flex flex-col mb-16">
             <h2 className="text-4xl mb-6 font-bold text-center text-[#593116] tracking-tighter">
               Get in touch
             </h2>
