@@ -15,7 +15,7 @@ const Circle = React.forwardRef<HTMLDivElement, CircleProps>(
   ({ children, className = "" }, ref) => (
     <div
       ref={ref}
-      className={`z-10 flex size-24 items-center justify-center rounded-full border-2 border-[#9C6644] bg-[#E6CCB2] p-2 ${className}`}
+      className={`z-5 flex size-24 items-center justify-center rounded-full border-2 border-[#9C6644] bg-[#E6CCB2] p-2 ${className}`}
     >
       {children}
     </div>

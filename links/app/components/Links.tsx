@@ -161,7 +161,7 @@ export default function Links() {
         onClick={toggleExport}
         className="outline-none bg-[#B08968] text-[#EDE0D4] p-3 space-x-3 border-2 border-[#E6CCB2] rounded-lg text-lg font-bold transition-colors duration-300"
       >
-        {showExport ? "Back to Editor" : "Export HTML"}
+        {showExport ? "Back to editor" : "Export code"}
       </button>
     ),
     [toggleExport, showExport]

@@ -91,7 +91,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
       <div className="rounded-lg bg-[#E6CCB2] overflow-hidden">
         {fileName && (
           <figcaption className="flex items-center justify-between px-4 py-2 border-b border-slate-200 bg-[#E6CCB2]">
-            <span className="text-sm text-slate-600 font">{fileName}</span>
+            <span className="text-sm text-slate-600 font">{`${fileName}.${language}`}</span>
           </figcaption>
         )}
         <div className="relative group bg-[#E6CCB2]">

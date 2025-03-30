@@ -23,12 +23,12 @@ export default function Home() {
       <section className="flex items-center justify-center flex-col gap-4">
         <h1>
           <TextAnimate
-            className="text-5xl font-bold text-center text-[#593116] tracking-tighter"
+            className="text-5xl font-bold text-center text-[#593116] tracking-tighter break-normal whitespace-normal"
             animation="blurInUp"
             by="character"
             once
           >
-            The only link you will ever need.
+            The&nbsp;only&nbsp;link&nbsp;you&nbsp;will&nbsp;ever&nbsp;need.
           </TextAnimate>
         </h1>
           <TextAnimate
@@ -37,10 +37,10 @@ export default function Home() {
             by="character"
             once
           >
-            One link to showcase everything you create and share. Connect your socials, projects, and more in one place. Claim your link today!
+            One&nbsp;link&nbsp;to&nbsp;showcase&nbsp;everything&nbsp;you&nbsp;create&nbsp;and&nbsp;share.&nbsp;Connect&nbsp;your&nbsp;socials,&nbsp;projects,&nbsp;and&nbsp;more&nbsp;in&nbsp;one&nbsp;place.&nbsp;Claim&nbsp;your&nbsp;link&nbsp;today!
           </TextAnimate>
-        <div className="relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-[#E6CCB2] border-2 border-[#9C6644] py-40 mt-6 mb-4">
-          <Globe className="top-3 scale-105 md:scale-110" />
+        <div className="relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-[#E6CCB2] border-2 border-[#9C6644] py-30 md:py-40 mt-6 mb-4">
+          <Globe className="top-3 grid place-items-center scale-105 md:scale-110" />
         </div>
       </section>
       <section className="flex items-center justify-center mt-8 flex-col">
