@@ -15,8 +15,9 @@
     @apply bg-background text-foreground;
   }
   
-  html, body {
-    @apply bg-[#EDE0D4] bg-[url("/images/texture.svg")];
+  body {
+    @apply bg-[#EDE0D4] bg-[url("/images/texture.svg")] bg-cover;
+    @apply bg-center bg-no-repeat bg-fixed min-h-screen m-0 p-0 overflow-x-hidden;
   }
 }
 
