@@ -167,46 +167,49 @@ export default async function RootLayout({
 
   return (
     <html
-      lang="en"
-      className={`${spaceGrotesk.variable} ${jetBrainsMono.variable} !scroll-smooth`}
-    >
-      <head>
-        {/* Add explicit og tags to help Discord parser */}
-        <meta
-          property="og:title"
-          content="Links – Connect everything, effortlessly"
-        />
-        <meta
-          property="og:description"
-          content="Links is the ultimate bio link tool. Showcase all your content in one customizable link. Claim your link today!"
-        />
-        <meta
-          property="og:image"
-          content="https://www.links.egeuysal.com/og-links.jpg"
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:updated_time" content={currentDate} />
+  lang="en"
+  className={`${spaceGrotesk.variable} ${jetBrainsMono.variable} !scroll-smooth`}
+>
+  <head>
+    <meta
+      property="og:title"
+      content="Links – Connect everything, effortlessly"
+    />
+    <meta
+      property="og:description"
+      content="Links is the ultimate bio link tool. Showcase all your content in one customizable link. Claim your link today!"
+    />
+    <meta
+      property="og:image"
+      content="https://www.links.egeuysal.com/og-links.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:type" content="website" />
+    <meta property="og:updated_time" content={currentDate} />
 
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(jsonLd),
-          }}
-        />
-      </head>
-      <body className={lato.className}>
-        <LayoutWrapper>
-          <div className="h-screen flex flex-col items-center justify-between mb-12">
-            <main className="w-[85vw] pb-16 flex flex-col">
-              <Header />
-              <div className="w-full mt-36 mb-8">{children}</div>
-              <Analytics />
-              <SpeedInsights />
-              <Footer />
-            </main>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(jsonLd),
+      }}
+    />
+  </head>
+  <body className={lato.className}>
+    <LayoutWrapper>
+      <div className="min-h-screen flex flex-col items-center pb-16">
+        <main className="w-[85vw] flex flex-col">
+          <Header />
+          <div className="w-full mb-12 mt-36">
+            {children}
           </div>
-        </LayoutWrapper>
-      </body>
-    </html>
+          <Footer />
+        </main>
+      </div>
+      <Analytics />
+      <SpeedInsights />
+    </LayoutWrapper>
+  </body>
+</html>
   );
 }
