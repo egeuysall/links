@@ -98,6 +98,9 @@ importers:
       resend:
         specifier: ^4.1.2
         version: 4.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      slugify:
+        specifier: ^1.6.6
+        version: 1.6.6
       sonner:
         specifier: ^2.0.1
         version: 2.0.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1438,6 +1441,10 @@ packages:
   simple-swizzle@0.2.2:
     resolution: {integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==}
 
+  slugify@1.6.6:
+    resolution: {integrity: sha512-h+z7HKHYXj6wJU+AnS/+IH8Uh9fdcX1Lrhg1/VMdf9PwoBQXFcXiAdsy2tSK0P6gKwJLXp02r90ahUCqHk9rrw==}
+    engines: {node: '>=8.0.0'}
+
   sonner@2.0.2:
     resolution: {integrity: sha512-xOeXErZ4blqQd11ZnlDmoRmg+ctUJBkTU8H+HVh9rnWi9Ke28xiL39r4iCTeDX31ODTe/s1MaiaY333dUzLCtA==}
     peerDependencies:
@@ -2766,6 +2773,8 @@ snapshots:
     dependencies:
       is-arrayish: 0.3.2
     optional: true
+
+  slugify@1.6.6: {}
 
   sonner@2.0.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:

@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import changes from "../changes";
-import type { ChangelogEntry } from "../changes";
 
 // Next.js App Router expects these exact types
 export interface PageProps {

@@ -26,7 +26,7 @@ export default function Home() {
 
         <div className="text-sm text-[#7F5539] text-center">
           <time dateTime={lastUpdated}>Last updated: {lastUpdated}</time> by{" "}
-          <span itemProp="author">{authorName}</span>
+          <span itemProp="author">@{authorName}</span>
         </div>
       </section>
 
@@ -57,7 +57,7 @@ export default function Home() {
             <Image
               src="/images/home.jpg"
               alt="Homepage of Links showing the claim your link input field"
-              width={700}
+              width={300}
               height={400}
               className="rounded-lg"
             />
@@ -110,7 +110,7 @@ export default function Home() {
             <Image
               src="/images/create.jpg"
               alt="Creation page interface showing profile customization options"
-              width={700}
+              width={300}
               height={400}
               className="rounded-lg"
             />
@@ -185,7 +185,7 @@ export default function Home() {
               <Image
                 src="/images/original-url.jpg"
                 alt="Screenshot showing how to copy a direct image URL from Cloudinary"
-                width={600}
+                width={300}
                 height={300}
                 className="rounded-lg"
               />
@@ -222,8 +222,8 @@ export default function Home() {
               <Image
                 src="/images/add-link.jpg"
                 alt="Interface for adding multiple links with title, URL and icon fields"
-                width={650}
-                height={350}
+                width={300}
+                height={300}
                 className="rounded-lg"
               />
               <figcaption className="text-sm text-[#7F5539] mt-2">
@@ -268,8 +268,8 @@ export default function Home() {
               <Image
                 src="/images/customize-theme.jpg"
                 alt="Theme customization panel showing color pickers and style options"
-                width={650}
-                height={350}
+                width={300}
+                height={300}
                 className="rounded-lg"
               />
               <figcaption className="text-sm text-[#7F5539] mt-2">
@@ -309,7 +309,7 @@ export default function Home() {
               <Image
                 src="/images/export-code.jpg"
                 alt="Export code button and generated code preview"
-                width={700}
+                width={300}
                 height={400}
                 className="rounded-lg"
               />
@@ -356,7 +356,7 @@ export default function Home() {
               <Image
                 src="/images/create-repo.png"
                 alt="GitHub interface showing the new repository creation screen"
-                width={700}
+                width={300}
                 height={400}
                 className="rounded-lg"
               />
@@ -403,7 +403,7 @@ export default function Home() {
               <Image
                 src="/images/add-code.jpg"
                 alt="GitHub interface showing how to add a new file to repository"
-                width={700}
+                width={300}
                 height={400}
                 className="rounded-lg"
               />
@@ -433,7 +433,7 @@ export default function Home() {
               <Image
                 src="/images/create-vercel.jpg"
                 alt="Vercel dashboard showing import of GitHub repository"
-                width={700}
+                width={300}
                 height={400}
                 className="rounded-lg"
               />
@@ -470,7 +470,7 @@ export default function Home() {
               <Image
                 src="/images/deploy-vercel.jpg"
                 alt="Vercel successful deployment screen showing the deployed URL"
-                width={700}
+                width={300}
                 height={400}
                 className="rounded-lg"
               />
@@ -504,7 +504,7 @@ export default function Home() {
               <Image
                 src="/images/add-domain.jpg"
                 alt="Vercel domain settings page showing custom domain configuration"
-                width={700}
+                width={300}
                 height={400}
                 className="rounded-lg"
               />
@@ -547,7 +547,7 @@ export default function Home() {
             <Image
               src="/featured-links/ege-uysal.png"
               alt="Example of a completed links page on multiple devices"
-              width={700}
+              width={300}
               height={400}
               className="rounded-lg"
             />
@@ -616,8 +616,8 @@ export default function Home() {
             <Image
               src="/images/analytics.jpg"
               alt="Google Analytics dashboard showing visitor statistics for a links page"
-              width={650}
-              height={350}
+              width={300}
+              height={300}
               className="rounded-lg"
             />
             <figcaption className="text-sm text-[#7F5539] mt-2">
@@ -630,7 +630,7 @@ export default function Home() {
           <p className="text-[#593116]">
             <strong>Last Updated:</strong>{" "}
             <time dateTime="2025-03-30">March 30, 2025</time> by{" "}
-            <span itemProp="author">egeuysall</span>
+            <span itemProp="author">@egeuysall</span>
           </p>
           <p className="text-[#593116] text-sm mt-2">
             If you have any questions or need assistance, please reach out
