@@ -8,7 +8,7 @@
 /* Base styles */
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply box-border;
   }
   
   body {
