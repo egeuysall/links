@@ -21,9 +21,8 @@
     @apply bg-background text-foreground;
     
     /* SOLUTION: Fixed background image handling for mobile */
-    /* Use background-size: cover to prevent overflow */
-    /* Background position center to keep it centered */
-    @apply bg-[#EDE0D4] bg-cover bg-center bg-no-repeat;
+    /* Adjust background size for better appearance */
+    @apply bg-[#EDE0D4] bg-center bg-no-repeat;
     background-image: url("/images/texture.svg");
     
     /* Enable vertical scrolling, prevent horizontal scrolling */
@@ -32,6 +31,9 @@
     /* Add this to ensure content stays within the viewport width */
     max-width: 100vw;
     position: relative;
+    
+    /* Ensure background image scales properly */
+    background-size: 25%; /* Adjust this value as needed */
   }
   
   /* Wrapper to contain all content and prevent overflow */
