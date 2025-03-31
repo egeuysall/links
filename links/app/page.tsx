@@ -15,7 +15,8 @@ import StartJourney from "./components/StartJourney";
 import StartNewsletter from "./components/StartNewsletter";
 import { Globe } from "@/components/magicui/globe";
 import Connections from "./components/Connections";
-import { TextAnimate } from "@/components/magicui/text-animate";
+import { HyperText } from "@/components/magicui/hyper-text";
+import { Safari } from "@/components/magicui/safari";
 
 const Home: React.FC = () => {
   return (
@@ -23,27 +24,23 @@ const Home: React.FC = () => {
       <section className="flex flex-col gap-4 w-full">
         {/* Fixed height container for the heading to prevent layout shift */}
         <div className="flex flex-col gap-6">
-          <h1>
-            <TextAnimate
+            <HyperText
               className="text-5xl font-bold text-center text-[#593116] tracking-tighter break-normal whitespace-normal"
-              animation="blurInUp"
-              by="character"
-              once
+              duration={5}
+              as="h1"
             >
-              The&nbsp;only&nbsp;link&nbsp;you&nbsp;will&nbsp;ever&nbsp;need.
-            </TextAnimate>
-          </h1>
+              The only link you will ever need.
+            </HyperText>
         </div>
         {/* Fixed height container for the subheading to prevent layout shift */}
         <div className="flex flex-col">
-          <TextAnimate
+          <HyperText
             className="text-center text-[#593116] tracking-tight text-xl"
-            animation="blurInUp"
-            by="character"
-            once
+            duration={0.1}
+            as="p"
           >
-            One&nbsp;link&nbsp;to&nbsp;showcase&nbsp;everything&nbsp;you&nbsp;create&nbsp;and&nbsp;share.&nbsp;Connect&nbsp;your&nbsp;socials,&nbsp;projects,&nbsp;and&nbsp;more&nbsp;in&nbsp;one&nbsp;place.&nbsp;Claim&nbsp;your&nbsp;link&nbsp;today!
-          </TextAnimate>
+            One link to showcase everything you create and share. Connect your socials, projects, and more in one place. Claim your link today!
+          </HyperText>
         </div>
         {/* Fixed height container for Globe to prevent layout shift */}
         <div className="relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-[#E6CCB2] border-2 border-[#9C6644] py-30 md:py-40 mt-6 mb-4">
@@ -81,7 +78,14 @@ const Home: React.FC = () => {
               />
             ))}
           </div>
-
+          <div className="relative">
+            <Safari
+              url="links.egeuysal.com"
+              mode="default"
+              className="size-full border-2 border-[#9C6644] rounded-xl"
+              imageSrc="/images/edit.jpg"
+            />
+          </div>
           <section className="mt-4 mb-4 flex flex-col" id="newsletter">
             <h2 className="text-4xl mb-6 font-bold text-center text-[#593116] tracking-tighter">
               Subscribe to our newsletter
