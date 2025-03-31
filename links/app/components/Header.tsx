@@ -6,18 +6,21 @@ import { useState, useEffect } from "react";
 import {
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [menuAnimation, setMenuAnimation] = useState(false);
-  const [buttonAnimation, setButtonAnimation] = useState(false);
   const date = new Date();
   const year = date.getFullYear();
 
@@ -25,18 +28,24 @@ export default function Header() {
   useEffect(() => {
     if (mobileMenuOpen) {
       setMenuAnimation(true);
+      // Prevent scrolling when menu is open
+      document.body.style.overflow = "hidden";
     } else {
       const timer = setTimeout(() => {
         setMenuAnimation(false);
+        // Restore scrolling when menu is closed
+        document.body.style.overflow = "";
       }, 300); // Match animation duration
       return () => clearTimeout(timer);
     }
   }, [mobileMenuOpen]);
 
   const toggleMobileMenu = () => {
-    setButtonAnimation(true);
-    setTimeout(() => setButtonAnimation(false), 300);
     setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
   };
 
   return (
@@ -95,7 +104,7 @@ export default function Header() {
                 <NavigationMenuLink href="/create/new-links">
                   New links
                 </NavigationMenuLink>
-                <NavigationMenuLink href="/create/customize">
+                <NavigationMenuLink href="/create/new-links#customize">
                   Customize
                 </NavigationMenuLink>
               </NavigationMenuContent>
@@ -104,10 +113,10 @@ export default function Header() {
             <NavigationMenuItem className="hidden md:flex">
               <NavigationMenuTrigger>Contact</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <NavigationMenuLink href="/contact/support">
+                <NavigationMenuLink href="mailto:hello@egeuysal.com">
                   Support
                 </NavigationMenuLink>
-                <NavigationMenuLink href="/contact/feedback">
+                <NavigationMenuLink href="/#contact">
                   Feedback
                 </NavigationMenuLink>
               </NavigationMenuContent>
@@ -124,7 +133,7 @@ export default function Header() {
         </NavigationMenu>
       </header>
 
-      {/* Full Screen Mobile Menu with Animation */}
+      {/* Full Screen Mobile Menu with Accordion */}
       {menuAnimation && (
         <div
           className={`fixed inset-0 bg-[#EDE0D4] bg-[url("/images/texture.svg")] bg-cover bg-center z-50 md:hidden flex flex-col transition-all duration-300 ease-in-out ${
@@ -136,75 +145,128 @@ export default function Header() {
           <div className="flex justify-end p-6">
             <button
               onClick={toggleMobileMenu}
-              className="text-[#7F5539] text-4xl transform transition-transform duration-300 hover:rotate-90"
+              className="text-[#593116] text-4xl transform transition-transform duration-300 hover:rotate-90"
               aria-label="Close menu"
             >
               ×
             </button>
           </div>
 
-          <nav className="flex-1 flex items-center justify-center">
-            <ul className="space-y-8 text-center text-[#7F5539] text-2xl font-bold">
-              <li
-                className="transform transition-all duration-300 hover:scale-110"
-                style={{ animationDelay: "100ms" }}
-              >
-                <h1>
-                  <Link
-                    href="/explore"
-                    className="block p-2 transition duration-200 hover:text-[#9C6644]"
-                    onClick={toggleMobileMenu}
+          <div className="flex-1 flex flex-col items-center justify-center px-8">
+            <Accordion type="single" collapsible className="w-full max-w-md">
+              <AccordionItem value="documentation" className="border-b-0">
+                <AccordionTrigger className="font-bold text-4xl text-[#593116] flex items-center justify-center">
+                  <span>Documentation</span>
+                </AccordionTrigger>
+                <AccordionContent className="text-center">
+                  <Link 
+                    href="/docs/getting-started" 
+                    className="block py-3 text-[#593116] text-xl hover:text-[#9C6644] transition-colors"
+                    onClick={closeMobileMenu}
                   >
-                    Explore
+                    Getting started
                   </Link>
-                </h1>
-              </li>
-              <li
-                className="transform transition-all duration-300 hover:scale-110"
-                style={{ animationDelay: "300ms" }}
-              >
-                <h1>
-                  <Link
-                    href="/create"
-                    className="block p-2 transition duration-200 hover:text-[#9C6644]"
-                    onClick={toggleMobileMenu}
+                  <Link 
+                    href="/docs/changelog" 
+                    className="block py-3 text-[#593116] text-xl hover:text-[#9C6644] transition-colors"
+                    onClick={closeMobileMenu}
                   >
-                    Create
+                    Changelog
                   </Link>
-                </h1>
-              </li>
-              <li
-                className="transform transition-all duration-300 hover:scale-110"
-                style={{ animationDelay: "400ms" }}
-              >
-                <h1>
-                  <Link
-                    href="/#faq"
-                    className="block p-2 transition duration-200 hover:text-[#9C6644]"
-                    onClick={toggleMobileMenu}
-                  >
-                    FAQ
-                  </Link>
-                </h1>
-              </li>
-              <li
-                className="transform transition-all duration-300 hover:scale-110"
-                style={{ animationDelay: "400ms" }}
-              >
-                <h1>
-                  <Link
-                    href="/#contact"
-                    className="block p-2 transition duration-200 hover:text-[#9C6644]"
-                    onClick={toggleMobileMenu}
-                  >
-                    Contact
-                  </Link>
-                </h1>
-              </li>
-            </ul>
-          </nav>
+                </AccordionContent>
+              </AccordionItem>
 
-          <div className="pb-10 text-center text-[#7F5539] opacity-70">
+              <AccordionItem value="discover" className="border-b-0">
+                <AccordionTrigger className="font-bold text-4xl text-[#593116] flex items-center justify-center">
+                  <span>Discover</span>
+                </AccordionTrigger>
+                <AccordionContent className="text-center">
+                  <Link 
+                    href="/discover/featured-links" 
+                    className="block py-3 text-[#593116] text-xl hover:text-[#9C6644] transition-colors"
+                    onClick={closeMobileMenu}
+                  >
+                    Featured links
+                  </Link>
+                  <Link 
+                    href="/discover/tips" 
+                    className="block py-3 text-[#593116] text-xl hover:text-[#9C6644] transition-colors"
+                    onClick={closeMobileMenu}
+                  >
+                    Tips
+                  </Link>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="contact" className="border-b-0">
+                <AccordionTrigger className="font-bold text-4xl text-[#593116] flex items-center justify-center">
+                  <span>Contact</span>
+                </AccordionTrigger>
+                <AccordionContent className="text-center">
+                  <Link 
+                    href="mailto:hello@egeuysal.com" 
+                    className="block py-3 text-[#593116] text-xl hover:text-[#9C6644] transition-colors"
+                    onClick={closeMobileMenu}
+                  >
+                    Support
+                  </Link>
+                  <Link 
+                    href="/#contact" 
+                    className="block py-3 text-[#593116] text-xl hover:text-[#9C6644] transition-colors"
+                    onClick={closeMobileMenu}
+                  >
+                    Feedback
+                  </Link>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="create" className="border-b-0">
+                <AccordionTrigger className="font-bold text-4xl text-[#593116] flex items-center justify-center">
+                  <span>Create</span>
+                </AccordionTrigger>
+                <AccordionContent className="text-center">
+                  <Link 
+                    href="/create/new-links" 
+                    className="block py-3 text-[#593116] text-xl hover:text-[#9C6644] transition-colors"
+                    onClick={closeMobileMenu}
+                  >
+                    New links
+                  </Link>
+                  <Link 
+                    href="/create/new-links#customize" 
+                    className="block py-3 text-[#593116] text-xl hover:text-[#9C6644] transition-colors"
+                    onClick={closeMobileMenu}
+                  >
+                    Customize
+                  </Link>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="links" className="border-b-0">
+                <AccordionTrigger className="font-bold text-4xl text-[#593116] flex items-center justify-center">
+                  <span>Links</span>
+                </AccordionTrigger>
+                <AccordionContent className="text-center">
+                  <Link 
+                    href="/links/our-links" 
+                    className="block py-3 text-[#593116] text-xl hover:text-[#9C6644] transition-colors"
+                    onClick={closeMobileMenu}
+                  >
+                    Our links
+                  </Link>
+                  <Link 
+                    href="/#newsletter" 
+                    className="block py-3 text-[#593116] text-xl hover:text-[#9C6644] transition-colors"
+                    onClick={closeMobileMenu}
+                  >
+                    Newsletter
+                  </Link>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+
+          <div className="pb-10 text-center text-[#593116] opacity-70">
             <p className="font-bold">&copy; {year} Links</p>
           </div>
         </div>

@@ -152,7 +152,7 @@ const Home: React.FC = () => {
             </Accordion>
           </section>
 
-          <section className="mt-2 flex flex-col mb-16">
+          <section id="contact" className="mt-2 flex flex-col mb-16">
             <h2 className="text-4xl mb-6 font-bold text-center text-[#593116] tracking-tighter">
               Get in touch
             </h2>

@@ -1,15 +1,22 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const ClaimLink = () => {
   const router = useRouter();
+  const [username, setUsername] = useState("");
 
   const handleForm = (event: React.FormEvent) => {
     event.preventDefault();
     router.push("/create");
+  };
+
+  const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // Filter out uppercase characters
+    const lowercaseValue = event.target.value.replace(/[A-Z]/g, "");
+    setUsername(lowercaseValue);
   };
 
   return (
@@ -33,6 +40,8 @@ const ClaimLink = () => {
             name="username"
             placeholder="name"
             required
+            value={username}
+            onChange={handleUsernameChange}
             className="bg-transparent text-xl text-[#593116] focus:outline-none placeholder-[#B08968] font-bold caret-[#593116]"
             aria-label="Username for your link"
           />

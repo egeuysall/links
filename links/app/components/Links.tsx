@@ -188,9 +188,9 @@ export default function Links() {
   // Main editor interface with forms
   const editorPanel = useMemo(
     () => (
-      <div className="editor-panel text-[#593116] space-y-6">
+      <div id="customize" className="editor-panel text-[#593116] space-y-6">
         <ProfileForm profile={profile} onChange={handleProfileChange} />
-        <ThemeForm theme={profile.theme} onChange={handleProfileChange} />
+        <ThemeForm theme={profile.theme} onChange={handleProfileChange}/>
         <div className="text-[#593116]">
           <h4 className="text-2xl mt-10 font-bold">Links</h4>
           <LinksList links={profile.links} onRemoveLink={handleRemoveLink} />
