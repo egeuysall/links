@@ -161,7 +161,7 @@ const Home: React.FC = () => {
                   Is Links free to use?
                 </AccordionTrigger>
                 <AccordionContent className="text-lg">
-                  Yes! It's completely free, with no hidden fees or paywalls.
+                  Yes! It's completely free, without any hidden fees or paywalls.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
