@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack -H 0.0.0.0",
-    "build": "next build -H 0.0.0.0",
-    "start": "next start -H 0.0.0.0",
-    "lint": "next lint -H 0.0.0.0"
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@geist-ui/core": "^2.3.8",
