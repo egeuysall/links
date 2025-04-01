@@ -32,7 +32,7 @@ const Home: React.FC = () => {
           duration={0.4}
           as="h1"
           >
-            You will like this link.
+            The only link you will ever need.
           </TextAnimate>
         </div>
         {/* Fixed height container for the subheading to prevent layout shift */}
