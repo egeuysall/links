@@ -87,7 +87,7 @@ const Home: React.FC = () => {
           </div>
           <div className="relative">
             <Safari
-              url="links.egeuysal.com"
+              url="https://www.links.egeuysal.com/"
               mode="default"
               className="size-full hidden lg:flex"
               imageSrc="/images/edit.jpg"
