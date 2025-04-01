@@ -153,7 +153,7 @@ const Home: React.FC = () => {
                 </AccordionTrigger>
                 <AccordionContent className="text-lg">
                   Yes! Links is open-source, meaning you can host it yourself
-                  and modify everything.
+                  and modify it.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-4">
