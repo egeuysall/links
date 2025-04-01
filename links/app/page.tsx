@@ -15,32 +15,37 @@ import StartJourney from "./components/StartJourney";
 import StartNewsletter from "./components/StartNewsletter";
 import { Globe } from "@/components/magicui/globe";
 import Connections from "./components/Connections";
-import { HyperText } from "@/components/magicui/hyper-text";
+import { TextAnimate } from "@/components/magicui/text-animate";
 import { Safari } from "@/components/magicui/safari";
+import Iphone15Pro from "@/components/magicui/iphone-15-pro";
 
 const Home: React.FC = () => {
   return (
     <>
       <section className="flex flex-col gap-4 w-full">
-        {/* Fixed height container for the heading to prevent layout shift */}
         <div className="flex flex-col gap-6">
-            <HyperText
-              className="text-5xl font-bold text-center text-[#593116] tracking-tighter break-normal whitespace-normal"
-              duration={5}
-              as="h1"
-            >
-              The only link you will ever need.
-            </HyperText>
+          <TextAnimate
+          animation="blurInUp"
+          by="word"
+          once className="text-5xl font-bold text-center text-[#593116] tracking-tighter break-normal whitespace-normal"
+          duration={0.4}
+          >
+            The only link you will ever need.
+          </TextAnimate>
         </div>
         {/* Fixed height container for the subheading to prevent layout shift */}
         <div className="flex flex-col">
-          <HyperText
+          <TextAnimate
+            animation="blurInUp"
+            by="word"
+            once
             className="text-center text-[#593116] tracking-tight text-xl"
-            duration={0.1}
+            duration={0.4}
             as="p"
           >
-            One link to showcase everything you create and share. Connect your socials, projects, and more in one place. Claim your link today!
-          </HyperText>
+            One link to showcase everything you create and share. Connect your
+            socials, projects, and more in one place. Claim your link today!
+          </TextAnimate>
         </div>
         {/* Fixed height container for Globe to prevent layout shift */}
         <div className="relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-[#E6CCB2] border-2 border-[#9C6644] py-30 md:py-40 mt-6 mb-4">
@@ -55,7 +60,7 @@ const Home: React.FC = () => {
         <StartJourney />
       </section>
 
-      <section className="flex items-center justify-center mt-8 flex-col">
+      <section className="flex w-full items-center justify-center mt-8 flex-col">
         <h2
           className="text-4xl font-bold text-center text-[#593116] tracking-tighter mb-4"
           id="features"
@@ -67,8 +72,8 @@ const Home: React.FC = () => {
           organize, and share them effortlessly for a seamless and professional
           experience.
         </p>
-        <div className="flex flex-col gap-6 mt-8">
-          <div className="md:grid md:grid-cols-2 gap-6 flex flex-col">
+        <div className="flex flex-col gap-6 mt-8 w-full">
+          <div className="md:grid md:grid-cols-2 gap-6 w-full flex flex-col">
             {features.map((feature) => (
               <Feature
                 icon={feature.icon}
@@ -82,8 +87,12 @@ const Home: React.FC = () => {
             <Safari
               url="links.egeuysal.com"
               mode="default"
-              className="size-full border-2 border-[#9C6644] rounded-xl"
+              className="size-full hidden lg:flex"
               imageSrc="/images/edit.jpg"
+            />
+            <Iphone15Pro
+              className="size-full flex lg:hidden"
+              src="images/create.jpg"
             />
           </div>
           <section className="mt-4 mb-4 flex flex-col" id="newsletter">

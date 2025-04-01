@@ -32,13 +32,13 @@ export function Safari({
       <g clipPath="url(#path0)">
         <path
           d="M0 52H1202V741C1202 747.627 1196.63 753 1190 753H12C5.37258 753 0 747.627 0 741V52Z"
-          className="fill-[#E5E5E5] dark:fill-[#404040]"
+          className="fill-[#9C6644] dark:fill-[#404040]"
         />
         <path
           fillRule="evenodd"
           clipRule="evenodd"
           d="M0 12C0 5.37258 5.37258 0 12 0H1190C1196.63 0 1202 5.37258 1202 12V52H0L0 12Z"
-          className="fill-[#E5E5E5] dark:fill-[#404040]"
+          className="fill-[#9C6644] dark:fill-[#404040]"
         />
         <path
           fillRule="evenodd"

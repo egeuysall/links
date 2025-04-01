@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion, MotionProps, Variants } from "motion/react";
-import { ElementType, useEffect, useState } from "react";
+import { ElementType } from "react";
 
 type AnimationType = "text" | "word" | "character" | "line";
 type AnimationVariant =
@@ -62,10 +62,6 @@ interface TextAnimateProps extends MotionProps {
    * The animation preset to use
    */
   animation?: AnimationVariant;
-  /**
-   * Whether to disable animation on mobile devices
-   */
-  disableOnMobile?: boolean;
 }
 
 const staggerTimings: Record<AnimationType, number> = {
@@ -115,13 +111,13 @@ const defaultItemAnimationVariants: Record<
         opacity: 1,
         y: 0,
         transition: {
-          duration: 0.05,
+          duration: 0.3,
         },
       },
       exit: {
         opacity: 0,
         y: 20,
-        transition: { duration: 0.05 },
+        transition: { duration: 0.3 },
       },
     },
   },
@@ -133,28 +129,28 @@ const defaultItemAnimationVariants: Record<
         opacity: 1,
         filter: "blur(0px)",
         transition: {
-          duration: 0.05,
+          duration: 0.3,
         },
       },
       exit: {
         opacity: 0,
         filter: "blur(10px)",
-        transition: { duration: 0.05 },
+        transition: { duration: 0.3 },
       },
     },
   },
   blurInUp: {
     container: defaultContainerVariants,
     item: {
-      hidden: { opacity: 0, filter: "blur(8px)", y: 20 },
+      hidden: { opacity: 0, filter: "blur(10px)", y: 20 },
       show: {
         opacity: 1,
         filter: "blur(0px)",
         y: 0,
         transition: {
-          y: { duration: 0.2 },
-          opacity: { duration: 0.2 },
-          filter: { duration: 0.2 },
+          y: { duration: 0.3 },
+          opacity: { duration: 0.4 },
+          filter: { duration: 0.3 },
         },
       },
       exit: {
@@ -162,9 +158,9 @@ const defaultItemAnimationVariants: Record<
         filter: "blur(10px)",
         y: 20,
         transition: {
-          y: { duration: 0.05 },
-          opacity: { duration: 0.05 },
-          filter: { duration: 0.05 },
+          y: { duration: 0.3 },
+          opacity: { duration: 0.4 },
+          filter: { duration: 0.3 },
         },
       },
     },
@@ -178,9 +174,9 @@ const defaultItemAnimationVariants: Record<
         filter: "blur(0px)",
         y: 0,
         transition: {
-          y: { duration: 0.05 },
-          opacity: { duration: 0.05 },
-          filter: { duration: 0.05 },
+          y: { duration: 0.3 },
+          opacity: { duration: 0.4 },
+          filter: { duration: 0.3 },
         },
       },
     },
@@ -193,14 +189,14 @@ const defaultItemAnimationVariants: Record<
         y: 0,
         opacity: 1,
         transition: {
-          duration: 0.05,
+          duration: 0.3,
         },
       },
       exit: {
         y: -20,
         opacity: 0,
         transition: {
-          duration: 0.05,
+          duration: 0.3,
         },
       },
     },
@@ -212,12 +208,12 @@ const defaultItemAnimationVariants: Record<
       show: {
         y: 0,
         opacity: 1,
-        transition: { duration: 0.05 },
+        transition: { duration: 0.3 },
       },
       exit: {
         y: 20,
         opacity: 0,
-        transition: { duration: 0.05 },
+        transition: { duration: 0.3 },
       },
     },
   },
@@ -228,12 +224,12 @@ const defaultItemAnimationVariants: Record<
       show: {
         x: 0,
         opacity: 1,
-        transition: { duration: 0.05 },
+        transition: { duration: 0.3 },
       },
       exit: {
         x: -20,
         opacity: 0,
-        transition: { duration: 0.05 },
+        transition: { duration: 0.3 },
       },
     },
   },
@@ -244,12 +240,12 @@ const defaultItemAnimationVariants: Record<
       show: {
         x: 0,
         opacity: 1,
-        transition: { duration: 0.05 },
+        transition: { duration: 0.3 },
       },
       exit: {
         x: 20,
         opacity: 0,
-        transition: { duration: 0.05 },
+        transition: { duration: 0.3 },
       },
     },
   },
@@ -261,7 +257,7 @@ const defaultItemAnimationVariants: Record<
         scale: 1,
         opacity: 1,
         transition: {
-          duration: 0.05,
+          duration: 0.3,
           scale: {
             type: "spring",
             damping: 15,
@@ -272,7 +268,7 @@ const defaultItemAnimationVariants: Record<
       exit: {
         scale: 0.5,
         opacity: 0,
-        transition: { duration: 0.05 },
+        transition: { duration: 0.3 },
       },
     },
   },
@@ -284,7 +280,7 @@ const defaultItemAnimationVariants: Record<
         scale: 1,
         opacity: 1,
         transition: {
-          duration: 0.05,
+          duration: 0.3,
           scale: {
             type: "spring",
             damping: 15,
@@ -295,7 +291,7 @@ const defaultItemAnimationVariants: Record<
       exit: {
         scale: 1.5,
         opacity: 0,
-        transition: { duration: 0.05 },
+        transition: { duration: 0.3 },
       },
     },
   },
@@ -304,7 +300,7 @@ const defaultItemAnimationVariants: Record<
 export function TextAnimate({
   children,
   delay = 0,
-  duration = 0.05,
+  duration = 0.3,
   variants,
   className,
   segmentClassName,
@@ -313,42 +309,17 @@ export function TextAnimate({
   once = false,
   by = "word",
   animation = "fadeIn",
-  disableOnMobile = false,
   ...props
 }: TextAnimateProps) {
   const MotionComponent = motion.create(Component);
-  const [isMobile, setIsMobile] = useState(false);
-  
-  // Detect mobile devices
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  // If on mobile and animation should be disabled, render without animation
-  if (isMobile && disableOnMobile) {
-    return (
-      <Component className={className}>
-        {children}
-      </Component>
-    );
-  }
-  
-  // Adjust animation behavior for mobile
-  const mobileAdjustedBy = isMobile && by === "character" ? "word" : by;
 
   let segments: string[] = [];
-  switch (mobileAdjustedBy) {
+  switch (by) {
     case "word":
-      segments = children.split(/(\s+)/).filter(Boolean);
+      segments = children.split(/(\s+)/);
       break;
     case "character":
-      segments = Array.from(children);
+      segments = children.split("");
       break;
     case "line":
       segments = children.split("\n");
@@ -359,10 +330,6 @@ export function TextAnimate({
       break;
   }
 
-  const staggerTime = isMobile 
-    ? Math.min(staggerTimings[mobileAdjustedBy], 0.03) // Reduce stagger time on mobile
-    : staggerTimings[mobileAdjustedBy];
-
   const finalVariants = variants
     ? {
         container: {
@@ -372,13 +339,13 @@ export function TextAnimate({
             transition: {
               opacity: { duration: 0.01, delay },
               delayChildren: delay,
-              staggerChildren: staggerTime,
+              staggerChildren: duration / segments.length,
             },
           },
           exit: {
             opacity: 0,
             transition: {
-              staggerChildren: staggerTime,
+              staggerChildren: duration / segments.length,
               staggerDirection: -1,
             },
           },
@@ -393,13 +360,13 @@ export function TextAnimate({
               ...defaultItemAnimationVariants[animation].container.show,
               transition: {
                 delayChildren: delay,
-                staggerChildren: staggerTime,
+                staggerChildren: duration / segments.length,
               },
             },
             exit: {
               ...defaultItemAnimationVariants[animation].container.exit,
               transition: {
-                staggerChildren: staggerTime,
+                staggerChildren: duration / segments.length,
                 staggerDirection: -1,
               },
             },
@@ -409,7 +376,7 @@ export function TextAnimate({
       : { container: defaultContainerVariants, item: defaultItemVariants };
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode="popLayout">
       <MotionComponent
         variants={finalVariants.container as Variants}
         initial="hidden"
@@ -417,30 +384,19 @@ export function TextAnimate({
         animate={startOnView ? undefined : "show"}
         exit="exit"
         className={cn("whitespace-pre-wrap", className)}
-        viewport={{ once, margin: "-50px" }}
+        viewport={{ once }}
         {...props}
       >
         {segments.map((segment, i) => (
           <motion.span
-            key={`${mobileAdjustedBy}-${i}`}
+            key={`${by}-${segment}-${i}`}
             variants={finalVariants.item}
-            custom={i * staggerTime}
+            custom={i * staggerTimings[by]}
             className={cn(
-              mobileAdjustedBy === "line" ? "block" : "inline-block",
-              // Improved whitespace handling for different segments
-              mobileAdjustedBy === "character" ? "whitespace-normal" : 
-              mobileAdjustedBy === "word" ? "whitespace-pre-wrap" : "",
-              // Add a small right margin for character mode to prevent squishing
-              mobileAdjustedBy === "character" && !segment.match(/\s/) ? "mr-[0.01em]" : "",
+              by === "line" ? "block" : "inline-block whitespace-pre",
+              by === "character" && "",
               segmentClassName,
             )}
-            style={{
-              // Prevent text from breaking in character mode
-              ...(mobileAdjustedBy === "character" && {
-                display: "inline-block",
-                textRendering: "optimizeLegibility"
-              })
-            }}
           >
             {segment}
           </motion.span>
