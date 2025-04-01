@@ -27,8 +27,10 @@ const Home: React.FC = () => {
           <TextAnimate
           animation="blurInUp"
           by="word"
-          once className="text-5xl font-bold text-center text-[#593116] tracking-tighter break-normal whitespace-normal"
+          once
+          className="text-5xl font-bold text-center text-[#593116] tracking-tighter break-normal whitespace-normal"
           duration={0.4}
+          as="h1"
           >
             The only link you will ever need.
           </TextAnimate>
