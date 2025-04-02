@@ -11,7 +11,7 @@ interface LayoutWrapperProps {
     [key: string]: any;
   };
 }
-
+// TODO: check any types
 export default function LayoutWrapper({ jsonLdData, children }: LayoutWrapperProps) {
   return (
     <>

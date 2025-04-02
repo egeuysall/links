@@ -1,3 +1,4 @@
+
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
@@ -382,7 +383,8 @@ This message was sent from the contact form on links.egeuysal.com
 `;
 
     // Send email
-    const { data, error } = await resend.emails.send({
+    // recieved data { data, error }  
+    const { error } = await resend.emails.send({
       from: "Links Contact <contact@egeuysal.com>",
       to: [adminEmail, email],
       subject: `New Contact Form Submission from ${name} ${lastName}`,

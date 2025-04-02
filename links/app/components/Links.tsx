@@ -174,10 +174,10 @@ export default function Links() {
       <div className="export-panel px-2">
         <div
           className={`overflow-x-scroll max-h-[1500px] ${jetBrainsMono.className}`}
-        >
+        > 
           <CodeBlockWrapper
             language="html"
-            fileName={`${profile.displayName || "Links User"}'s Website`}
+            fileName={`${profile.displayName || "Links User"}&apos;s Website`}
             code={htmlContent}
           />
         </div>
@@ -256,8 +256,8 @@ export default function Links() {
       </li>
       <li>
         <strong>Deploy with Vercel:</strong> Follow our detailed Vercel 
-        deployment guide in the documentation's "Deploying with Vercel" section. 
-        We've included comprehensive screenshots of each step to make the process 
+        deployment guide in the documentation&apos;s "Deploying with Vercel" section. 
+        We&apos;ve included comprehensive screenshots of each step to make the process 
         straightforward.
       </li>
     </ol>

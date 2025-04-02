@@ -1,5 +1,5 @@
-import Header from "./components/Header";
-import Image from "next/image";
+// import Header from "./components/Header";
+// import Image from "next/image";
 import Feature from "./components/Feature";
 import { v4 as uuidv4 } from "uuid";
 import features from "./features";
@@ -134,7 +134,7 @@ const Home: React.FC = () => {
                   What makes Links unique?
                 </AccordionTrigger>
                 <AccordionContent className="text-lg">
-                  It's fast, clean, and fully in your control—no clutter, just
+                  It&apos;s fast, clean, and fully in your control—no clutter, just
                   what you need.
                 </AccordionContent>
               </AccordionItem>
@@ -161,7 +161,7 @@ const Home: React.FC = () => {
                   Is Links free to use?
                 </AccordionTrigger>
                 <AccordionContent className="text-lg">
-                  Yes! It's completely free, without any hidden fees or paywalls.
+                  Yes! It&apos;s completely free, without any hidden fees or paywalls.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -172,7 +172,7 @@ const Home: React.FC = () => {
               Get in touch
             </h2>
             <p className="text-center text-[#593116] tracking-tight text-xl mb-8">
-              Reach out for support, questions, or feedback. We're here to
+              Reach out for support, questions, or feedback. We&apos;re here to
               assist you and ensure a smooth experience. Contact us now!
             </p>
             <ContactForm />

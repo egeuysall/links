@@ -4,7 +4,7 @@ import changes from "../changes";
 import { IoArrowBack } from "react-icons/io5";
 
 // Import just the base interfaces we need without redefining them
-import type { AppProps } from "next/app";
+// import type { AppProps } from "next/app";
 
 export default async function ChangelogEntryPage(props: unknown) {
   // Use type assertion to work with the props
