@@ -292,7 +292,7 @@ export const generateHTML = (profile: UserProfile): string => {
         </section>
         <section class="flex w-[75vw] flex-col items-center justify-center">
             <p aria-label="Made by" class="text-font mt-8 text-center text-base opacity-50">
-                Created with ❤️ by Links
+              &copy; 2025 ${safeDisplayName}
             </p>
         </section>
     </main>

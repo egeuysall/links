@@ -10,11 +10,10 @@ const ClaimLink = () => {
 
   const handleForm = (event: React.FormEvent) => {
     event.preventDefault();
-    router.push("/create");
+    router.push("/create/new-links");
   };
 
   const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // Convert to lowercase instead of removing uppercase
     const lowercaseValue = event.target.value.toLowerCase();
     setUsername(lowercaseValue);
   };
