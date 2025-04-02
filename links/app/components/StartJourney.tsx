@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import React, { useState } from "react";
 import Image from "next/image";
@@ -10,12 +10,11 @@ const ClaimLink = () => {
 
   const handleForm = (event: React.FormEvent) => {
     event.preventDefault();
-    router.push("/create");
+    router.push("/create/new-links");
   };
 
   const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // Filter out uppercase characters
-    const lowercaseValue = event.target.value.replace(/[A-Z]/g, "");
+    const lowercaseValue = event.target.value.toLowerCase();
     setUsername(lowercaseValue);
   };
 

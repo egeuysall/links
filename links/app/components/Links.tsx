@@ -17,6 +17,7 @@ import {
 } from "./LinksComponent";
 import ContactForm from "./ContactForm";
 import { JetBrains_Mono } from "next/font/google";
+import Link from "next/link"
 
 // JetBrains Mono font configuration
 const jetBrainsMono = JetBrains_Mono({
@@ -51,14 +52,14 @@ const LinksList = ({
             <span className="font-medium">{link.title}</span>
           </div>
           <div className="flex items-center space-x-2">
-            <a
+            <Link
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-500 hover:underline text-sm"
             >
               {link.url}
-            </a>
+            </Link>
             <button
               onClick={() => onRemoveLink(link.id)}
               className="text-red-500 hover:text-red-700"
@@ -172,7 +173,7 @@ export default function Links() {
     () => (
       <div className="export-panel px-2">
         <div
-          className={`rounded-md overflow-auto max-h-[1525px] ${jetBrainsMono.className}`}
+          className={`overflow-x-scroll max-h-[1500px] ${jetBrainsMono.className}`}
         >
           <CodeBlockWrapper
             language="html"
@@ -226,15 +227,70 @@ export default function Links() {
   // Feedback collection section
   const feedbackPanel = useMemo(
     () => (
-      <div className="lg:col-span-2 rounded-md overflow-hidden text-[#593116]">
-        <h3 className="text-3xl font-bold text-center tracking-tight">
-          Next Steps
-        </h3>
-        <h4 className="text-2xl font-bold text-center tracking-tight mt-8">
-          Your feedback!
-        </h4>
-        <ContactForm />
-      </div>
+      <section 
+  aria-labelledby="next-steps-heading" 
+  className="lg:col-span-2 ld:pl-8 text-[#593116]"
+>
+  <header className="mb-4">
+    <h3 
+      id="next-steps-heading" 
+      className="text-3xl font-bold text-center tracking-tight"
+    >
+      Next Steps
+    </h3>
+  </header>
+
+  <nav aria-label="Deployment steps">
+    <ol className="list-decimal flex flex-col gap-6 text-lg">
+      <li>
+        <strong>Set Up GitHub Repository:</strong> Create a new GitHub repository 
+        for your links page. Refer to the "Setting Up GitHub Repository" section 
+        in our documentation, which includes visual examples of the entire setup 
+        process.
+      </li>
+      <li>
+        <strong>Add Your Code:</strong> Copy your generated code into a new 
+        "index.html" file in your GitHub repository. The "Adding Your Code to 
+        GitHub" section of our documentation shows you exactly how to do this 
+        with clear visual guides.
+      </li>
+      <li>
+        <strong>Deploy with Vercel:</strong> Follow our detailed Vercel 
+        deployment guide in the documentation's "Deploying with Vercel" section. 
+        We've included comprehensive screenshots of each step to make the process 
+        straightforward.
+      </li>
+    </ol>
+  </nav>
+
+  <footer className="mt-6 bg-[#E6CCB2] p-6 rounded-lg">
+    <div className="mb-3">
+      <p className="text-lg font-semibold">💡 Pro Tip:</p>
+      <p className="text-lg">
+        <Link
+          href="/docs/getting-started"
+          className="text-[#7F5539] font-bold hover:underline"
+          aria-label="View comprehensive documentation with visual guides"
+        >
+          Our documentation {" "}
+        </Link>
+        includes detailed screenshots and examples for each step. 
+        Make sure to reference them as you go through the deployment process.
+      </p>
+    </div>
+    <p className="italic text-sm">
+      Need assistance? Visit our{" "}
+      <Link
+        href="https://github.com/egeuysall/links/issues"
+        className="text-[#7F5539] font-bold hover:underline"
+        aria-label="Open an issue on GitHub"
+      >
+        GitHub repository
+      </Link>{" "}
+      to open an issue or review common questions.
+    </p>
+  </footer>
+</section>
     ),
     []
   );
@@ -242,7 +298,7 @@ export default function Links() {
   return (
     <div className="w-full">
       <div className="container w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-5 lg:grid-rows-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           <div className="lg:col-span-3 lg:row-span-2 text-[#593116] rounded-md">
             <div className="flex justify-between items-center mb-6">
               {exportButton}

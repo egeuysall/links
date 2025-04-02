@@ -17,6 +17,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { IoIosClose } from "react-icons/io";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -148,14 +149,14 @@ export default function Header() {
               className="text-[#593116] text-4xl transform transition-transform duration-300 hover:rotate-90"
               aria-label="Close menu"
             >
-              ×
+              <IoIosClose />
             </button>
           </div>
 
           <div className="flex-1 flex flex-col items-center justify-center px-8">
             <Accordion type="single" collapsible className="w-full max-w-md">
               <AccordionItem value="documentation" className="border-b-0">
-                <AccordionTrigger className="font-bold text-4xl text-[#593116] flex items-center justify-center">
+                <AccordionTrigger className="font-bold text-3xl text-[#593116] flex items-center justify-center">
                   <span>Documentation</span>
                 </AccordionTrigger>
                 <AccordionContent className="text-center">
@@ -177,7 +178,7 @@ export default function Header() {
               </AccordionItem>
 
               <AccordionItem value="discover" className="border-b-0">
-                <AccordionTrigger className="font-bold text-4xl text-[#593116] flex items-center justify-center">
+                <AccordionTrigger className="font-bold text-3xl text-[#593116] flex items-center justify-center">
                   <span>Discover</span>
                 </AccordionTrigger>
                 <AccordionContent className="text-center">
@@ -199,7 +200,7 @@ export default function Header() {
               </AccordionItem>
 
               <AccordionItem value="contact" className="border-b-0">
-                <AccordionTrigger className="font-bold text-4xl text-[#593116] flex items-center justify-center">
+                <AccordionTrigger className="font-bold text-3xl text-[#593116] flex items-center justify-center">
                   <span>Contact</span>
                 </AccordionTrigger>
                 <AccordionContent className="text-center">
@@ -221,7 +222,7 @@ export default function Header() {
               </AccordionItem>
 
               <AccordionItem value="create" className="border-b-0">
-                <AccordionTrigger className="font-bold text-4xl text-[#593116] flex items-center justify-center">
+                <AccordionTrigger className="font-bold text-3xl text-[#593116] flex items-center justify-center">
                   <span>Create</span>
                 </AccordionTrigger>
                 <AccordionContent className="text-center">
@@ -243,7 +244,7 @@ export default function Header() {
               </AccordionItem>
 
               <AccordionItem value="links" className="border-b-0">
-                <AccordionTrigger className="font-bold text-4xl text-[#593116] flex items-center justify-center">
+                <AccordionTrigger className="font-bold text-3xl text-[#593116] flex items-center justify-center">
                   <span>Links</span>
                 </AccordionTrigger>
                 <AccordionContent className="text-center">

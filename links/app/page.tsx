@@ -53,7 +53,7 @@ const Home: React.FC = () => {
         <div className="relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-[#E6CCB2] border-2 border-[#9C6644] py-30 md:py-40 mt-6 mb-4">
           {/* Adding position and dimensions to prevent layout shift */}
           <div className="absolute inset-0 grid place-items-center">
-            <Globe className="top-3 grid place-items-center scale-105 md:scale-110" />
+            <Globe className="top-3 grid place-items-center scale-105 md:scale-150 md:top-20 lg:scale-175 lg:top-35" />
           </div>
         </div>
       </section>
@@ -90,11 +90,11 @@ const Home: React.FC = () => {
               url="links.egeuysal.com"
               mode="default"
               className="size-full hidden lg:flex"
-              imageSrc="/images/edit.jpg"
+              imageSrc="/images/desktop-links.png"
             />
             <Iphone15Pro
               className="size-full flex lg:hidden"
-              src="images/create.jpg"
+              src="images/mobile-links.png"
             />
           </div>
           <section className="mt-4 mb-4 flex flex-col" id="newsletter">
@@ -153,7 +153,7 @@ const Home: React.FC = () => {
                 </AccordionTrigger>
                 <AccordionContent className="text-lg">
                   Yes! Links is open-source, meaning you can host it yourself
-                  and modify everything.
+                  and modify it.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-4">
@@ -161,7 +161,7 @@ const Home: React.FC = () => {
                   Is Links free to use?
                 </AccordionTrigger>
                 <AccordionContent className="text-lg">
-                  Yes! It's completely free, with no hidden fees or paywalls.
+                  Yes! It's completely free, without any hidden fees or paywalls.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
