@@ -53,7 +53,7 @@ const Home: React.FC = () => {
         <div className="relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-[#E6CCB2] border-2 border-[#9C6644] py-30 md:py-40 mt-6 mb-4">
           {/* Adding position and dimensions to prevent layout shift */}
           <div className="absolute inset-0 grid place-items-center">
-            <Globe className="top-3 grid place-items-center scale-105 md:scale-110" />
+            <Globe className="top-3 grid place-items-center scale-105 md:scale-150 md:top-20 lg:scale-175 lg:top-35" />
           </div>
         </div>
       </section>
