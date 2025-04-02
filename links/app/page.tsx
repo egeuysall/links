@@ -87,14 +87,14 @@ const Home: React.FC = () => {
           </div>
           <div className="relative">
             <Safari
-              url="https://www.links.egeuysal.com/"
+              url="links.egeuysal.com"
               mode="default"
               className="size-full hidden lg:flex"
-              imageSrc="/images/edit.jpg"
+              imageSrc="/images/desktop-links.png"
             />
             <Iphone15Pro
               className="size-full flex lg:hidden"
-              src="images/create.jpg"
+              src="images/mobile-links.png"
             />
           </div>
           <section className="mt-4 mb-4 flex flex-col" id="newsletter">
