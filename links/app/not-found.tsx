@@ -4,7 +4,7 @@ import React from "react";
 
 export default function NotFound() {
   return (
-    <main className="w-full min-h-[calc(100vh-9rem)] flex justify-center items-center flex-col">
+    <main className="w-full h-[calc(100vh-16rem)] flex justify-center items-center flex-col">
       <div className="text-center">
         <Link href="/">
           <Image
@@ -21,7 +21,7 @@ export default function NotFound() {
         <p className="text-xl mt-4 text-[#593116]">
           Like this username?{" "}
           <Link
-            href="/create"
+            href="/create/new-links"
             className="underline hover:text-[#7a4420] transition-colors"
           >
             Create your link now.

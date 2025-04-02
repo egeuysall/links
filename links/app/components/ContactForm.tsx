@@ -118,7 +118,7 @@ export default function ContactForm() {
     <>
       <Toaster />
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" id="contact">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 w-full" id="contact">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <FormField
               control={form.control}

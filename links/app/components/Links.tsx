@@ -177,7 +177,7 @@ export default function Links() {
         >
           <CodeBlockWrapper
             language="html"
-            fileName={`${profile.displayName || "Links User"}'s Website`}
+            fileName={`${profile.username.toLowerCase() || "links-user"}-link`}
             code={htmlContent}
           />
         </div>

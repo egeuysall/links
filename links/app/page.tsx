@@ -1,15 +1,8 @@
 import Header from "./components/Header";
-import Image from "next/image";
 import Feature from "./components/Feature";
 import { v4 as uuidv4 } from "uuid";
 import features from "./features";
 import React from "react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import ContactForm from "./components/ContactForm";
 import StartJourney from "./components/StartJourney";
 import StartNewsletter from "./components/StartNewsletter";
@@ -18,30 +11,32 @@ import Connections from "./components/Connections";
 import { TextAnimate } from "@/components/magicui/text-animate";
 import { Safari } from "@/components/magicui/safari";
 import Iphone15Pro from "@/components/magicui/iphone-15-pro";
+import Faq from "./components/Faq"
+import MarqueeDemo from "./components/PeopleSaying"
 
 const Home: React.FC = () => {
   return (
     <>
       <section className="flex flex-col gap-4 w-full">
-        <div className="flex flex-col gap-6">
+        <div className="flex w-full items-center flex-col gap-6">
           <TextAnimate
-          animation="blurInUp"
-          by="word"
-          once
-          className="text-5xl font-bold text-center text-[#593116] tracking-tighter break-normal whitespace-normal"
-          duration={0.4}
-          as="h1"
+            animation="blurInUp"
+            by="word"
+            once
+            className="text-5xl md:text-6xl lg:text-7xl md:w-2/3 font-bold text-center text-[#593116] tracking-tighter break-normal whitespace-normal"
+            duration={0.4}
+            as="h1"
           >
             The only link you will ever need.
           </TextAnimate>
         </div>
         {/* Fixed height container for the subheading to prevent layout shift */}
-        <div className="flex flex-col">
+        <div className="flex flex-col items-center">
           <TextAnimate
             animation="blurInUp"
             by="word"
             once
-            className="text-center text-[#593116] tracking-tight text-xl"
+            className="text-center text-[#593116] tracking-tight text-xl md:w-3/4"
             duration={0.4}
             as="p"
           >
@@ -50,10 +45,10 @@ const Home: React.FC = () => {
           </TextAnimate>
         </div>
         {/* Fixed height container for Globe to prevent layout shift */}
-        <div className="relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-[#E6CCB2] border-2 border-[#9C6644] py-30 md:py-40 mt-6 mb-4">
+        <div className="relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-[#E6CCB2] border-2 border-[#9C6644] py-25 md:py-40 mt-6 mb-4">
           {/* Adding position and dimensions to prevent layout shift */}
           <div className="absolute inset-0 grid place-items-center">
-            <Globe className="top-3 grid place-items-center scale-105 md:scale-150 md:top-20 lg:scale-175 lg:top-35" />
+            <Globe className="top-[5px] md:top-[-50px] lg:top-[-75px] lg:scale-105" />
           </div>
         </div>
       </section>
@@ -62,14 +57,14 @@ const Home: React.FC = () => {
         <StartJourney />
       </section>
 
-      <section className="flex w-full items-center justify-center mt-8 flex-col">
+      <section className="flex w-full items-center justify-center mt-8 flex-col items-center">
         <h2
-          className="text-4xl font-bold text-center text-[#593116] tracking-tighter mb-4"
+          className="font-bold text-center text-[#593116] tracking-tighter mb-4 text-4xl md:text-5xl lg:text-6xl md:w-2/3"
           id="features"
         >
-          Set up and personalize your links in no time.
+          Personalize your links in no time.
         </h2>
-        <p className="text-center text-[#593116] tracking-tight text-xl">
+        <p className="text-center text-[#593116] md:w-3/4 tracking-tight text-xl">
           Quickly set up and customize your links with ease. Personalize,
           organize, and share them effortlessly for a seamless and professional
           experience.
@@ -85,93 +80,67 @@ const Home: React.FC = () => {
               />
             ))}
           </div>
-          <div className="relative">
-            <Safari
-              url="links.egeuysal.com"
-              mode="default"
-              className="size-full hidden lg:flex"
-              imageSrc="/images/desktop-links.png"
-            />
-            <Iphone15Pro
-              className="size-full flex lg:hidden"
-              src="images/mobile-links.png"
-            />
-          </div>
-          <section className="mt-4 mb-4 flex flex-col" id="newsletter">
-            <h2 className="text-4xl mb-6 font-bold text-center text-[#593116] tracking-tighter">
+          <section className="mt-4 items-center mb-4 flex flex-col" id="newsletter">
+            <h2 className="mb-6 font-bold text-center text-[#593116] tracking-tighter text-4xl md:text-5xl lg:text-6xl md:w-2/3">
               Subscribe to our newsletter
             </h2>
-            <p className="text-center text-[#593116] tracking-tight text-xl mb-8">
+            <p className="text-center text-[#593116] tracking-tight text-xl mb-8 md:w-3/4">
               Stay ahead with exclusive tips, updates, and features. Subscribe
               to our newsletter and supercharge your link-sharing game!
             </p>
             <StartNewsletter />
           </section>
 
+          <section className="mt-4 items-center mb-4 flex flex-col" id="newsletter">
+            <h2 className="mb-6 font-bold text-center text-[#593116] tracking-tighter text-4xl md:text-5xl lg:text-6xl md:w-2/3">
+              See what people are saying
+            </h2>
+            <p className="text-center text-[#593116] tracking-tight text-xl mb-8 md:w-3/4">
+              See what others are saying about links and how it’s helping them connect.
+            </p>
+            <MarqueeDemo />
+          </section>
+
           <section className="mt-4 items-center flex-col flex" id="enter">
-            <h2 className="text-4xl mb-4 font-bold text-center text-[#593116] tracking-tighter">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl md:w-2/3 mb-4 font-bold text-center text-[#593116] tracking-tighter">
               Transform your input to a tailored website.
             </h2>
-            <p className="text-center text-[#593116] tracking-tight text-xl mb-8">
+            <p className="text-center text-[#593116] tracking-tight text-xl mb-8 md:w-3/4">
               Experience how we transform your input into a tailored website
               with automation for a seamless process.
             </p>
             <Connections />
+            <div className="mt-12 relative flex items-center w-3/4 md:w-full">
+              <Safari
+                url="links.egeuysal.com"
+                mode="default"
+                className="size-full hidden md:flex"
+                imageSrc="/images/desktop-links.png"
+              />
+              <Iphone15Pro
+                className="size-full flex md:hidden"
+                src="images/mobile-links.png"
+              />
+            </div>
           </section>
 
-          <section className="mt-6 flex-col flex" id="faq">
-            <h2 className="text-4xl mb-4 font-bold text-center text-[#593116] tracking-tighter">
+          <section className="mt-6 flex-col items-center flex" id="faq">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl md:w-2/3 mb-4 font-bold text-center text-[#593116] tracking-tighter">
               Frequently asked questions
             </h2>
-            <p className="text-center text-[#593116] tracking-tight text-xl mb-8">
+            <p className="text-center text-[#593116] tracking-tight text-xl mb-8 md:w-3/4">
               Get quick answers to common questions with helpful insights,
               troubleshooting tips, and essential information to enhance your
               experience.
             </p>
-            <Accordion type="single" collapsible className="text-[#593116]">
-              <AccordionItem value="item-1">
-                <AccordionTrigger className="font-bold text-xl">
-                  What makes Links unique?
-                </AccordionTrigger>
-                <AccordionContent className="text-lg">
-                  It's fast, clean, and fully in your control—no clutter, just
-                  what you need.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-2">
-                <AccordionTrigger className="font-bold text-xl">
-                  Can I use it beyond social media?
-                </AccordionTrigger>
-                <AccordionContent className="text-lg">
-                  Yes! Use it as a mini-site, portfolio, or digital business
-                  card.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-3">
-                <AccordionTrigger className="font-bold text-xl">
-                  Do I fully own my page?
-                </AccordionTrigger>
-                <AccordionContent className="text-lg">
-                  Yes! Links is open-source, meaning you can host it yourself
-                  and modify it.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-4">
-                <AccordionTrigger className="font-bold text-xl">
-                  Is Links free to use?
-                </AccordionTrigger>
-                <AccordionContent className="text-lg">
-                  Yes! It's completely free, without any hidden fees or paywalls.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+            <Faq />
           </section>
 
-          <section id="contact" className="mt-2 flex flex-col mb-16">
-            <h2 className="text-4xl mb-6 font-bold text-center text-[#593116] tracking-tighter">
+          <section id="contact" className="mt-2 flex flex-col mb-16 items-center">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl md:w-2/3 mb-4 font-bold text-center text-[#593116] tracking-tighter">
               Get in touch
             </h2>
-            <p className="text-center text-[#593116] tracking-tight text-xl mb-8">
+            <p className="text-center text-[#593116] tracking-tight text-xl mb-8 md:w-3/4">
               Reach out for support, questions, or feedback. We're here to
               assist you and ensure a smooth experience. Contact us now!
             </p>
