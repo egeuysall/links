@@ -15,15 +15,15 @@ export default function MarqueeDemo() {
                     </div>
                 ))}
             </Marquee>
-            <Marquee reverse className="[--duration:20]">
+            <Marquee reverse className="[--duration:5]">
                 {secondRow.map((review) => (
                     <div key={review.username} className="px-2">
                         <ReviewCard {...review} />
                     </div>
                 ))}
             </Marquee>
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-[#593116]/25 to-transparent"></div>
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-[#593116]/25 to-transparent"></div>
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-[#EDE0D4] to-transparent"></div>
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-[#EDE0D4] to-transparent"></div>
         </div>
     );
 }
