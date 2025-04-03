@@ -93,7 +93,7 @@ const Home: React.FC = () => {
 
           <section className="mt-4 items-center mb-4 flex flex-col" id="newsletter">
             <h2 className="mb-6 font-bold text-center text-[#593116] tracking-tighter text-4xl md:text-5xl lg:text-6xl md:w-2/3">
-              See what people are saying
+              See what people are saying.
             </h2>
             <p className="text-center text-[#593116] tracking-tight text-xl mb-8 md:w-3/4">
               See what others are saying about links and how it’s helping them connect.
