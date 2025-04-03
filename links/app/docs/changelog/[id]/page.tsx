@@ -1,8 +1,8 @@
+import { ChangeLog } from "@/types/changelog.types";
 import Image from "next/image";
 import Link from "next/link";
-import changes from "../changes";
 import { IoArrowBack } from "react-icons/io5";
-
+import changes from "../changes";
 // Import just the base interfaces we need without redefining them
 // import type { AppProps } from "next/app";
 
@@ -14,7 +14,9 @@ export default async function ChangelogEntryPage(props: unknown) {
   const { id } = await params;
 
   // Find the entry
-  const entry = changes.find((change) => change.id === id);
+  const entry: ChangeLog | undefined = changes.find(
+    (change) => change.id === id
+  );
 
   // Simple error handling
   if (!entry) {

@@ -1,15 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { ChangeLog } from "@/types/changelog.types";
 
-interface ChangeTypes {
-  id: string;
-  title: string;
-  desc: string;
-  date: string;
-}
 
-const Change: React.FC<ChangeTypes> = ({ id, title, desc, date }) => {
+
+const Change: React.FC<ChangeLog> = ({ id, title, desc, date }) => {
   return (
     <Link href={`/docs/changelog/${id}`} className="flex">
       <section className="w-full bg-[#E6CCB2] border-2 border-[#7F5539] flex flex-col p-6 rounded-lg">

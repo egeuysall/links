@@ -26,10 +26,7 @@ const ChangelogPage = () => {
           sortedChanges.map((change) => (
             <Change
               key={change.id}
-              id={change.id}
-              title={change.title}
-              desc={change.desc}
-              date={change.date}
+              {...change}
             />
           ))
         ) : (

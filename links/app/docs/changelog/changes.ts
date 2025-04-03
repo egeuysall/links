@@ -1,12 +1,14 @@
-export interface ChangelogEntry {
-  id: string;
-  title: string;
-  desc: string;
-  date: string;
-  detailedDesc?: string;
-}
+import { ChangeLog } from "@/types/changelog.types";
 
-const changes: ChangelogEntry[] = [
+// export interface ChangelogEntry {
+//   id: string;
+//   title: string;
+//   desc: string;
+//   date: string;
+//   detailedDesc?: string;
+// }
+
+const changes: ChangeLog[] = [
   {
     id: "typescript-setup",
     title: "TypeScript Setup",

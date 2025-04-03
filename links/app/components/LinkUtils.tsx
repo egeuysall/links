@@ -1,26 +1,28 @@
 // Types and Interfaces
-export interface LinkItem {
-  id: string;
-  title: string;
-  url: string;
-  iconUrl?: string;
-}
+// export interface LinkItem {
+//   id: string;
+//   title: string;
+//   url: string;
+//   iconUrl?: string;
+// }
 
-export interface UserProfile {
-  username: string;
-  displayName: string;
-  bio: string;
-  avatar?: string;
-  links: LinkItem[];
-  theme: {
-    backgroundColor: string;
-    textColor: string;
-    buttonColor: string;
-    buttonTextColor: string;
-    headingFont: string;
-    textFont: string;
-  };
-}
+import { LinkItem, UserProfile } from "@/types/newlinks.types";
+
+// export interface UserProfile {
+//   username: string;
+//   displayName: string;
+//   bio: string;
+//   avatar?: string;
+//   links: LinkItem[];
+//   theme: {
+//     backgroundColor: string;
+//     textColor: string;
+//     buttonColor: string;
+//     buttonTextColor: string;
+//     headingFont: string;
+//     textFont: string;
+//   };
+// }
 
 // Constants - defined outside of component rendering for better performance
 export const FONT_OPTIONS = {

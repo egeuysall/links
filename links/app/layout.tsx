@@ -23,7 +23,7 @@ async function getProduct() {
 
 export async function generateMetadata(): Promise<Metadata> {
   // Fetch data needed for metadata
-  const product = await getProduct();
+  // const product = await getProduct();
 
   return {
     title: {

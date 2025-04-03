@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { codeToHtml } from 'shiki';
 import { JetBrains_Mono } from 'next/font/google';
 import "../globals.css"
+import { CodeBlockType } from '@/types/newlinks.types';
 
 // Load JetBrains Mono font
 const jetBrainsMono = JetBrains_Mono({
@@ -13,14 +14,8 @@ const jetBrainsMono = JetBrains_Mono({
   preload: true,
 });
 
-interface CodeBlockProps {
-  code: string;
-  language?: string;
-  fileName?: string | null;
-  theme?: 'github-light' | 'github-dark';
-}
 
-const CodeBlock: React.FC<CodeBlockProps> = ({
+const CodeBlock: React.FC<CodeBlockType> = ({
   code,
   language = 'typescript',
   fileName = null,
@@ -79,6 +74,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
             throw new Error('Copy command failed');
           }
         } catch (err) {
+          // TODO: remove later
+          console.log(err)
           throw new Error('Fallback copy failed');
         } finally {
           document.body.removeChild(textArea);

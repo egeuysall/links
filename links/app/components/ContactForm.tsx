@@ -71,11 +71,15 @@ export default function ContactForm() {
           const errorData = await response.json();
           errorMessage = errorData.error || errorMessage;
         } catch (jsonError) {
+          // TODO: remove later
+          console.log(jsonError)
           // If JSON parsing fails, try to get text
           try {
             const textError = await response.text();
             errorMessage = textError || `Server error: ${response.status}`;
           } catch (textError) {
+            // TODO: remove later
+          console.log(textError)
             // If both fail, use status text
             errorMessage = `Server error: ${
               response.statusText || response.status
@@ -86,9 +90,8 @@ export default function ContactForm() {
       }
 
       // Only parse JSON if response was OK
-      let result;
       try {
-        result = await response.json();
+        await response.json();
       } catch (jsonError) {
         console.error("Error parsing response:", jsonError);
         throw new Error("Invalid response from server");

@@ -2,7 +2,8 @@
 
 import React, { useMemo, memo } from "react";
 import CodeBlock from "./CodeBlock";
-import { LinkItem, UserProfile, FONT_OPTIONS } from "./LinkUtils";
+import {  FONT_OPTIONS } from "./LinkUtils";
+import { LinkItem, UserProfile } from "@/types/newlinks.types";
 
 // Preview component
 export const Preview = ({ html }: { html: string }) => {
@@ -61,7 +62,7 @@ const TrashIconMemo = memo(() => (
     />
   </svg>
 ));
-
+TrashIconMemo.displayName = "TrashIconMemo";
 // Export the memoized trash icon
 export const TrashIcon = TrashIconMemo;
 

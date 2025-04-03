@@ -4,8 +4,6 @@ import React, { useState, useCallback, useMemo } from "react";
 import "../globals.css";
 import {
   INITIAL_PROFILE,
-  UserProfile,
-  LinkItem,
   generateHTML,
 } from "./LinkUtils";
 import {
@@ -15,9 +13,9 @@ import {
   AddLinkForm,
   CodeBlockWrapper,
 } from "./LinksComponent";
-import ContactForm from "./ContactForm";
 import { JetBrains_Mono } from "next/font/google";
 import Link from "next/link"
+import { LinkItem, UserProfile } from "@/types/newlinks.types";
 
 // JetBrains Mono font configuration
 const jetBrainsMono = JetBrains_Mono({
@@ -177,7 +175,7 @@ export default function Links() {
         > 
           <CodeBlockWrapper
             language="html"
-            fileName={`${profile.displayName || "Links User"}&apos;s Website`}
+            fileName={`${profile.displayName || "Links User"}'s Website`}
             code={htmlContent}
           />
         </div>
