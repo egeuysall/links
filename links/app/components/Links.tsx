@@ -39,7 +39,7 @@ const LinksList = ({
   }
 
   return (
-    <div className="space-y-3 mb-4">
+    <div className="space-y-3 mb-4 w-full">
       {links.map((link) => (
         <div
           key={link.id}
@@ -173,7 +173,7 @@ export default function Links() {
     () => (
       <div className="export-panel px-2">
         <div
-          className={`overflow-x-scroll max-h-[1500px] ${jetBrainsMono.className}`}
+          className={`h-full ${jetBrainsMono.className}`}
         >
           <CodeBlockWrapper
             language="html"
@@ -216,7 +216,7 @@ export default function Links() {
   // Live preview of the generated page
   const previewPanel = useMemo(
     () => (
-      <div className="lg:col-span-2 rounded-md text-[#593116]">
+      <div className="lg:col-span-2 row-span-1 rounded-md text-[#593116]">
         <h3 className="text-3xl font-bold mb-4 text-center">Preview</h3>
         <Preview html={htmlContent} />
       </div>
@@ -229,7 +229,7 @@ export default function Links() {
     () => (
       <section 
   aria-labelledby="next-steps-heading" 
-  className="lg:col-span-2 ld:pl-8 text-[#593116]"
+  className="lg:col-span-2 row-span-1 lg:pl-8 text-[#593116]"
 >
   <header className="mb-4">
     <h3 
@@ -298,8 +298,8 @@ export default function Links() {
   return (
     <div className="w-full">
       <div className="container w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-          <div className="lg:col-span-3 lg:row-span-2 text-[#593116] rounded-md">
+        <div className="grid grid-cols-1 grid-rows-2 lg:grid-cols-5 gap-8">
+          <div className="lg:col-span-3 row-span-2 lg:row-span-2 text-[#593116] rounded-md">
             <div className="flex justify-between items-center mb-6">
               {exportButton}
             </div>

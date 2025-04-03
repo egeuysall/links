@@ -108,11 +108,6 @@ export function Marquee({
   };
 
   // We only need to render two copies of the content for an infinite loop effect
-  // This is more performant than rendering many copies
-  const marginStyle = {
-    margin: `${vertical ? `${margin}px 0` : `0 ${margin}px`}`,
-  };
-
   return (
     <div
       ref={containerRef}
@@ -135,11 +130,27 @@ export function Marquee({
         })}
         animate={controls}
         initial={{ x: 0, y: 0 }}
+        style={{ willChange: "transform" }} // Optimize for animations
       >
-        <div ref={contentRef} className="flex shrink-0 items-center" style={marginStyle}>
+        {/* First copy of content */}
+        <div 
+          ref={contentRef} 
+          className="flex shrink-0 items-center"
+        >
           {children}
         </div>
-        <div className="flex shrink-0 items-center" style={marginStyle}>
+        
+        {/* Second copy of content - for continuous loop effect */}
+        <div 
+          className="flex shrink-0 items-center"
+        >
+          {children}
+        </div>
+
+        {/* Third copy of content - ensures no gaps in the loop */}
+        <div 
+          className="flex shrink-0 items-center"
+        >
           {children}
         </div>
       </motion.div>

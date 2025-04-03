@@ -158,7 +158,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 
   return (
     <figure className="relative h-full w-full">
-      <div className="rounded-lg bg-[#E6CCB2] overflow-hidden border-2 border-[#9C6644]">
+      <div className="rounded-lg bg-[#E6CCB2] overflow-hidden border-2 border-[#9C6644] w-full">
         {fileName && (
           <figcaption className="flex items-center justify-between px-4 py-2 border-b border-[#DDB892] bg-[#E6CCB2]">
             <div className="flex items-center justify-center gap-2">
