@@ -51,12 +51,12 @@ export default function Header() {
 
   return (
     <div className="fixed top-6 left-0 right-0 z-10 flex justify-center w-full">
-      <header className="w-[82.5vw] md:w-[87.5vw] lg:w-[92.5vw] bg-[#7F5539]/75 border-2 border-[#9C6644] h-18 rounded-lg flex justify-between shadow-sm backdrop-blur-md">
+      <header className="w-[82.5vw] md:w-[87.5vw] lg:w-[92.5vw] bg-[#7F5539]/75 border-2 border-[#9C6644] py-3.5 rounded-lg flex justify-between shadow-sm backdrop-blur-md">
         <Link href="/" className="flex items-center">
           <Image
-            width={18}
-            height={18}
-            className="ml-6 transition duration-200 hover:opacity-75"
+            width={15}
+            height={15}
+            className="ml-4 transition duration-200 hover:opacity-75"
             alt="Link logo for header"
             src="/logos/header-logo.svg"
           />
@@ -123,10 +123,10 @@ export default function Header() {
               </NavigationMenuContent>
             </NavigationMenuItem>
           </NavigationMenuList>
-          <button onClick={toggleMobileMenu} className="flex md:hidden mr-6 ml-2.5">
+          <button onClick={toggleMobileMenu} className="flex md:hidden mr-4">
             <Image
-              width={28}
-              height={28}
+              width={25}
+              height={25}
               alt="Hamburger menu"
               src="/icons/hamburger-menu.svg"
             />

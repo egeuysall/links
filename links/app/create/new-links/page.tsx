@@ -12,9 +12,9 @@ export default function Home() {
           Enter your links and build your unique collection effortlessly.
           Customize your setup in seconds!
         </p>
-        <div className="mt-8 mb-24 w-full">
+        <main className="mt-8 mb-24 w-full">
           <Links />
-        </div>
+        </main>
       </section>
     </>
   );
