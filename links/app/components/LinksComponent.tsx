@@ -3,6 +3,7 @@
 import React, { useMemo, memo } from "react";
 import CodeBlock from "./CodeBlock";
 import { LinkItem, UserProfile, FONT_OPTIONS } from "./LinkUtils";
+import { LuTrash2 } from "react-icons/lu";
 
 // Preview component
 export const Preview = ({ html }: { html: string }) => {
@@ -44,27 +45,6 @@ export const CodeBlockWrapper = ({
   return memoizedCodeBlock;
 };
 
-// SVG component - memoized since it never changes
-const TrashIconMemo = memo(() => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className="h-6 w-6"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-    />
-  </svg>
-));
-
-// Export the memoized trash icon
-export const TrashIcon = TrashIconMemo;
-
 // Color input component
 export const ColorInput = ({
   label,
@@ -81,13 +61,13 @@ export const ColorInput = ({
   return (
     <div>
       <label className="block text-xl font-bold mb-1 mt-2">{label}</label>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 ">
         <input
           type="color"
           name={name}
           value={value}
           onChange={onChange}
-          className="h-14 w-14 rounded-md"
+          className="h-15 w-15 rounded-lg"
         />
         <input
           type="text"
@@ -194,18 +174,20 @@ export const LinkItemDisplay = ({
   );
 
   return (
-    <div key={link.id} className="items-center grid grid-cols-6">
-      <div className="col-span-5 bg-[#E6CCB2] p-4 rounded-lg">
-        <p className="font-bold text-lg text-[#7F5539]">{link.title}</p>
-        <div className="text-md text-[#B08968]">{displayUrl}</div>
-      </div>
-      <button
-        onClick={() => onRemove(link.id)}
-        className="text-[#EDE0D4] p-1 rounded-full transition-colors col-span-1 flex flex-col items-center justify-center"
-      >
-        <TrashIconMemo />
-      </button>
-    </div>
+    <div key={link.id} className="items-center grid grid-cols-6 gap-2">
+  <div className="col-span-5 bg-[#E6CCB2] p-4 rounded-lg">
+    <p className="font-bold text-lg text-[#7F5539]">{link.title}</p>
+    <div className="text-md text-[#B08968] font-normal">{displayUrl}</div>
+  </div>
+  <div className="col-span-1 flex items-center justify-center">
+    <button
+      onClick={() => onRemove(link.id)}
+      className="text-[#EDE0D4] p-1 rounded-full transition-colors"
+    >
+      <LuTrash2 />
+    </button>
+  </div>
+</div>
   );
 };
 

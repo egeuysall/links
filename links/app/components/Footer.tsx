@@ -59,7 +59,7 @@ function Footer() {
             <ul className="flex items-center space-x-5">
               <li>
                 <Link
-                  href="https://www.egeuysal.com/"
+                  href="https://www.links.egeuysal.com/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[#EDE0D4] hover:text-[#DDB892] transition-colors"
@@ -78,7 +78,7 @@ function Footer() {
               </li>
               <li>
                 <Link
-                  href="https://github.com/egeuysall"
+                  href="https://github.com/egeuysall/links"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[#EDE0D4] hover:text-[#DDB892] transition-colors"
@@ -101,31 +101,12 @@ function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[#EDE0D4] hover:text-[#DDB892] transition-colors"
-                  aria-label="Twitter"
+                  aria-label="Email"
                 >
                   <div className="relative w-6 h-6">
                     <Image
-                      src="/icons/twitter.svg"
+                      src="/icons/email.svg"
                       alt="Twitter"
-                      fill
-                      sizes="24px"
-                      className="object-contain"
-                    />
-                  </div>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="https://linkedin.com/in/egeuysall"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#EDE0D4] hover:text-[#DDB892] transition-colors"
-                  aria-label="LinkedIn"
-                >
-                  <div className="relative w-6 h-6">
-                    <Image
-                      src="/icons/linkedin.svg"
-                      alt="LinkedIn"
                       fill
                       sizes="24px"
                       className="object-contain"

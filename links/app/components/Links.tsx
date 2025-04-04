@@ -40,7 +40,7 @@ const LinksList = ({
   }
 
   return (
-    <div className="space-y-3 flex flex-col justify-center mb-4 w-full h-full">
+    <div className="space-y-3 mt-4 flex flex-col justify-center mb-4 w-full h-full">
       {links.map((link) => (
         <div
           key={link.id}
@@ -260,7 +260,7 @@ const handleProfileChange = useCallback(
         </header>
 
         <nav aria-label="Deployment steps">
-          <ol className="list-decimal flex flex-col gap-4 text-lg">
+          <ol className="list-decimal flex ml-4 flex-col gap-4 text-lg">
             <li>
               <strong>Set Up GitHub Repository:</strong> Create a new GitHub repository
               for your links page. Refer to the "Setting Up GitHub Repository" section
