@@ -19,6 +19,7 @@ export interface UserProfile {
     buttonTextColor: string;
     headingFont: string;
     textFont: string;
+    buttonRounding: number; // New property for button rounding
   };
 }
 
@@ -53,6 +54,7 @@ export const INITIAL_PROFILE: UserProfile = {
     buttonTextColor: "#f2f2f2",
     headingFont: "space-grotesk",
     textFont: "lato",
+    buttonRounding: 8, // Default rounding of 8px
   },
 };
 
@@ -74,13 +76,13 @@ export const getFontFamily = (fontName: string): string => {
 };
 
 // Helper function to create link elements
-const createLinkElement = (link: LinkItem, buttonColor: string, buttonTextColor: string): string => {
+const createLinkElement = (link: LinkItem, buttonColor: string, buttonTextColor: string, buttonRounding: number): string => {
   return `
   <a 
     href="${link.url}" 
     target="_blank" 
     rel="noopener noreferrer" 
-    class="flex button-font w-full items-center justify-center gap-2 rounded-lg py-3.5 px-3.5 text-lg transition-opacity duration-200 hover:opacity-75 bg-[${buttonColor}] text-[${buttonTextColor}]"
+    class="flex button-font w-full items-center justify-center gap-2 rounded-[${buttonRounding}px] py-3.5 px-3.5 text-lg transition-opacity duration-200 hover:opacity-75 bg-[${buttonColor}] text-[${buttonTextColor}]"
     aria-label="Visit ${link.title}"
   >
     ${
@@ -184,7 +186,8 @@ export const generateHTML = (profile: UserProfile): string => {
       buttonColor, 
       buttonTextColor, 
       headingFont, 
-      textFont 
+      textFont,
+      buttonRounding = 8 // Default to 8px if not set
     } 
   } = profile;
 
@@ -200,7 +203,7 @@ export const generateHTML = (profile: UserProfile): string => {
   const canonicalUrl = `https://links.egeuysall.com/${safeUsername}`;
   
   // Prepare links list for the page - use a more efficient approach by iterating once
-  const linkElements = links.map(link => createLinkElement(link, buttonColor, buttonTextColor)).join("");
+  const linkElements = links.map(link => createLinkElement(link, buttonColor, buttonTextColor, buttonRounding)).join("");
 
   // Generate profile avatar/placeholder - calculate conditionally only once
   const avatarElement = avatar
