@@ -50,7 +50,15 @@ export async function POST(request: Request) {
     const { name, lastName, email, message } = result.data;
 
     // Your admin email where you want to receive notifications
-    const adminEmail = process.env.ADMIN_EMAIL || "hello@egeuysal.com";
+    const adminEmail = process.env.ADMIN_EMAIL;
+    
+    if (!adminEmail) {
+      console.error("Missing ADMIN_EMAIL environment variable");
+      return NextResponse.json(
+        { error: "Server misconfiguration" },
+        { status: 500 }
+      );
+    }
 
     // Format date in more natural language (Day Month, Hour:Minute)
     const now = new Date();

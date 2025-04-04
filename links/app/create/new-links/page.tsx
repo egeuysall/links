@@ -1,5 +1,4 @@
 import React from "react";
-import Links from "../../components/Links"
 import LinksClientPage from "../../components/links/LinksClientPage"
 
 export default function Home() {
