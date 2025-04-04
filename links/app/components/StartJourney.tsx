@@ -20,7 +20,7 @@ const ClaimLink = () => {
 
   return (
     <form
-      className="w-[82.5vw] md:w-[87.5vw] lg:w-[92.5vw] flex flex-col lg:grid lg:grid-cols-3 gap-6"
+      className="w-[82.5vw] md:w-[87.5vw] lg:w-[92.5vw] flex flex-col lg:grid lg:grid-cols-3 gap-4"
       onSubmit={handleForm}
       id="create"
     >
