@@ -18,6 +18,7 @@ import {
 import ContactForm from "./ContactForm";
 import { JetBrains_Mono } from "next/font/google";
 import Link from "next/link"
+import { LuTrash2 } from "react-icons/lu";
 
 // JetBrains Mono font configuration
 const jetBrainsMono = JetBrains_Mono({
@@ -35,37 +36,42 @@ const LinksList = ({
   onRemoveLink: (id: string) => void;
 }) => {
   if (links.length === 0) {
-    return <div className="text-md">No links added yet</div>;
+    return <p className="text-md text-[#B08968]">No links added yet</p>;
   }
 
   return (
-    <div className="space-y-3 mb-4 w-full">
+    <div className="space-y-3 flex flex-col justify-center mb-4 w-full h-full">
       {links.map((link) => (
         <div
           key={link.id}
-          className="flex items-center justify-between p-3 border border-gray-200 rounded-md"
+          className="focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none  text-lg font-bold text-[#593116] tracking-tight w-full bg-[#E6CCB2] border-2 border-[#7F5539] flex flex-col p-4 rounded-lg"
         >
-          <div className="flex items-center space-x-2">
-            {link.iconUrl && (
-              <img src={link.iconUrl} alt="icon" className="w-5 h-5" />
-            )}
-            <span className="font-medium">{link.title}</span>
+          <div className="flex items-center justify-between w-full h-full">
+            <div className="flex items-center h-full">
+              {link.iconUrl && (
+                <img src={link.iconUrl} alt="icon" className="w-5 h-5" />
+              )}
+              <span className="font-bold">{link.title}</span>
+            </div>
+            <div className="flex h-full items-center justify-center">
+              <button
+                onClick={() => onRemoveLink(link.id)}
+                className="text-[#B08968] flex items-center h-full"
+              >
+                <LuTrash2 className="text-xl h-full flex items-center"/>
+              </button>
+            </div>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="mt-2">
             <Link
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-500 hover:underline text-sm"
             >
-              {link.url}
+              <p className="text-[#B08968] text-sm">
+                {link.url.length > 32 ? link.url.substring(0, 32) + '...' : link.url}
+              </p>
             </Link>
-            <button
-              onClick={() => onRemoveLink(link.id)}
-              className="text-red-500 hover:text-red-700"
-            >
-              Remove
-            </button>
           </div>
         </div>
       ))}
@@ -94,11 +100,18 @@ export default function Links() {
       setProfile((prevProfile) => {
         if (name.startsWith("theme.")) {
           const themeProperty = name.split(".")[1];
+          let processedValue = value;
+          
+          // Convert buttonRounding to a number
+          if (themeProperty === "buttonRounding") {
+            processedValue = parseInt(value, 10);
+          }
+          
           return {
             ...prevProfile,
             theme: {
               ...prevProfile.theme,
-              [themeProperty]: value,
+              [themeProperty]: processedValue,
             },
           };
         }
@@ -191,7 +204,7 @@ export default function Links() {
     () => (
       <div id="customize" className="editor-panel text-[#593116] space-y-6">
         <ProfileForm profile={profile} onChange={handleProfileChange} />
-        <ThemeForm theme={profile.theme} onChange={handleProfileChange}/>
+        <ThemeForm theme={profile.theme} onChange={handleProfileChange} />
         <div className="text-[#593116]">
           <h4 className="text-2xl mt-10 font-bold">Links</h4>
           <LinksList links={profile.links} onRemoveLink={handleRemoveLink} />
@@ -217,7 +230,7 @@ export default function Links() {
   const previewPanel = useMemo(
     () => (
       <div className="lg:col-span-2 row-span-1 rounded-md text-[#593116]">
-        <h3 className="text-3xl font-bold mb-4 text-center">Preview</h3>
+        <h3 className="text-3xl mb-4 font-bold text-center">Preview</h3>
         <Preview html={htmlContent} />
       </div>
     ),
@@ -227,70 +240,70 @@ export default function Links() {
   // Feedback collection section
   const feedbackPanel = useMemo(
     () => (
-      <section 
-  aria-labelledby="next-steps-heading" 
-  className="lg:col-span-2 row-span-1 lg:pl-8 text-[#593116]"
->
-  <header className="mb-4">
-    <h3 
-      id="next-steps-heading" 
-      className="text-3xl font-bold text-center tracking-tight"
-    >
-      Next Steps
-    </h3>
-  </header>
-
-  <nav aria-label="Deployment steps">
-    <ol className="list-decimal flex flex-col gap-6 text-lg">
-      <li>
-        <strong>Set Up GitHub Repository:</strong> Create a new GitHub repository 
-        for your links page. Refer to the "Setting Up GitHub Repository" section 
-        in our documentation, which includes visual examples of the entire setup 
-        process.
-      </li>
-      <li>
-        <strong>Add Your Code:</strong> Copy your generated code into a new 
-        "index.html" file in your GitHub repository. The "Adding Your Code to 
-        GitHub" section of our documentation shows you exactly how to do this 
-        with clear visual guides.
-      </li>
-      <li>
-        <strong>Deploy with Vercel:</strong> Follow our detailed Vercel 
-        deployment guide in the documentation's "Deploying with Vercel" section. 
-        We've included comprehensive screenshots of each step to make the process 
-        straightforward.
-      </li>
-    </ol>
-  </nav>
-
-  <footer className="mt-6 bg-[#E6CCB2] p-6 rounded-lg">
-    <div className="mb-3">
-      <p className="text-lg font-semibold">💡 Pro Tip:</p>
-      <p className="text-lg">
-        <Link
-          href="/docs/getting-started"
-          className="text-[#7F5539] font-bold hover:underline"
-          aria-label="View comprehensive documentation with visual guides"
-        >
-          Our documentation {" "}
-        </Link>
-        includes detailed screenshots and examples for each step. 
-        Make sure to reference them as you go through the deployment process.
-      </p>
-    </div>
-    <p className="italic text-sm">
-      Need assistance? Visit our{" "}
-      <Link
-        href="https://github.com/egeuysall/links/issues"
-        className="text-[#7F5539] font-bold hover:underline"
-        aria-label="Open an issue on GitHub"
+      <section
+        aria-labelledby="next-steps-heading"
+        className="lg:col-span-2 row-span-1 lg:pl-8 text-[#593116]"
       >
-        GitHub repository
-      </Link>{" "}
-      to open an issue or review common questions.
-    </p>
-  </footer>
-</section>
+        <header className="mb-4">
+          <h3
+            id="next-steps-heading"
+            className="text-3xl font-bold text-center tracking-tight"
+          >
+            Next Steps
+          </h3>
+        </header>
+
+        <nav aria-label="Deployment steps">
+          <ol className="list-decimal flex flex-col gap-4 text-lg">
+            <li>
+              <strong>Set Up GitHub Repository:</strong> Create a new GitHub repository
+              for your links page. Refer to the "Setting Up GitHub Repository" section
+              in our documentation, which includes visual examples of the entire setup
+              process.
+            </li>
+            <li>
+              <strong>Add Your Code:</strong> Copy your generated code into a new
+              "index.html" file in your GitHub repository. The "Adding Your Code to
+              GitHub" section of our documentation shows you exactly how to do this
+              with clear visual guides.
+            </li>
+            <li>
+              <strong>Deploy with Vercel:</strong> Follow our detailed Vercel
+              deployment guide in the documentation's "Deploying with Vercel" section.
+              We've included comprehensive screenshots of each step to make the process
+              straightforward.
+            </li>
+          </ol>
+        </nav>
+
+        <footer className="mt-6 bg-[#E6CCB2] p-6 rounded-lg">
+          <div className="mb-3">
+            <p className="text-lg font-semibold">💡 Pro Tip:</p>
+            <p className="text-lg">
+              <Link
+                href="/docs/getting-started"
+                className="text-[#7F5539] font-bold hover:underline"
+                aria-label="View comprehensive documentation with visual guides"
+              >
+                Our documentation {" "}
+              </Link>
+              includes detailed screenshots and examples for each step.
+              Make sure to reference them as you go through the deployment process.
+            </p>
+          </div>
+          <p className="italic text-sm">
+            Need assistance? Visit our{" "}
+            <Link
+              href="https://github.com/egeuysall/links/issues"
+              className="text-[#7F5539] font-bold hover:underline"
+              aria-label="Open an issue on GitHub"
+            >
+              GitHub repository
+            </Link>{" "}
+            to open an issue or review common questions.
+          </p>
+        </footer>
+      </section>
     ),
     []
   );
@@ -299,7 +312,7 @@ export default function Links() {
     <div className="w-full">
       <div className="container w-full">
         <div className="grid grid-cols-1 grid-rows-2 lg:grid-cols-5 gap-8">
-          <div className="lg:col-span-3 row-span-2 lg:row-span-2 text-[#593116] rounded-md">
+          <div className="lg:col-span-3 row-span-2 lg:row-span-2 text-[#593116]">
             <div className="flex justify-between items-center mb-6">
               {exportButton}
             </div>
