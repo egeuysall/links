@@ -90,39 +90,45 @@ export default function Links() {
   const [showExport, setShowExport] = useState(false);
 
   // Updates profile state from form inputs
-  const handleProfileChange = useCallback(
-    (
-      e: React.ChangeEvent<
-        HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-      >
-    ) => {
-      const { name, value } = e.target;
-      setProfile((prevProfile) => {
-        if (name.startsWith("theme.")) {
-          const themeProperty = name.split(".")[1];
-          let processedValue = value;
-          
-          // Convert buttonRounding to a number
-          if (themeProperty === "buttonRounding") {
-            processedValue = parseInt(value, 10);
-          }
-          
+  // Updates profile state from form inputs
+const handleProfileChange = useCallback(
+  (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setProfile((prevProfile) => {
+      if (name.startsWith("theme.")) {
+        const themeProperty = name.split(".")[1];
+        
+        // Fix: Use a more specific type to handle both string and number values
+        if (themeProperty === "buttonRounding") {
           return {
             ...prevProfile,
             theme: {
               ...prevProfile.theme,
-              [themeProperty]: processedValue,
+              [themeProperty]: parseInt(value, 10),
             },
           };
         }
+        
         return {
           ...prevProfile,
-          [name]: value,
+          theme: {
+            ...prevProfile.theme,
+            [themeProperty]: value,
+          },
         };
-      });
-    },
-    []
-  );
+      }
+      return {
+        ...prevProfile,
+        [name]: value,
+      };
+    });
+  },
+  []
+);
 
   // Adds a new link to the profile
   const handleAddLink = useCallback(() => {
