@@ -97,7 +97,7 @@ function Footer() {
               </li>
               <li>
                 <Link
-                  href="https://twitter.com/egecreates"
+                  href="mailto:hello@egeuysal.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[#EDE0D4] hover:text-[#DDB892] transition-colors"
