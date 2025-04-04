@@ -14,7 +14,7 @@ export const Preview = ({ html }: { html: string }) => {
         title="Preview"
         className="w-full"
         style={{
-          height: "700px",
+          height: "750px",
           borderRadius: "8px",
         }}
       />
@@ -141,6 +141,43 @@ export const FontSelect = ({
   );
 };
 
+// Slider input component for button rounding
+export const SliderInput = ({
+  label,
+  name,
+  value,
+  min,
+  max,
+  onChange,
+}: {
+  label: string;
+  name: string;
+  value: number;
+  min: number;
+  max: number;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}) => {
+  return (
+    <div>
+      <label className="block text-xl font-bold mb-1 mt-2">{label}</label>
+      <div className="flex items-center gap-3">
+        <input
+          type="range"
+          name={name}
+          value={value}
+          min={min}
+          max={max}
+          onChange={onChange}
+          className="flex-1 h-3 bg-[#E6CCB2] rounded-lg appearance-none cursor-pointer"
+        />
+        <span className="text-lg font-bold min-w-[48px] text-center">
+          {value}px
+        </span>
+      </div>
+    </div>
+  );
+};
+
 // Individual link item
 export const LinkItemDisplay = ({
   link,
@@ -165,9 +202,8 @@ export const LinkItemDisplay = ({
       <button
         onClick={() => onRemove(link.id)}
         className="text-[#EDE0D4] p-1 rounded-full transition-colors col-span-1 flex flex-col items-center justify-center"
-        aria-label={`Remove ${link.title}`}
       >
-        <TrashIcon />
+        <TrashIconMemo />
       </button>
     </div>
   );
@@ -428,6 +464,18 @@ export const ThemeForm = ({
         {colorInputs.slice(0, 2)}
         {colorInputs.slice(2, 4)}
         {fontSelects}
+        
+        {/* Button Rounding Slider Input */}
+        <div className="md:col-span-2">
+          <SliderInput
+            label="Button Rounding"
+            name="theme.buttonRounding"
+            value={theme.buttonRounding || 8}
+            min={0}
+            max={30}
+            onChange={onChange}
+          />
+        </div>
       </div>
     </div>
   );
