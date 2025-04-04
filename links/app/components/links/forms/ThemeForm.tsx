@@ -58,7 +58,7 @@ export const ThemeForm: React.FC<ThemeFormProps> = ({ theme, onChange }) => {
         
         <div className="md:col-span-2">
           <SliderInput
-            label="Button Rounding"
+            label="Button rounding"
             name="theme.buttonRounding"
             value={theme.buttonRounding || 8}
             min={0}
