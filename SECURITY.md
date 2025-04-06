@@ -4,14 +4,16 @@ The security of **Links** and its users is a top priority. This document outline
 
 ## Supported Versions
 
-We provide security updates only for the latest stable release of **Links**. Older versions are not maintained and may contain unpatched vulnerabilities. Below is the list of supported and unsupported versions:
+We provide security updates only for the latest stable releases of **Links**. Older versions are not maintained and may contain unpatched vulnerabilities. Below is the list of supported and unsupported versions:
 
 | Version | Supported | Notes |
 |---------|----------|-------|
+| 1.1.1   | ✅ Yes   | Latest release - actively maintained and patched for security vulnerabilities. |
+| 1.1     | ❌ No    | Not supported due to type checking not being utilized. |
 | 1.0     | ✅ Yes   | Actively maintained and patched for security vulnerabilities. |
 | 0.9     | ❌ No    | No security updates or support provided. Users should upgrade. |
 | 0.8     | ❌ No    | No security updates or support provided. Users should upgrade. |
-| 0.7     | ✅ Yes   | No security updates or support provided. Users should upgrade. |
+| 0.7     | ❌ No    | No security updates or support provided. Users should upgrade. |
 | < 0.6   | ❌ No    | No security updates or support provided. Versions below 0.6 are not supported. Users should upgrade. |
 
 ## Reporting a Vulnerability
@@ -71,3 +73,7 @@ For any security concerns, please contact us at:
 ## License
 
 This project is licensed under the **[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)**. Users must comply with its terms and conditions.
+
+---
+Last Updated: 2025-04-04 06:03:30 UTC
+Updated by: egeuysall

@@ -1,5 +1,5 @@
 import React from "react";
-import Links from "../../components/Links"
+import LinksClientPage from "../../components/links/LinksClientPage"
 
 export default function Home() {
   return (
@@ -12,9 +12,9 @@ export default function Home() {
           Enter your links and build your unique collection effortlessly.
           Customize your setup in seconds!
         </p>
-        <div className="mt-8 mb-24 w-full">
-          <Links />
-        </div>
+        <main className="mt-8 mb-24 w-full">
+          <LinksClientPage />
+        </main>
       </section>
     </>
   );
