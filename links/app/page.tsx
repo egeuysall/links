@@ -14,6 +14,7 @@ import Iphone15Pro from "@/components/magicui/iphone-15-pro";
 import Faq from "./components/Faq";
 import MarqueeDemo from "./components/PeopleSaying";
 import Section from "./components/Section";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@radix-ui/react-accordion";
 
 interface SectionTitleProps {
   title: string;
@@ -85,91 +86,8 @@ const Home: React.FC = () => {
               title={feature.title}
               details={feature.details}
               key={uuidv4()}
-            />))}
-            <Iphone15Pro
-              className="size-full flex lg:hidden"
-              src="images/mobile-links.png"
             />
-          <section className="mt-4 mb-4 flex flex-col" id="newsletter">
-            <h2 className="text-4xl mb-6 font-bold text-center text-[#593116] tracking-tighter">
-              Subscribe to our newsletter
-            </h2>
-            <p className="text-center text-[#593116] tracking-tight text-xl mb-8">
-              Stay ahead with exclusive tips, updates, and features. Subscribe
-              to our newsletter and supercharge your link-sharing game!
-            </p>
-            <StartNewsletter />
-          </section>
-
-          <section className="mt-4 items-center flex-col flex" id="enter">
-            <h2 className="text-4xl mb-4 font-bold text-center text-[#593116] tracking-tighter">
-              Transform your input to a tailored website.
-            </h2>
-            <p className="text-center text-[#593116] tracking-tight text-xl mb-8">
-              Experience how we transform your input into a tailored website
-              with automation for a seamless process.
-            </p>
-            <Connections />
-          </section>
-
-          <section className="mt-6 flex-col flex" id="faq">
-            <h2 className="text-4xl mb-4 font-bold text-center text-[#593116] tracking-tighter">
-              Frequently asked questions
-            </h2>
-            <p className="text-center text-[#593116] tracking-tight text-xl mb-8">
-              Get quick answers to common questions with helpful insights,
-              troubleshooting tips, and essential information to enhance your
-              experience.
-            </p>
-            <Accordion type="single" collapsible className="text-[#593116]">
-              <AccordionItem value="item-1">
-                <AccordionTrigger className="font-bold text-xl">
-                  What makes Links unique?
-                </AccordionTrigger>
-                <AccordionContent className="text-lg">
-                  It&apos;s fast, clean, and fully in your control—no clutter, just
-                  what you need.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-2">
-                <AccordionTrigger className="font-bold text-xl">
-                  Can I use it beyond social media?
-                </AccordionTrigger>
-                <AccordionContent className="text-lg">
-                  Yes! Use it as a mini-site, portfolio, or digital business
-                  card.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-3">
-                <AccordionTrigger className="font-bold text-xl">
-                  Do I fully own my page?
-                </AccordionTrigger>
-                <AccordionContent className="text-lg">
-                  Yes! Links is open-source, meaning you can host it yourself
-                  and modify it.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-4">
-                <AccordionTrigger className="font-bold text-xl">
-                  Is Links free to use?
-                </AccordionTrigger>
-                <AccordionContent className="text-lg">
-                  Yes! It&apos;s completely free, without any hidden fees or paywalls.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </section>
-
-          <section id="contact" className="mt-2 flex flex-col mb-16">
-            <h2 className="text-4xl mb-6 font-bold text-center text-[#593116] tracking-tighter">
-              Get in touch
-            </h2>
-            <p className="text-center text-[#593116] tracking-tight text-xl mb-8">
-              Reach out for support, questions, or feedback. We&apos;re here to
-              assist you and ensure a smooth experience. Contact us now!
-            </p>
-            <ContactForm />
-          </section>
+          ))}
         </div>
         <aside className="mt-12 w-full flex flex-col items-center">
           <Connections />
