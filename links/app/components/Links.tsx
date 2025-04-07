@@ -45,6 +45,7 @@ const LinksList = ({
         >
           <div className="flex items-center space-x-2">
             {link.iconUrl && (
+              //TODO: check if Image can be used
               <img src={link.iconUrl} alt="icon" className="w-5 h-5" />
             )}
             <span className="font-medium">{link.title}</span>

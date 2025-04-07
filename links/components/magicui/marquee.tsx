@@ -34,7 +34,7 @@ interface MarqueeProps extends ComponentPropsWithoutRef<"div"> {
    */
   margin?: number;
 }
-
+// TODO: is magin valid a s a prop?
 export function Marquee({
   className,
   reverse = false,

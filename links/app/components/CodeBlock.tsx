@@ -34,6 +34,7 @@ const CodeBlock: React.FC<CodeBlockType> = ({
   const [copied, setCopied] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [highlightedCode, setHighlightedCode] = useState<string>('');
+  //TODO: is error being used?
   const [error, setError] = useState<string | null>(null);
 
   // Set a consistent color for all icons

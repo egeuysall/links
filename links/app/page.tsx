@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "./components/Header";
 import Feature from "./components/Feature";
 import { v4 as uuidv4 } from "uuid";
 import features from "./features";
@@ -14,7 +13,6 @@ import Iphone15Pro from "@/components/magicui/iphone-15-pro";
 import Faq from "./components/Faq";
 import MarqueeDemo from "./components/PeopleSaying";
 import Section from "./components/Section";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@radix-ui/react-accordion";
 
 interface SectionTitleProps {
   title: string;
