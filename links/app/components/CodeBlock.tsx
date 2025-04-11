@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { codeToHtml } from 'shiki';
 import { JetBrains_Mono } from 'next/font/google';
-import "../globals.css";
+import "../globals.css"
+import { CodeBlockType } from '@/types/newlinks.types';
 
 // Import HTML and CSS icons from react-icons/fa
 import { FaHtml5, FaCss3Alt } from 'react-icons/fa';
@@ -23,14 +24,8 @@ const jetBrainsMono = JetBrains_Mono({
   style: ['normal', 'italic'],
 });
 
-interface CodeBlockProps {
-  code: string;
-  language?: string;
-  fileName?: string | null;
-  theme?: 'github-light' | 'github-dark';
-}
 
-const CodeBlock: React.FC<CodeBlockProps> = ({
+const CodeBlock: React.FC<CodeBlockType> = ({
   code,
   language = 'typescript',
   fileName = null,
@@ -39,6 +34,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   const [copied, setCopied] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [highlightedCode, setHighlightedCode] = useState<string>('');
+  //TODO: is error being used?
   const [error, setError] = useState<string | null>(null);
 
   // Set a consistent color for all icons
@@ -92,6 +88,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
             throw new Error('Copy command failed');
           }
         } catch (err) {
+          // TODO: remove later
+          console.log(err)
           throw new Error('Fallback copy failed');
         } finally {
           document.body.removeChild(textArea);

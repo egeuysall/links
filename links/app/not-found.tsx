@@ -16,7 +16,7 @@ export default function NotFound() {
           />
         </Link>
         <h1 className="font-bold text-[#593116] text-4xl mt-8">
-          Sorry, we couldn't find that page.
+          Sorry, we couldn&apos;t find that page.
         </h1>
         <p className="text-xl mt-4 text-[#593116]">
           Like this username?{" "}

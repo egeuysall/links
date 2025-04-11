@@ -23,7 +23,7 @@ async function getProduct() {
 
 export async function generateMetadata(): Promise<Metadata> {
   // Fetch data needed for metadata
-  const product = await getProduct();
+  // const product = await getProduct();
 
   return {
     title: {
@@ -196,7 +196,7 @@ export default async function RootLayout({
     />
   </head>
   <body className={lato.className}>
-    <LayoutWrapper>
+    <LayoutWrapper >
       <div className="min-h-screen w-full flex flex-col items-center pb-16">
         <main className="w-[82.5vw] md:w-[87.5vw] lg:w-[92.5vw] flex flex-col items-center justify-center">
           <Header />

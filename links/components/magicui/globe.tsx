@@ -43,6 +43,7 @@ export function Globe({
   className?: string;
   config?: COBEOptions;
 }) {
+  // TODO: useRef for variables
   let phi = 0;
   let width = 0;
   const canvasRef = useRef<HTMLCanvasElement>(null);

@@ -73,19 +73,19 @@ export default function Tips() {
                 <p className="text-[#593116] text-lg font-semibold">🎨 Color Combinations:</p>
                 <CodeBlock
                   code={`/* Professional */
---background: #ffffff;
---text: #333333;
---accent: #0066cc;
+                  --background: #ffffff;
+                  --text: #333333;
+                  --accent: #0066cc;
 
-/* Creative */
---background: #f5f0ff;
---text: #2d1832;
---accent: #7c4dff;
+                  /* Creative */
+                  --background: #f5f0ff;
+                  --text: #2d1832;
+                  --accent: #7c4dff;
 
-/* Minimal */
---background: #fafafa;
---text: #212121;
---accent: #424242;`}
+                  /* Minimal */
+                  --background: #fafafa;
+                  --text: #212121;
+                  --accent: #424242;`}
                   language="css"
                   fileName="color-schemes"
                 />
@@ -154,13 +154,13 @@ export default function Tips() {
               </p>
               <CodeBlock
                 code={`// Recommended image sizes
-Profile Picture: 400x400px
-Icons: 64x64px
-Background Images: max 1MB
+                Profile Picture: 400x400px
+                Icons: 64x64px
+                Background Images: max 1MB
 
-// Image formats
-Profile & Icons: .webp or .png
-Background: .jpg for photos, .svg for patterns`}
+                // Image formats
+                Profile & Icons: .webp or .png
+                Background: .jpg for photos, .svg for patterns`}
                 language="plaintext"
                 fileName="image-optimization"
               />
@@ -205,7 +205,7 @@ Background: .jpg for photos, .svg for patterns`}
               <ul className="list-disc pl-8 text-[#593116] text-lg">
                 <li>Keep your bio concise and scannable</li>
                 <li>Use high-contrast colors for better readability</li>
-                <li>Test your page's loading speed on mobile networks</li>
+                <li>Test your page&apos;s loading speed on mobile networks</li>
                 <li>Ensure buttons have adequate touch targets</li>
               </ul>
             </aside>

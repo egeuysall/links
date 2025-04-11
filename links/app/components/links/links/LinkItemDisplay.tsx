@@ -18,6 +18,7 @@ export const LinkItemDisplay: React.FC<LinkItemDisplayProps> = ({ link, onRemove
       <div className="flex items-center justify-between w-full h-full">
         <div className="flex items-center h-full">
           {link.iconUrl && (
+            //TODO: replace with Image
             <img src={link.iconUrl} alt="icon" className="w-5 h-5" />
           )}
           <span className="font-bold">{link.title}</span>

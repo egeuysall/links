@@ -37,7 +37,7 @@ export default function Home() {
             Guide to Build Your Links Page
           </h2>
           <p className="text-[#593116] text-lg">
-            Whether you're a content creator, professional, or business owner,
+            Whether you&apos;re a content creator, professional, or business owner,
             having a central hub for all your links provides a clean,
             professional way to share your online presence. This detailed
             tutorial will walk you through every step of creating your custom
@@ -71,7 +71,7 @@ export default function Home() {
             <Link href="https://www.links.egeuysal.com/">
               <span className="font-bold text-[#7F5539]">Links</span>
             </Link>
-            . On the homepage, you'll find a clean interface with an input field
+            . On the homepage, you&apos;ll find a clean interface with an input field
             and a "Claim your link" button. Follow these steps:
           </p>
           <ul className="list-disc pl-8 text-[#593116] text-lg">
@@ -80,7 +80,7 @@ export default function Home() {
             </li>
             <li>Click the "Claim your link" button</li>
             <li>
-              You'll be redirected to the creation page at{" "}
+              You&apos;ll be redirected to the creation page at{" "}
               <Link href="https:/links.egeuysal.com/create/new-links/">
                 <span className="font-bold text-[#7F5539]">
                   links.egeuysal.com/create/new-links
@@ -92,7 +92,7 @@ export default function Home() {
           <aside className="bg-[#DBC1A4] p-4 rounded-md mt-2 mb-4">
             <p className="text-[#593116] text-lg font-semibold">💡 Pro Tip:</p>
             <p className="text-[#593116] text-lg">
-              Choose a subdomain that's memorable and aligns with your personal
+              Choose a subdomain that&apos;s memorable and aligns with your personal
               brand. Keep it short, easy to type, and professional.
             </p>
           </aside>
@@ -121,7 +121,7 @@ export default function Home() {
 
           <p className="text-[#593116] text-lg">
             The creation page offers a comprehensive form to customize your
-            links page. Here's what each field represents:
+            links page. Here&apos;s what each field represents:
           </p>
 
           <section>
@@ -149,7 +149,7 @@ export default function Home() {
               🖼️ Image Hosting Guide:
             </p>
             <p className="text-[#593116] text-lg">
-              For avatar and icon URLs, you need direct image links. Here's how
+              For avatar and icon URLs, you need direct image links. Here&apos;s how
               to get them:
               <br />
               1. Create a free{" "}
@@ -200,7 +200,7 @@ export default function Home() {
               Links Section
             </h4>
             <p className="text-[#593116] text-lg">
-              This is where you'll add all the links you want to display on your
+              This is where you&apos;ll add all the links you want to display on your
               page:
             </p>
             <ul className="list-disc pl-8 text-[#593116] text-lg">
@@ -291,7 +291,7 @@ export default function Home() {
           </h3>
 
           <p className="text-[#593116] text-lg">
-            Once you're satisfied with your design, it's time to deploy your
+            Once you&apos;re satisfied with your design, it&apos;s time to deploy your
             links page. Follow these steps:
           </p>
 
@@ -302,7 +302,7 @@ export default function Home() {
             <p className="text-[#593116] text-lg">
               Click the "Export Code" button at the bottom of the preview
               section. This will generate the HTML, CSS, and JavaScript code for
-              your links page. You'll see a code block similar to this:
+              your links page. You&apos;ll see a code block similar to this:
             </p>
 
             <figure className="my-4">
@@ -348,7 +348,7 @@ export default function Home() {
               Setting Up GitHub Repository
             </h4>
             <p className="text-[#593116] text-lg">
-              To deploy your links page, you'll need to create a GitHub
+              To deploy your links page, you&apos;ll need to create a GitHub
               repository:
             </p>
 
@@ -374,7 +374,7 @@ export default function Home() {
                 >
                   GitHub account
                 </a>{" "}
-                if you don't already have one
+                if you don&apos;t already have one
               </li>
               <li>
                 Click the "+" icon in the top-right corner and select "New
@@ -522,7 +522,7 @@ export default function Home() {
               <li>Go to "Settings" then "Domains"</li>
               <li>Enter your domain name and click "Add"</li>
               <li>
-                Follow Vercel's instructions to configure DNS settings at your
+                Follow Vercel&apos;s instructions to configure DNS settings at your
                 domain provider
               </li>
             </ol>
@@ -530,7 +530,7 @@ export default function Home() {
               For detailed instructions on connecting your domain, refer to{" "}
               <Link href="https://vercel.com/docs/domains/working-with-domains/add-a-domain">
                 <span className="font-bold text-[#7F5539]">
-                  Vercel's documentation on adding domains
+                  Vercel&apos;s documentation on adding domains
                 </span>
               </Link>
               .
@@ -557,7 +557,7 @@ export default function Home() {
           </figure>
 
           <p className="text-[#593116] text-lg">
-            Once your page is live, it's time to share it with the world:
+            Once your page is live, it&apos;s time to share it with the world:
           </p>
           <ul className="list-disc pl-8 text-[#593116] text-lg">
             <li>Add your links page URL to your social media profiles</li>
@@ -592,7 +592,7 @@ export default function Home() {
           <p className="text-[#593116] text-lg">
             To track visits to your links page, you can add Google Analytics or
             similar tracking code to your index.html file. This allows you to
-            see how many people are visiting your page and which links they're
+            see how many people are visiting your page and which links they&apos;re
             clicking.
           </p>
           <CodeBlock
@@ -621,7 +621,7 @@ export default function Home() {
               className="rounded-lg"
             />
             <figcaption className="text-sm text-[#7F5539] mt-2">
-              Track your page's performance with analytics
+              Track your page&apos;s performance with analytics
             </figcaption>
           </figure>
         </aside>
