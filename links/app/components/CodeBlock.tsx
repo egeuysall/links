@@ -35,7 +35,7 @@ const CodeBlock: React.FC<CodeBlockType> = ({
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [highlightedCode, setHighlightedCode] = useState<string>('');
   //TODO: is error being used?
-  const [error, setError] = useState<string | null>(null);
+  // const [error, setError] = useState<string | null>(null);
 
   // Set a consistent color for all icons
   const iconColor = '#9C6644';
@@ -53,10 +53,10 @@ const CodeBlock: React.FC<CodeBlockType> = ({
           'background-color: #E6CCB2;'
         );
         setHighlightedCode(modifiedHtml);
-        setError(null);
+        // setError(null);
       } catch (error) {
         console.error('Error highlighting code:', error);
-        setError('Failed to highlight code');
+        // setError('Failed to highlight code');
         setHighlightedCode(code);
       }
     };
@@ -65,7 +65,7 @@ const CodeBlock: React.FC<CodeBlockType> = ({
 
   const handleCopy = async () => {
     setIsLoading(true);
-    setError(null);
+    // setError(null);
 
     try {
       if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -100,7 +100,7 @@ const CodeBlock: React.FC<CodeBlockType> = ({
       setTimeout(() => setCopied(false), 1000); // Increased to 2 seconds for better visibility
     } catch (error) {
       console.error('Failed to copy code:', error);
-      setError('Failed to copy to clipboard');
+      // setError('Failed to copy to clipboard');
     } finally {
       setIsLoading(false);
     }

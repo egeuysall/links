@@ -16,6 +16,7 @@ import {
 import { JetBrains_Mono } from "next/font/google";
 import Link from "next/link"
 import { LinkItem, UserProfile } from "@/types/newlinks.types";
+import Image from "next/image";
 
 // JetBrains Mono font configuration
 const jetBrainsMono = JetBrains_Mono({
@@ -46,7 +47,8 @@ const LinksList = ({
           <div className="flex items-center space-x-2">
             {link.iconUrl && (
               //TODO: check if Image can be used
-              <img src={link.iconUrl} alt="icon" className="w-5 h-5" />
+              // <img src={link.iconUrl} alt="icon" className="w-5 h-5" />
+              <Image src={link.iconUrl} width={20} height={20} alt="icon" />
             )}
             <span className="font-medium">{link.title}</span>
           </div>
@@ -182,7 +184,7 @@ export default function Links() {
         </div>
       </div>
     ),
-    [htmlContent, profile.displayName, jetBrainsMono.className]
+    [htmlContent, profile.displayName] // Removed jetBrainsMono.className
   );
 
   // Main editor interface with forms

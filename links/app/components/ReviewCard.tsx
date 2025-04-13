@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import React from "react";
 
 interface ReviewCardProps {
@@ -22,7 +23,8 @@ const ReviewCard = ({
             )}
         >
             <div className="flex flex-row items-center gap-2">
-                <img className="rounded-full" width="32" height="32" alt="" src={img} />
+                {/* <img className="rounded-full" width="32" height="32" alt="" src={img} /> */}
+                <Image src={img} className="rounded-full" width="32" height="32" alt=""/>
                 <div className="flex flex-col">
                     <figcaption className="text-sm font-bold text-[#593116]">
                         {name}

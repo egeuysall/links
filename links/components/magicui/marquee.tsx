@@ -32,7 +32,7 @@ interface MarqueeProps extends ComponentPropsWithoutRef<"div"> {
    * The margin size between items in pixels.
    * @default 4
    */
-  margin?: number;
+  // margin?: number;
 }
 // TODO: is magin valid a s a prop?
 export function Marquee({
@@ -41,7 +41,7 @@ export function Marquee({
   pauseOnHover = false,
   children,
   vertical = false,
-  margin = 4,
+  // margin = 4, unused
   ...props
 }: MarqueeProps) {
   const containerRef = useRef<HTMLDivElement>(null);

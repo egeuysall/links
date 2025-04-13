@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { LuTrash2 } from "react-icons/lu";
 import { LinkItem } from "@/lib/LinkUtils";
+import Image from "next/image";
 
 interface LinkItemDisplayProps {
   link: LinkItem;
@@ -19,7 +20,8 @@ export const LinkItemDisplay: React.FC<LinkItemDisplayProps> = ({ link, onRemove
         <div className="flex items-center h-full">
           {link.iconUrl && (
             //TODO: replace with Image
-            <img src={link.iconUrl} alt="icon" className="w-5 h-5" />
+            // <img src={link.iconUrl} alt="icon" className="w-5 h-5" />
+            <Image src={link.iconUrl} alt="icon" width={20} height={20} />
           )}
           <span className="font-bold">{link.title}</span>
         </div>

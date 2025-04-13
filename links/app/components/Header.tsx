@@ -19,6 +19,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { IoIosClose } from "react-icons/io";
+import { IoMenu } from "react-icons/io5";
 
 interface MenuItemLink {
   href: string;
@@ -158,7 +159,7 @@ const Header: FC = () => {
       }
     }),
   };
- //TODO: check if usable
+
   // const menuIconVariants = {
   //   closed: { rotate: 0, scale: 1 },
   //   open: { rotate: 180, scale: 1 },
