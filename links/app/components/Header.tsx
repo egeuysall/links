@@ -1,9 +1,11 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { useState, useEffect, FC } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -12,14 +14,11 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { AnimatePresence, motion } from "motion/react";
+import Image from "next/image";
+import Link from "next/link";
+import { FC, useEffect, useState } from "react";
 import { IoIosClose } from "react-icons/io";
-import { IoMenu } from "react-icons/io5";
 
 interface MenuItemLink {
   href: string;
@@ -44,7 +43,7 @@ const Header: FC = () => {
     } else {
       document.body.style.overflow = "";
     }
-    
+
     return () => {
       document.body.style.overflow = "";
     };
@@ -88,67 +87,67 @@ const Header: FC = () => {
 
   const headerVariants = {
     initial: { y: -20, opacity: 0 },
-    animate: { 
-      y: 0, 
+    animate: {
+      y: 0,
       opacity: 1,
       transition: {
-        duration: 0.6, 
+        duration: 0.6,
         ease: [0.22, 1, 0.36, 1],
-      }
+      },
     },
     exit: {
       y: -20,
       opacity: 0,
-      transition: { 
+      transition: {
         duration: 0.3,
         ease: [0.22, 1, 0.36, 1],
-      }
-    }
+      },
+    },
   };
 
   const itemVariants = {
     initial: { opacity: 0, y: 20 },
-    animate: { 
-      opacity: 1, 
+    animate: {
+      opacity: 1,
       y: 0,
       transition: {
         duration: 0.4,
         ease: [0.22, 1, 0.36, 1],
-      }
+      },
     },
-    exit: { 
+    exit: {
       opacity: 0,
       y: 10,
       transition: {
         duration: 0.2,
         ease: [0.22, 1, 0.36, 1],
-      }
+      },
     },
   };
 
   const footerVariants = {
     initial: { opacity: 0, y: 20 },
-    animate: { 
+    animate: {
       opacity: 0.7,
       y: 0,
-      transition: { delay: 0.8, duration: 0.4 }
+      transition: { delay: 0.8, duration: 0.4 },
     },
-    exit: { 
+    exit: {
       opacity: 0,
       y: 10,
-      transition: { duration: 0.2 }
-    }
+      transition: { duration: 0.2 },
+    },
   };
 
   const accordionItemVariants = {
     initial: { opacity: 0, x: -20 },
-    animate: (i: number) => ({ 
-      opacity: 1, 
+    animate: (i: number) => ({
+      opacity: 1,
       x: 0,
       transition: {
         duration: 0.4,
         delay: i * 0.1,
-      }
+      },
     }),
     exit: (i: number) => ({
       opacity: 0,
@@ -156,7 +155,7 @@ const Header: FC = () => {
       transition: {
         duration: 0.3,
         delay: i * 0.05,
-      }
+      },
     }),
   };
 
@@ -172,46 +171,46 @@ const Header: FC = () => {
       title: "Documentation",
       links: [
         { href: "/docs/getting-started", text: "Getting started" },
-        { href: "/docs/changelog", text: "Changelog" }
-      ]
+        { href: "/docs/changelog", text: "Changelog" },
+      ],
     },
     {
       id: "discover",
       title: "Discover",
       links: [
         { href: "/discover/featured-links", text: "Featured links" },
-        { href: "/discover/tips", text: "Tips" }
-      ]
+        { href: "/discover/tips", text: "Tips" },
+      ],
     },
     {
       id: "contact",
       title: "Contact",
       links: [
         { href: "mailto:hello@egeuysal.com", text: "Support" },
-        { href: "/#contact", text: "Feedback" }
-      ]
+        { href: "/#contact", text: "Feedback" },
+      ],
     },
     {
       id: "create",
       title: "Create",
       links: [
         { href: "/create/new-links", text: "New links" },
-        { href: "/create/new-links#customize", text: "Customize" }
-      ]
+        { href: "/create/new-links#customize", text: "Customize" },
+      ],
     },
     {
       id: "links",
       title: "Links",
       links: [
         { href: "/links/our-links", text: "Our links" },
-        { href: "/#newsletter", text: "Newsletter" }
-      ]
-    }
+        { href: "/#newsletter", text: "Newsletter" },
+      ],
+    },
   ];
 
   return (
     <div className="fixed top-6 left-0 right-0 z-10 flex justify-center w-full">
-      <motion.header 
+      <motion.header
         className="w-[82.5vw] md:w-[87.5vw] lg:w-[92.5vw] bg-[#7F5539]/75 border-2 border-[#9C6644] py-3.5 rounded-lg flex justify-between shadow-sm backdrop-blur-md"
         initial="initial"
         animate="animate"
@@ -331,7 +330,7 @@ const Header: FC = () => {
             exit="exit"
             variants={menuVariants}
           >
-            <motion.div 
+            <motion.div
               className="flex justify-end p-6"
               variants={itemVariants}
             >
@@ -346,7 +345,7 @@ const Header: FC = () => {
               </motion.button>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               className="flex-1 flex flex-col items-center justify-center px-8"
               variants={itemVariants}
             >
@@ -364,7 +363,11 @@ const Header: FC = () => {
                       <AccordionTrigger className="font-bold text-3xl text-[#593116] flex items-center justify-center">
                         <motion.span
                           whileHover={{ scale: 1.05 }}
-                          transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 10,
+                          }}
                           className="text-center"
                         >
                           {item.title}
@@ -380,8 +383,8 @@ const Header: FC = () => {
                             transition={{ delay: j * 0.05, duration: 0.3 }}
                             className="flex justify-center"
                           >
-                            <Link 
-                              href={link.href} 
+                            <Link
+                              href={link.href}
                               className="py-3 text-[#593116] text-xl hover:text-[#9C6644] transition-colors inline-block"
                               onClick={closeMobileMenu}
                             >
@@ -396,7 +399,7 @@ const Header: FC = () => {
               </Accordion>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               className="pb-10 w-full text-center text-[#593116] opacity-70"
               variants={footerVariants}
               initial="initial"
