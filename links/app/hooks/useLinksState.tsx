@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { INITIAL_PROFILE, UserProfile, LinkItem, generateHTML } from "@/lib/LinkUtils";
+import { INITIAL_PROFILE, UserProfile, LinkItem } from "@/lib/LinkUtils";
 
 export function useLinksState() {
   const [profile, setProfile] = useState<UserProfile>(INITIAL_PROFILE);

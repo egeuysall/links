@@ -1,6 +1,5 @@
-import React from "react";
-import changes from "./changes";  // correct import as it's in the same directory
-import Change from "../../components/Change";  // adjust path if needed
+import Change from "../../components/Change"; // adjust path if needed
+import changes from "./changes"; // correct import as it's in the same directory
 
 const ChangelogPage = () => {
   // Sort changes by date (most recent first)
@@ -26,10 +25,7 @@ const ChangelogPage = () => {
           sortedChanges.map((change) => (
             <Change
               key={change.id}
-              id={change.id}
-              title={change.title}
-              desc={change.desc}
-              date={change.date}
+              {...change}
             />
           ))
         ) : (
