@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { INITIAL_PROFILE, UserProfile, LinkItem, generateHTML } from "@/lib/LinkUtils";
+import { generateHTML } from "@/lib/LinkUtils";
 import LinksPageLayout from "./LinksPageLayout";
 import { useLinksState } from "../../hooks/useLinksState";
 

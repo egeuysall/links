@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack -H 0.0.0.0",
+    "dev:safe":"next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -46,6 +47,8 @@
     "@types/react": "^19.0.12",
     "@types/react-dom": "^19",
     "@types/react-syntax-highlighter": "^15.5.13",
+    "eslint": "^9",
+    "eslint-config-next": "15.2.4",
     "shiki": "^3.2.1",
     "tailwindcss": "^4",
     "typescript": "^5"
