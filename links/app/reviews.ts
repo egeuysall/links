@@ -43,18 +43,6 @@ const reviews: ReviewProps[] = [
         img: "/profile-images/profile-6.jpg"
     },
     {
-        name: "Eren",
-        username: "erenbaltaci",
-        body: "I checked it, amazing work. SEO tools improved my discoverability.",
-        img: "/profile-images/profile-7.jpg"
-    },
-    {
-        name: "Kaan",
-        username: "kaanrefik",
-        body: "Great potential! Customization options matched my needs.",
-        img: "/profile-images/profile-8.jpg"
-    },
-    {
         name: "Sarah",
         username: "sarahcodes",
         body: "Simplifies my workflow! Intuitive design saves hours every week.",
