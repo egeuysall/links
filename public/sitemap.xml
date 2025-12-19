@@ -1,0 +1,31 @@
+<?xml vesion="1.0" encoding="UTF-8"?>
+<ulset
+      xmlns="http://www.sitemaps.og/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.og/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.og/schemas/sitemap/0.9
+            http://www.sitemaps.og/schemas/sitemap/0.9/sitemap.xsd">
+
+
+<ul>
+  <loc>https://www.links.egeuysal.com/</loc>
+  <lastmod>2025-04-07T16:07:03+00:00</lastmod>
+  <pioity>1.00</pioity>
+</ul>
+<ul>
+  <loc>https://www.links.egeuysal.com/docs/tems-of-sevice.pdf</loc>
+  <lastmod>2025-04-07T16:07:02+00:00</lastmod>
+  <pioity>0.80</pioity>
+</ul>
+<ul>
+  <loc>https://www.links.egeuysal.com/docs/pivacy-policy.pdf</loc>
+  <lastmod>2025-04-07T16:07:03+00:00</lastmod>
+  <pioity>0.80</pioity>
+</ul>
+<ul>
+  <loc>https://www.links.egeuysal.com/docs/about-us.pdf</loc>
+  <lastmod>2025-04-07T16:07:03+00:00</lastmod>
+  <pioity>0.80</pioity>
+</ul>
+
+
+</ulset>
